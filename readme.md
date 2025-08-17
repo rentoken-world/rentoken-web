@@ -1,3 +1,7 @@
+<!--
+ * @Author: Mr.Car
+ * @Date: 2025-08-17 21:27:15
+-->
 # rentoken.world
 
 ## 房租收益RWA数字化平台
