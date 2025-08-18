@@ -5,9 +5,83 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>房租收益RWA - rentoken.world</title>
+  <!-- React & ReactDOM CDN -->
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <link rel="stylesheet" href="components/ui/Card.css">
+  <link rel="stylesheet" href="components/ui/Button.css">
+  <link rel="stylesheet" href="components/ui/Input.css">
+  <link rel="stylesheet" href="components/ui/KLineChart.css">
+  <script src="components/ui/KLineChart.js"></script>
   <style>
+    .investor-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px 28px;
+      align-items: stretch;
+      margin: 0 0 24px 0;
+    }
+    .investor-col.left, .investor-col.right {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    @media (max-width: 900px) {
+      .investor-grid {
+        grid-template-columns: 1fr;
+        gap: 18px 0;
+      }
+    }
+    .tab-select {
+      font-size: 1.08rem;
+      border-radius: 8px;
+      padding: 8px 18px;
+      min-width: 120px;
+      background: #2e2a4f;
+      color: #b993ff;
+      border: 1.5px solid #6a5cff44;
+      box-shadow: 0 2px 8px 0 rgba(106,92,255,0.08);
+      outline: none;
+      transition: border 0.18s, box-shadow 0.18s;
+      appearance: none;
+      -webkit-appearance: none;
+      margin: 0 0 0 4px;
+    }
+    .tab-select:focus {
+      border: 1.5px solid #b993ff;
+      box-shadow: 0 0 0 2px #b993ff33;
+    }
+    .tab-select option {
+      background: #2e2a4f;
+      color: #b993ff;
+    }
+    @media (max-width: 700px) {
+      .nav-tabs {
+        gap: 4px;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 2px;
+      }
+      .nav-tabs::-webkit-scrollbar {
+        display: none;
+      }
+      .tab-btn {
+        min-width: 90px;
+        font-size: 1rem;
+        padding: 8px 10px;
+        border-radius: 8px 8px 0 0;
+        flex: 1 0 auto;
+        white-space: nowrap;
+      }
+    }
+    html, body {
+      height: 100%;
+      overflow: hidden;
+    }
     body {
-      min-height: 100vh;
+      height: 100%;
       margin: 0;
       font-family: 'Segoe UI', 'Arial', sans-serif;
       background: linear-gradient(135deg, #2e2a4f 0%, #6a5cff 100%);
@@ -16,60 +90,53 @@
       flex-direction: column;
       min-width: 320px;
     }
+    /* 其余全局和业务样式保留 */
     .navbar {
       width: 100%;
-      background: rgba(46,42,79,0.95);
+      background: rgba(46,42,79,0.97);
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 32px;
+      padding: 0 48px;
       box-sizing: border-box;
-      box-shadow: 0 2px 12px 0 rgba(106,92,255,0.08);
-      height: 72px;
+      box-shadow: 0 4px 18px 0 rgba(106,92,255,0.10);
+      height: 80px;
+      font-size: 1.15rem;
     }
     .nav-logo {
       display: flex;
       align-items: center;
-      gap: 12px;
-      font-size: 1.3rem;
+      gap: 16px;
+      font-size: 1.5rem;
       font-weight: bold;
-      letter-spacing: 1px;
+      letter-spacing: 1.5px;
     }
     .nav-logo img {
-      width: 48px;
-      height: 48px;
-      border-radius: 16px;
-      background: #fff1;
+      width: 56px;
+      height: 56px;
+      border-radius: 18px;
+      background: #fff2;
       object-fit: contain;
+      box-shadow: 0 2px 8px 0 rgba(106,92,255,0.10);
     }
     .nav-tabs {
       display: flex;
       gap: 16px;
     }
-    .tab-btn {
-      background: none;
-      border: none;
-      color: #b993ff;
-      font-size: 1.1rem;
-      padding: 8px 20px;
-      border-radius: 8px 8px 0 0;
-      cursor: pointer;
-      transition: background 0.2s, color 0.2s;
-    }
-    .tab-btn.active, .tab-btn:hover {
-      background: #6a5cff;
-      color: #fff;
-    }
     .tab-content {
-      flex: 1;
+      flex: 1 1 auto;
       width: 100%;
-      max-width: 600px;
-      margin: 40px auto 0 auto;
-      background: rgba(255,255,255,0.04);
-      border-radius: 24px;
-      box-shadow: 0 4px 32px 0 rgba(106,92,255,0.10);
-      padding: 32px 24px 24px 24px;
-      min-height: 320px;
+      max-width: 95vw;
+      margin: 24px auto;
+      background: rgba(255,255,255,0.06);
+      border-radius: 28px;
+      box-shadow: 0 6px 36px 0 rgba(106,92,255,0.13);
+      padding: 32px 20px 24px 20px;
+      min-height: 0;
+      height: calc(100vh - 200px);
+      overflow: auto;
+      transition: all 0.2s;
+      box-sizing: border-box;
     }
     .tab-panel {
       display: none;
@@ -98,76 +165,6 @@
       letter-spacing: 1px;
       margin: 32px 0 8px 0;
     }
-    @media (max-width: 700px) {
-      .tab-content { max-width: 98vw; padding: 16px 2vw; }
-      .navbar { padding: 0 8px; height: 56px; }
-      .nav-logo img { width: 32px; height: 32px; }
-      h2 { font-size: 1.2rem; }
-    }
-    @keyframes fadein {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-    .card {
-      background: rgba(46,42,79,0.7);
-      border-radius: 16px;
-      margin-bottom: 24px;
-      padding: 18px 16px 12px 16px;
-      box-shadow: 0 2px 8px 0 rgba(106,92,255,0.08);
-    }
-    .card h3 {
-      margin: 0 0 10px 0;
-      font-size: 1.15rem;
-      color: #b993ff;
-    }
-    .chart-placeholder {
-      width: 100%;
-      height: 120px;
-      background: repeating-linear-gradient(135deg, #6a5cff22 0 10px, #2e2a4f22 10px 20px);
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #b993ff99;
-      font-size: 1.1rem;
-      margin-bottom: 8px;
-    }
-    .chart-labels {
-      display: flex;
-      justify-content: space-between;
-      font-size: 0.95rem;
-      color: #b993ff99;
-      margin-bottom: 4px;
-    }
-    .calc-form {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px 18px;
-      align-items: center;
-      margin-bottom: 8px;
-    }
-    .calc-form label {
-      flex: 1 1 180px;
-      font-size: 1rem;
-    }
-    .calc-form input {
-      margin-left: 6px;
-      width: 80px;
-      border-radius: 4px;
-      border: none;
-      padding: 2px 6px;
-      font-size: 1rem;
-    }
-    .calc-form button {
-      background: #6a5cff;
-      color: #fff;
-      border: none;
-      border-radius: 6px;
-      padding: 6px 18px;
-      font-size: 1rem;
-      cursor: pointer;
-      margin-left: 8px;
-    }
     .result {
       color: #b993ff;
       font-size: 1.05rem;
@@ -181,23 +178,9 @@
     }
     .actions {
       display: flex;
-      gap: 24px;
+      gap: 32px;
       justify-content: center;
-      margin-top: 12px;
-    }
-    .buy-btn, .sell-btn {
-      background: #6a5cff;
-      color: #fff;
-      border: none;
-      border-radius: 8px;
-      padding: 10px 32px;
-      font-size: 1.1rem;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-    .sell-btn {
-      background: #b993ff;
-      color: #2e2a4f;
+      margin-top: 18px;
     }
     .chart-svg {
       width: 100%;
@@ -207,139 +190,20 @@
   </style>
 </head>
 <body>
-  <nav class="navbar">
-    <div class="nav-logo">
-      <img src="logo.jpg" alt="rentoken.world logo" />
-      <span>rentoken.world</span>
-    </div>
-    <div class="nav-tabs">
-      <button class="tab-btn active" data-tab="investor">Investor</button>
-      <button class="tab-btn" data-tab="spv">SPV</button>
-      <button class="tab-btn" data-tab="owner">Owner</button>
-    </div>
-  </nav>
-  <main class="tab-content">
-    <section id="investor" class="tab-panel active">
-      <h2>Investor</h2>
-      <div class="card">
-        <h3>Token收益曲线</h3>
-        <div id="yield-chart" class="chart-svg"></div>
-        <div class="chart-labels">
-          <span style="color:#6a5cff">● Uniswap池</span>
-          <span style="color:#b993ff">● 中心化池</span>
-        </div>
-      </div>
-      <div class="card">
-        <h3>预期收益计算器</h3>
-        <form class="calc-form" onsubmit="return false;">
-          <label>投入金额(USDT): <input type="number" min="0" step="0.01" id="invest-amount" value="1000"></label>
-          <label>年化收益率(%): <input type="number" min="0" max="100" step="0.01" id="apy" value="8"></label>
-          <label>持有天数: <input type="number" min="1" max="365" id="days" value="30"></label>
-          <button type="button" onclick="calcYield()">计算</button>
-        </form>
-        <div id="yield-result" class="result"></div>
-      </div>
-      <div class="card">
-        <h3>风险评估</h3>
-        <ul class="risk-list">
-          <li>二级市场风险：价格波动、流动性风险</li>
-          <li>一级市场风险：底层资产违约、收益不达预期</li>
-        </ul>
-      </div>
-      <div class="card actions">
-        <button class="buy-btn">买入</button>
-        <button class="sell-btn">卖出</button>
-      </div>
-    </section>
-    <section id="spv" class="tab-panel">
-      <h2>SPV</h2>
-      <ul>
-        <li>总合同量、总数、完成度</li>
-        <li>合同详情</li>
-        <li>合同履约进度</li>
-      </ul>
-    </section>
-    <section id="owner" class="tab-panel">
-      <h2>Owner</h2>
-      <ul>
-        <li>查看已发放收益、预期收益等</li>
-        <li>计算当前收益率、总收益等</li>
-        <li>查看合同完成进度</li>
-      </ul>
-    </section>
-  </main>
-  <footer class="footer">
-    &copy; 2025 rentoken.world
-  </footer>
+  <div id="root"></div>
   <script src="tokenYieldData.js"></script>
+  <script src="components/legacyUtils.js"></script>
+  <script src="components/ui/Card.js"></script>
+  <script src="components/ui/Button.js"></script>
+  <script src="components/ui/Input.js"></script>
+  <script src="components/Navbar.js"></script>
+  <script src="components/InvestorPanel.js"></script>
+  <script src="components/SpvPanel.js"></script>
+  <script src="components/OwnerPanel.js"></script>
+  <script src="components/Footer.js"></script>
+  <script src="components/App.js"></script>
   <script>
-    // DRY: tab切换逻辑
-    document.querySelectorAll('.tab-btn').forEach(btn => {
-      btn.onclick = function() {
-        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-        document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-        btn.classList.add('active');
-        document.getElementById(btn.dataset.tab).classList.add('active');
-      };
-    });
-    // 预期收益计算器逻辑
-    function calcYield() {
-        var amount = parseFloat(document.getElementById('invest-amount').value) || 0;
-        var apy = parseFloat(document.getElementById('apy').value) || 0;
-        var days = parseInt(document.getElementById('days').value) || 0;
-        var result = 0;
-        if (amount > 0 && apy > 0 && days > 0) {
-        result = amount * (apy / 100) * (days / 365);
-        document.getElementById('yield-result').innerText = '预期收益：' + result.toFixed(2) + ' USDT';
-        } else {
-        document.getElementById('yield-result').innerText = '';
-        }
-    }
-    // SVG收益曲线渲染
-    function drawYieldChart() {
-      const data = window.tokenYieldData;
-      if (!data) return;
-      const w = 360, h = 120, pad = 32;
-      const days = data.days;
-      const maxY = Math.max(...data.uniswap, ...data.centralized) * 1.1;
-      const minY = 0;
-      function scaleX(i) { return pad + (w-2*pad) * (days[i] - days[0]) / (days[days.length-1] - days[0]); }
-      function scaleY(y) { return h - pad - (h-2*pad) * (y-minY)/(maxY-minY); }
-      function linePath(arr) {
-        return arr.map((y,i) => (i===0?'M':'L')+scaleX(i)+','+scaleY(y)).join(' ');
-      }
-      let svg = `<svg width="${w}" height="${h}" viewBox="0 0 ${w} ${h}">
-        <rect x="0" y="0" width="${w}" height="${h}" fill="none"/>
-        <g stroke="#444" stroke-width="1">`;
-      // y轴刻度线
-      for(let y=0; y<=maxY; y+=Math.max(1,Math.round(maxY/5))) {
-        svg += `<line x1="${pad}" y1="${scaleY(y)}" x2="${w-pad}" y2="${scaleY(y)}" stroke="#444" stroke-dasharray="2,2"/>`;
-        svg += `<text x="4" y="${scaleY(y)+4}" font-size="10" fill="#b993ff99">${y}%</text>`;
-      }
-      // x轴刻度
-      for(let i=0;i<days.length;i++) {
-        svg += `<text x="${scaleX(i)}" y="${h-8}" font-size="10" fill="#b993ff99" text-anchor="middle">${days[i]}d</text>`;
-      }
-      svg += `</g>`;
-      // uniswap曲线
-      svg += `<path d="${linePath(data.uniswap)}" fill="none" stroke="#6a5cff" stroke-width="2.5"/>`;
-      // centralized曲线
-      svg += `<path d="${linePath(data.centralized)}" fill="none" stroke="#b993ff" stroke-width="2.5"/>`;
-      // 点
-      data.uniswap.forEach((y,i)=>{
-        svg += `<circle cx="${scaleX(i)}" cy="${scaleY(y)}" r="3" fill="#6a5cff"/>`;
-      });
-      data.centralized.forEach((y,i)=>{
-        svg += `<circle cx="${scaleX(i)}" cy="${scaleY(y)}" r="3" fill="#b993ff"/>`;
-      });
-      svg += `</svg>`;
-      document.getElementById('yield-chart').innerHTML = svg;
-    }
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', drawYieldChart);
-    } else {
-      drawYieldChart();
-    }
+    ReactDOM.createRoot(document.getElementById('root')).render(React.createElement(window.App));
   </script>
 </body>
 </html>

@@ -1,0 +1,15 @@
+.kline-chart {
+  width: 100%;
+  max-width: 380px;
+  margin: 0 auto 12px auto;
+  background: #18162a;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px 0 #6a5cff11;
+  padding: 8px 0 0 0;
+  overflow-x: auto;
+}
+.kline-chart svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}

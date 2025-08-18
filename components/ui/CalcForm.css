@@ -1,0 +1,29 @@
+.calc-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px 24px;
+  align-items: end;
+  margin-bottom: 12px;
+}
+.calc-form label {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.08rem;
+  font-weight: 500;
+  gap: 6px;
+}
+.calc-form .ui-input {
+  width: 100%;
+  margin-left: 0;
+}
+.calc-form .ui-btn {
+  grid-column: 1 / -1;
+  width: 100%;
+  margin-top: 8px;
+}
+@media (max-width: 700px) {
+  .calc-form {
+    grid-template-columns: 1fr;
+    gap: 12px 0;
+  }
+}

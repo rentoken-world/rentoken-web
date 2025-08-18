@@ -1,0 +1,13 @@
+/* Card 组件专属样式 */
+.ui-card {
+  background: rgba(46,42,79,0.92);
+  border-radius: 20px;
+  margin: 32px 0;
+  padding: 24px 24px 18px 24px;
+  box-shadow: 0 6px 24px 0 rgba(106,92,255,0.13);
+  transition: box-shadow 0.2s, background 0.2s;
+}
+.ui-card:hover {
+  box-shadow: 0 10px 32px 0 rgba(106,92,255,0.18);
+  background: rgba(46,42,79,0.98);
+}

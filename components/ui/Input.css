@@ -1,0 +1,17 @@
+/* Input 组件专属样式 */
+.ui-input {
+  background: #fff2;
+  color: #fff;
+  border: 1.5px solid #6a5cff44;
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 1.08rem;
+  outline: none;
+  transition: border 0.18s, box-shadow 0.18s;
+  /* margin-left: 0; 取消左边距 */
+  width: 110px;
+}
+.ui-input:focus {
+  border: 1.5px solid #b993ff;
+  box-shadow: 0 0 0 2px #b993ff33;
+}

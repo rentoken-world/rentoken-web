@@ -1,0 +1,54 @@
+@media (max-width: 700px) {
+  .nav-tabs {
+    gap: 4px;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 2px;
+  }
+  .nav-tabs::-webkit-scrollbar {
+    display: none;
+  }
+  .tab-btn {
+    min-width: 90px;
+    font-size: 1rem;
+    padding: 8px 10px;
+    border-radius: 8px 8px 0 0;
+    flex: 1 0 auto;
+    white-space: nowrap;
+  }
+}
+/* Tab 按钮专属样式 */
+.tab-btn {
+  background: none;
+  border: none;
+  color: #b993ff;
+  font-size: 1.12rem;
+  padding: 10px 28px;
+  border-radius: 10px 10px 0 0;
+  cursor: pointer;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  min-width: 100px;
+  box-sizing: border-box;
+  transition: background 0.18s, color 0.18s, box-shadow 0.18s;
+  outline: none;
+  position: relative;
+  z-index: 1;
+}
+.tab-btn:not(.active) {
+  background: none;
+  color: #b993ff;
+  box-shadow: none;
+  opacity: 0.85;
+}
+.tab-btn.active {
+  background: #fff;
+  color: #6a5cff;
+  box-shadow: 0 4px 16px 0 rgba(106,92,255,0.10);
+  opacity: 1;
+  z-index: 2;
+}
+.tab-btn:focus {
+  outline: 2px solid #b993ff;
+}
