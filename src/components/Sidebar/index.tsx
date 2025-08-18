@@ -2,8 +2,8 @@
  * @Author: dreamworks.cnn@gmail.com
  * @Date: 2025-08-17 21:37:14
  * @LastEditors: dreamworks.cnn@gmail.com
- * @LastEditTime: 2025-08-18 00:42:32
- * @FilePath: /auto_dex/frontend/src/components/Sidebar/index.tsx
+ * @LastEditTime: 2025-08-18 14:49:28
+ * @FilePath: /rentoken-web/src/components/Sidebar/index.tsx
  * @Description: 
  * 
  * Copyright (c) 2025 by ${git_name_email}, All Rights Reserved. 
@@ -41,23 +41,7 @@ export function Sidebar() {
                             <PrecisionManufacturing />
                             Automations
                         </Link>
-                    </li>
-                    <li className="p-2">
-                        <Link className={`${pathname === '/settings' && "text-blue-500"} flex items-end gap-2`} href="/settings">
-                            <Settings />
-                            Settings
-                        </Link>
-                    </li>
-                    <li className="p-2">
-                        <Link
-                        className={`${pathname === '/logout' && "text-blue-500"} flex items-end gap-2`}
-                        href="#"
-                        onClick={btnLogoutClick}
-                        >
-                            <Logout />
-                            Logout
-                        </Link>
-                    </li>
+                    </li>                                 
                     <li className="p-2">
                         <Link
                         className={`${pathname === '/logout' && "text-blue-500"} flex items-end gap-2`}
