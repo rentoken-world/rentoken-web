@@ -1,0 +1,187 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../data"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model tokens {
+  id       String @id @map("_id")
+  name     String
+  symbol   String
+  decimals Int    @default(18)
+  network  Int    @default(1)
+}
+
+model pools {
+  id              String    @id @map("_id")
+  token0          String // token address
+  token1          String
+  symbol          String
+  symbol0         String // token symbol
+  symbol1         String
+  fee             Int
+  exchange        Int       @default(1)
+  network         Int       @default(1)
+  price0          String
+  price0Change    Float
+  price0_15       String?
+  price0Change_15 Float?
+  price0_60       String?
+  price0Change_60 Float?
+  price1          String
+  price1Change    Float
+  price1_15       String?
+  price1Change_15 Float?
+  price1_60       String?
+  price1Change_60 Float?
+  lastUpdate      DateTime
+  lastUpdate_15   DateTime?
+  lastUpdate_60   DateTime?
+}
+
+model users {
+  id             String   @id @default(auto()) @map("_id") @db.ObjectId
+  address        String   @unique
+  name           String
+  email          String
+  status         Int      @default(1)
+  network        Int      @default(1)
+  planId         String
+  privateKey     String
+  activationCode String
+  activationDate DateTime
+  
+  // 新增RWA相关字段
+  kyc            kyc?
+  stakes         stakes[]
+  tokenBalances  tokenBalances[]
+  swaps          swaps[]
+  liquidityPositions liquidityPositions[]
+  redemptions    redemptions[]
+}
+
+model kyc {
+  id             String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId         String   @unique @db.ObjectId
+  phone          String
+  email          String
+  idNumber       String
+  walletAddress  String   @unique
+  documents      Json     @default("[]")
+  status         String   @default("pending") // pending, approved, rejected
+  submittedAt    DateTime @default(now())
+  reviewedAt     DateTime?
+  reviewComments String?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  
+  user users @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model stakes {
+  id              String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId          String   @db.ObjectId
+  assetId         String
+  amount          Float
+  lockPeriod      Int      // months
+  tokenAmount     Float
+  expectedYield   Float
+  unlockDate      DateTime
+  status          String   @default("pending") // pending, active, unlocked
+  transactionHash String?
+  confirmedAt     DateTime?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  
+  user users @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model tokenBalances {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId    String   @db.ObjectId
+  assetId   String
+  balance   Float    @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  user users @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@unique([userId, assetId])
+}
+
+model swaps {
+  id              String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId          String   @db.ObjectId
+  fromToken       String
+  toToken         String
+  fromAmount      Float
+  toAmount        Float
+  fee             Float
+  slippage        Float
+  transactionHash String?
+  status          String   @default("pending") // pending, completed, failed
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  
+  user users @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model liquidityPositions {
+  id              String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId          String   @db.ObjectId
+  poolId          String
+  token0          String
+  token1          String
+  amount0         Float
+  amount1         Float
+  lpTokens        Float
+  transactionHash String?
+  status          String   @default("active") // active, removed
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  
+  user users @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model redemptions {
+  id                      String    @id @default(auto()) @map("_id") @db.ObjectId
+  userId                  String    @db.ObjectId
+  assetId                 String
+  tokenAmount             Float
+  baseValue               Float
+  penalty                 Float     @default(0)
+  processingFee           Float     @default(0)
+  finalValue              Float
+  isEarlyRedeem           Boolean   @default(false)
+  status                  String    @default("pending") // pending, processing, completed, failed, cancelled
+  estimatedCompletionDate DateTime
+  transactionHash         String?
+  completedAt             DateTime?
+  cancelledAt             DateTime?
+  processedAt             DateTime?
+  adminComments           String?
+  failureReason           String?
+  createdAt               DateTime  @default(now())
+  updatedAt               DateTime  @updatedAt
+  
+  user users @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model plans {
+  id             String @id @map("_id")
+  name           String
+  price          String
+  tokenSymbol    String
+  tokenAddress   String
+  maxAutomations Int
+}
