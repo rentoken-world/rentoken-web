@@ -1,3 +1,25 @@
+/* 全局滚动条美化（深色Uniswap风格） */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #23244a 0%, #6c47ff 100%);
+  border-radius: 8px;
+  min-height: 32px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #6c47ff 0%, #b983ff 100%);
+}
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+html {
+  scrollbar-width: thin;
+  scrollbar-color: #6c47ff #23244a;
+}
 /* 全局与业务样式，Uniswap风格 */
 :root {
   --uni-bg: #0e0e23;

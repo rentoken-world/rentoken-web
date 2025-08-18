@@ -1,0 +1,63 @@
+/* 详情区样式 */
+.project-detail-panel {
+  background: var(--uni-bg-card);
+  border-radius: var(--uni-radius);
+  box-shadow: var(--uni-shadow);
+  padding: 28px 28px 18px 28px;
+  min-height: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.project-detail-header {
+  display: flex;
+  align-items: center;
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.project-status {
+  margin-left: 12px;
+  font-size: 1.08rem;
+  font-weight: 700;
+}
+.project-meta {
+  display: flex;
+  gap: 32px;
+  font-size: 1.05rem;
+  color: #b3b3c6;
+  margin-bottom: 8px;
+}
+.project-actions {
+  display: flex;
+  gap: 18px;
+  margin-bottom: 8px;
+}
+.project-yield {
+  margin-bottom: 8px;
+}
+.project-rentflow {
+  margin-bottom: 8px;
+}
+.rentflow-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 6px;
+  font-size: 1rem;
+}
+.rentflow-table th, .rentflow-table td {
+  padding: 6px 12px;
+  border-bottom: 1px solid #23244a;
+  text-align: left;
+}
+.rentflow-table th {
+  color: #b3b3c6;
+  font-weight: 500;
+  background: none;
+}
+.project-detail-empty {
+  color: #b3b3c6;
+  text-align: center;
+  padding: 48px 0;
+  font-size: 1.12rem;
+}

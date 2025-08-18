@@ -1,3 +1,7 @@
+/*
+ * @Author: Mr.Car
+ * @Date: 2025-08-18 17:25:43
+ */
 // React主入口：App.js
 function App() {
   const [activeTab, setActiveTab] = React.useState('investor');
@@ -6,13 +10,14 @@ function App() {
     window.setActiveTab = setActiveTab;
     setTimeout(() => { if (activeTab === 'investor' && window.drawYieldChart) window.drawYieldChart(); }, 0);
   }, [activeTab]);
+  let mainContent = null;
+  if (activeTab === 'investor') mainContent = React.createElement(window.InvestorPage, { active: true });
+  else if (activeTab === 'owner') mainContent = React.createElement(window.OwnerPage, { active: true });
   return (
     React.createElement(React.Fragment, null,
-      React.createElement(window.Navbar),
+      React.createElement(window.Navbar, { activeTab, setActiveTab }),
       React.createElement('main', { className: 'tab-content' },
-        React.createElement(window.InvestorPanel, { active: activeTab === 'investor' }),
-        React.createElement(window.SpvPanel, { active: activeTab === 'spv' }),
-        React.createElement(window.OwnerPanel, { active: activeTab === 'owner' })
+        mainContent
       ),
       React.createElement(window.Footer)
     )

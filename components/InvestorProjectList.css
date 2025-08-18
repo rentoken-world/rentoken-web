@@ -1,0 +1,71 @@
+/* 项目列表区样式 */
+.project-list-panel {
+  background: var(--uni-bg-card);
+  border-radius: var(--uni-radius);
+  box-shadow: var(--uni-shadow);
+  padding: 18px 18px 12px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.project-list-header {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.project-search {
+  flex: 1 1 0;
+  min-width: 0;
+}
+.project-mine-btn {
+  padding: 8px 18px;
+  border-radius: 12px;
+  font-size: 1rem;
+  background: linear-gradient(90deg,#23244a 0%,#6c47ff 100%);
+  color: #fff;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: filter 0.18s;
+}
+.project-mine-btn.active {
+  background: linear-gradient(90deg,#00e1ff 0%,#6c47ff 100%);
+  color: #fff;
+}
+.project-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 420px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.project-item {
+  padding: 10px 8px 8px 8px;
+  border-radius: 12px;
+  cursor: pointer;
+  background: none;
+  transition: background 0.15s;
+  color: var(--uni-text-secondary);
+}
+.project-item.selected, .project-item:hover {
+  background: linear-gradient(90deg,#23244a 0%,#6c47ff 100%);
+  color: #fff;
+}
+.project-title {
+  font-weight: 600;
+  font-size: 1.08rem;
+  margin-bottom: 2px;
+}
+.project-address {
+  font-size: 0.92rem;
+  color: #b3b3c6;
+}
+.project-list .empty {
+  color: #b3b3c6;
+  text-align: center;
+  padding: 18px 0;
+}
