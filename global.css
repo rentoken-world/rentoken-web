@@ -1,0 +1,204 @@
+/* 全局与业务样式，Uniswap风格 */
+:root {
+  --uni-bg: #0e0e23;
+  --uni-bg-card: rgba(26,27,54,0.92);
+  --uni-bg-card-blur: rgba(26,27,54,0.82);
+  --uni-primary: #6c47ff;
+  --uni-primary-light: #b983ff;
+  --uni-accent: #ffb6ff;
+  --uni-border: #28294a;
+  --uni-text: #fff;
+  --uni-text-secondary: #b3b3c6;
+  --uni-radius: 20px;
+  --uni-shadow: 0 4px 32px 0 #6c47ff22;
+  --uni-font: 'Inter', 'Roboto', 'Arial', sans-serif;
+}
+html, body {
+  height: 100%;
+  overflow: hidden;
+  background: var(--uni-bg);
+  color: var(--uni-text);
+  font-family: var(--uni-font);
+  font-size: 17px;
+  letter-spacing: 0.01em;
+}
+body {
+  min-width: 320px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(135deg, #181a2a 0%, #6c47ff 100%);
+}
+.tab-select {
+  font-size: 1.08rem;
+  border-radius: var(--uni-radius);
+  padding: 10px 22px;
+  min-width: 120px;
+  background: var(--uni-bg-card);
+  color: var(--uni-primary-light);
+  border: 1.5px solid var(--uni-border);
+  box-shadow: var(--uni-shadow);
+  outline: none;
+  transition: border 0.18s, box-shadow 0.18s;
+  appearance: none;
+  -webkit-appearance: none;
+  margin: 0 0 0 4px;
+  font-family: var(--uni-font);
+}
+.tab-select:focus {
+  border: 1.5px solid var(--uni-primary-light);
+  box-shadow: 0 0 0 2px #b983ff33;
+}
+.tab-select option {
+  background: var(--uni-bg-card);
+  color: var(--uni-primary-light);
+}
+@media (max-width: 700px) {
+  .nav-tabs {
+    gap: 4px;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 2px;
+  }
+  .nav-tabs::-webkit-scrollbar {
+    display: none;
+  }
+  .tab-btn {
+    min-width: 90px;
+    font-size: 1rem;
+    padding: 8px 10px;
+    border-radius: 8px 8px 0 0;
+    flex: 1 0 auto;
+    white-space: nowrap;
+  }
+}
+.navbar {
+  width: 100%;
+  background: rgba(46,42,79,0.97);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 48px;
+  box-sizing: border-box;
+  box-shadow: 0 4px 18px 0 rgba(106,92,255,0.10);
+  height: 80px;
+  font-size: 1.15rem;
+}
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  letter-spacing: 1.5px;
+}
+.nav-logo img {
+  width: 56px;
+  height: 56px;
+  border-radius: 18px;
+  background: #fff2;
+  object-fit: contain;
+}
+.investor-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px 28px;
+  align-items: stretch;
+  margin: 0 0 24px 0;
+}
+.investor-col.left, .investor-col.right {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+@media (max-width: 900px) {
+  .investor-grid {
+    grid-template-columns: 1fr;
+    gap: 18px 0;
+  }
+}
+.investor-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px 28px;
+    align-items: stretch;
+    margin: 0 0 24px 0;
+}
+.investor-col.left, .investor-col.right {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    object-fit: contain;
+    box-shadow: 0 2px 8px 0 rgba(106,92,255,0.10);
+}
+.nav-tabs {
+    display: flex;
+    gap: 16px;
+}
+.tab-content {
+    flex: 1 1 auto;
+    width: 100%;
+    max-width: 95vw;
+    margin: 24px auto;
+    background: rgba(255,255,255,0.06);
+    border-radius: 28px;
+    box-shadow: 0 6px 36px 0 rgba(106,92,255,0.13);
+    padding: 32px 20px 24px 20px;
+    min-height: 0;
+    height: calc(100vh - 200px);
+    overflow: auto;
+    transition: all 0.2s;
+    box-sizing: border-box;
+}
+.tab-panel {
+    display: none;
+    animation: fadein 0.3s;
+}
+.tab-panel.active {
+    display: block;
+}
+h2 {
+    margin-top: 0;
+    font-size: 2rem;
+    color: #b993ff;
+    letter-spacing: 1px;
+}
+ul {
+    padding-left: 20px;
+    font-size: 1.1rem;
+    line-height: 2;
+    color: #e0e0ff;
+}
+.footer {
+    width: 100%;
+    text-align: center;
+    color: #b993ff;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    margin: 32px 0 8px 0;
+}
+.result {
+    color: #b993ff;
+    font-size: 1.05rem;
+    margin-top: 4px;
+}
+.risk-list {
+    margin: 0;
+    padding-left: 18px;
+    color: #ffb3b3;
+    font-size: 1rem;
+}
+.actions {
+    display: flex;
+    gap: 32px;
+    justify-content: center;
+    margin-top: 18px;
+}
+.chart-svg {
+    width: 100%;
+    min-height: 140px;
+    margin-bottom: 8px;
+}

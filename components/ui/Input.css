@@ -1,17 +1,17 @@
 /* Input 组件专属样式 */
 .ui-input {
-  background: #fff2;
-  color: #fff;
-  border: 1.5px solid #6a5cff44;
-  border-radius: 6px;
-  padding: 6px 12px;
+  background: var(--uni-bg-card, #181b36);
+  color: var(--uni-text, #fff);
+  border: 1.5px solid var(--uni-border, #28294a);
+  border-radius: var(--uni-radius, 20px);
+  padding: 10px 18px;
   font-size: 1.08rem;
   outline: none;
   transition: border 0.18s, box-shadow 0.18s;
-  /* margin-left: 0; 取消左边距 */
-  width: 110px;
+  width: 120px;
+  font-family: var(--uni-font, 'Inter', 'Roboto', 'Arial', sans-serif);
 }
 .ui-input:focus {
-  border: 1.5px solid #b993ff;
-  box-shadow: 0 0 0 2px #b993ff33;
+  border: 1.5px solid var(--uni-primary-light, #b983ff);
+  box-shadow: 0 0 0 2px #b983ff33;
 }
