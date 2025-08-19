@@ -1,0 +1,380 @@
+import { prisma } from './prisma';
+import type { Property, Investment, InvestorStats } from '@/types/api';
+
+// 房产筛选参数接口
+export interface PropertyFilters {
+  page?: number;
+  limit?: number;
+  search?: string;
+  category?: string;
+  status?: string;
+  owner?: string;
+  minPrice?: number;
+  maxPrice?: number;
+}
+
+// 投资创建参数接口
+export interface CreateInvestmentParams {
+  propertyId: string;
+  investorAddress: string;
+  tokenAmount: number;
+  investmentAmount: number;
+}
+
+// 房产创建参数接口
+export interface CreatePropertyParams {
+  title: string;
+  description: string;
+  location: string;
+  price: number;
+  tokenSupply: number;
+  expectedYield: number;
+  category: string;
+  owner: string;
+  imageUrl?: string;
+}
+
+// Prisma 数据库服务类
+export class PrismaService {
+  
+  // 获取房产列表
+  static async getProperties(filters: PropertyFilters) {
+    const { 
+      page = 1, 
+      limit = 12, 
+      search = '', 
+      category, 
+      status, 
+      owner,
+      minPrice,
+      maxPrice 
+    } = filters;
+    
+    const skip = (page - 1) * limit;
+    
+    // 构建 where 条件
+    const where: any = {};
+    
+    if (search) {
+      where.OR = [
+        { title: { contains: search, mode: 'insensitive' } },
+        { location: { contains: search, mode: 'insensitive' } },
+        { description: { contains: search, mode: 'insensitive' } },
+      ];
+    }
+    
+    if (category) {
+      where.category = category;
+    }
+    
+    if (status) {
+      where.status = status;
+    }
+    
+    if (owner) {
+      where.owner = owner;
+    }
+    
+    if (minPrice !== undefined || maxPrice !== undefined) {
+      where.price = {};
+      if (minPrice !== undefined) where.price.gte = minPrice;
+      if (maxPrice !== undefined) where.price.lte = maxPrice;
+    }
+
+    // 执行查询
+    const [properties, total] = await Promise.all([
+      prisma.property.findMany({
+        where,
+        skip,
+        take: limit,
+        orderBy: { createdAt: 'desc' },
+        include: {
+          investments: true,
+        },
+      }),
+      prisma.property.count({ where }),
+    ]);
+
+    // 转换数据格式以匹配现有的 API 接口
+    const formattedProperties: Property[] = properties.map(property => ({
+      id: property.id,
+      title: property.title,
+      location: property.location,
+      description: property.description,
+      monthlyRent: property.price * (property.expectedYield / 100) / 12, // 计算月租金
+      tokenPrice: property.price / property.tokenSupply, // 计算单个代币价格
+      totalTokens: property.tokenSupply,
+      soldTokens: property.tokenSupply - property.availableTokens,
+      apy: property.actualYield || property.expectedYield,
+      imageUrl: property.imageUrl || `/property-${property.id}.jpg`,
+      status: property.status as Property['status'],
+      ownerId: property.owner,
+      createdAt: property.createdAt.toISOString(),
+      updatedAt: property.updatedAt.toISOString(),
+    }));
+
+    return {
+      data: formattedProperties,
+      pagination: {
+        page,
+        limit,
+        total,
+        totalPages: Math.ceil(total / limit),
+      },
+    };
+  }
+
+  // 根据ID获取单个房产
+  static async getPropertyById(id: string): Promise<Property | null> {
+    const property = await prisma.property.findUnique({
+      where: { id },
+      include: {
+        investments: true,
+      },
+    });
+
+    if (!property) return null;
+
+    return {
+      id: property.id,
+      title: property.title,
+      location: property.location,
+      description: property.description,
+      monthlyRent: property.price * (property.expectedYield / 100) / 12,
+      tokenPrice: property.price / property.tokenSupply,
+      totalTokens: property.tokenSupply,
+      soldTokens: property.tokenSupply - property.availableTokens,
+      apy: property.actualYield || property.expectedYield,
+      imageUrl: property.imageUrl || `/property-${property.id}.jpg`,
+      status: property.status as Property['status'],
+      ownerId: property.owner,
+      createdAt: property.createdAt.toISOString(),
+      updatedAt: property.updatedAt.toISOString(),
+    };
+  }
+
+  // 创建房产
+  static async createProperty(params: CreatePropertyParams): Promise<Property> {
+    const property = await prisma.property.create({
+      data: {
+        title: params.title,
+        description: params.description,
+        location: params.location,
+        price: params.price,
+        tokenSupply: params.tokenSupply,
+        availableTokens: params.tokenSupply, // 初始时所有代币都可用
+        tokenPrice: params.price / params.tokenSupply,
+        expectedYield: params.expectedYield,
+        category: params.category,
+        status: 'funding', // 默认状态为募资中
+        owner: params.owner,
+        imageUrl: params.imageUrl,
+      },
+      include: {
+        investments: true,
+      },
+    });
+
+    return {
+      id: property.id,
+      title: property.title,
+      location: property.location,
+      description: property.description,
+      monthlyRent: property.price * (property.expectedYield / 100) / 12,
+      tokenPrice: property.price / property.tokenSupply,
+      totalTokens: property.tokenSupply,
+      soldTokens: 0, // 新创建的房产没有投资
+      apy: property.expectedYield,
+      imageUrl: property.imageUrl || `/property-${property.id}.jpg`,
+      status: property.status as Property['status'],
+      ownerId: property.owner,
+      createdAt: property.createdAt.toISOString(),
+      updatedAt: property.updatedAt.toISOString(),
+    };
+  }
+
+  // 更新房产
+  static async updateProperty(id: string, updates: Partial<CreatePropertyParams>): Promise<Property | null> {
+    const property = await prisma.property.update({
+      where: { id },
+      data: {
+        ...updates,
+        tokenPrice: updates.price && updates.tokenSupply 
+          ? updates.price / updates.tokenSupply 
+          : undefined,
+      },
+      include: {
+        investments: true,
+      },
+    });
+
+    return {
+      id: property.id,
+      title: property.title,
+      location: property.location,
+      description: property.description,
+      monthlyRent: property.price * (property.expectedYield / 100) / 12,
+      tokenPrice: property.price / property.tokenSupply,
+      totalTokens: property.tokenSupply,
+      soldTokens: property.tokenSupply - property.availableTokens,
+      apy: property.actualYield || property.expectedYield,
+      imageUrl: property.imageUrl || `/property-${property.id}.jpg`,
+      status: property.status as Property['status'],
+      ownerId: property.owner,
+      createdAt: property.createdAt.toISOString(),
+      updatedAt: property.updatedAt.toISOString(),
+    };
+  }
+
+  // 删除房产
+  static async deleteProperty(id: string): Promise<boolean> {
+    try {
+      await prisma.property.delete({
+        where: { id },
+      });
+      return true;
+    } catch (error) {
+      console.error('Error deleting property:', error);
+      return false;
+    }
+  }
+
+  // 创建投资
+  static async createInvestment(params: CreateInvestmentParams): Promise<Investment | null> {
+    // 使用事务确保数据一致性
+    const result = await prisma.$transaction(async (tx) => {
+      // 检查房产是否存在且有足够的可用代币
+      const property = await tx.property.findUnique({
+        where: { id: params.propertyId },
+      });
+
+      if (!property) {
+        throw new Error('Property not found');
+      }
+
+      if (property.availableTokens < params.tokenAmount) {
+        throw new Error('Not enough tokens available');
+      }
+
+      // 创建投资记录
+      const investment = await tx.investment.create({
+        data: {
+          propertyId: params.propertyId,
+          investorAddress: params.investorAddress,
+          tokenAmount: params.tokenAmount,
+          investmentAmount: params.investmentAmount,
+        },
+      });
+
+      // 更新房产的可用代币数量
+      await tx.property.update({
+        where: { id: params.propertyId },
+        data: {
+          availableTokens: property.availableTokens - params.tokenAmount,
+          // 如果所有代币都售完，更新状态为活跃
+          status: property.availableTokens - params.tokenAmount === 0 ? 'active' : property.status,
+        },
+      });
+
+      return investment;
+    });
+
+    return {
+      id: result.id,
+      propertyId: result.propertyId,
+      investorAddress: result.investorAddress,
+      tokenAmount: result.tokenAmount,
+      investmentAmount: result.investmentAmount,
+      purchaseDate: result.purchaseDate.toISOString(),
+    };
+  }
+
+  // 获取投资者统计数据
+  static async getInvestorStats(investorAddress: string): Promise<InvestorStats> {
+    const investments = await prisma.investment.findMany({
+      where: { investorAddress },
+      include: {
+        property: true,
+      },
+    });
+
+    const totalInvested = investments.reduce((sum, inv) => sum + inv.investmentAmount, 0);
+    const totalTokens = investments.reduce((sum, inv) => sum + inv.tokenAmount, 0);
+    
+    // 计算加权平均收益率
+    const weightedYieldSum = investments.reduce((sum, inv) => {
+      const propertyYield = inv.property.actualYield || inv.property.expectedYield;
+      return sum + (propertyYield * inv.investmentAmount);
+    }, 0);
+    
+    const averageYield = totalInvested > 0 ? weightedYieldSum / totalInvested : 0;
+    
+    // 计算月收入（基于当前投资和年收益率）
+    const monthlyIncome = (totalInvested * averageYield / 100) / 12;
+
+    return {
+      totalInvested,
+      averageYield,
+      monthlyIncome,
+      propertiesCount: investments.length,
+    };
+  }
+
+  // 获取平台统计数据
+  static async getPlatformStats() {
+    const [totalProperties, totalInvestments, properties] = await Promise.all([
+      prisma.property.count(),
+      prisma.investment.count(),
+      prisma.property.findMany({
+        include: {
+          investments: true,
+        },
+      }),
+    ]);
+
+    const totalValueLocked = properties.reduce((sum, property) => {
+      const soldTokens = property.tokenSupply - property.availableTokens;
+      return sum + (soldTokens * property.tokenPrice);
+    }, 0);
+
+    const averageYield = properties.length > 0
+      ? properties.reduce((sum, property) => sum + (property.actualYield || property.expectedYield), 0) / properties.length
+      : 0;
+
+    // 获取唯一投资者数量
+    const uniqueInvestors = await prisma.investment.findMany({
+      distinct: ['investorAddress'],
+      select: { investorAddress: true },
+    });
+
+    return {
+      totalValueLocked,
+      totalProperties,
+      activeInvestors: uniqueInvestors.length,
+      averageYield,
+    };
+  }
+
+  // 获取用户投资列表
+  static async getUserInvestments(investorAddress: string) {
+    const investments = await prisma.investment.findMany({
+      where: { investorAddress },
+      include: {
+        property: true,
+      },
+      orderBy: { purchaseDate: 'desc' },
+    });
+
+    return investments.map(investment => ({
+      id: investment.id,
+      propertyId: investment.propertyId,
+      propertyTitle: investment.property.title,
+      propertyLocation: investment.property.location,
+      tokenAmount: investment.tokenAmount,
+      investmentAmount: investment.investmentAmount,
+      purchaseDate: investment.purchaseDate.toISOString(),
+      currentYield: investment.property.actualYield || investment.property.expectedYield,
+      estimatedMonthlyIncome: (investment.investmentAmount * (investment.property.actualYield || investment.property.expectedYield) / 100) / 12,
+    }));
+  }
+}

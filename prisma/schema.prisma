@@ -1,0 +1,73 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Property {
+  id              String       @id @default(cuid())
+  title           String
+  location        String
+  description     String
+  price           Float
+  tokenSupply     Int
+  availableTokens Int
+  tokenPrice      Float
+  expectedYield   Float
+  actualYield     Float?
+  category        String
+  status          String
+  imageUrl        String?
+  owner           String
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime     @updatedAt
+  investments     Investment[]
+
+  @@map("properties")
+}
+
+model Investment {
+  id               String   @id @default(cuid())
+  propertyId       String
+  investorAddress  String
+  tokenAmount      Int
+  investmentAmount Float
+  purchaseDate     DateTime @default(now())
+  property         Property @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+
+  @@map("investments")
+}
+
+model User {
+  id         String   @id @default(cuid())
+  address    String   @unique
+  email      String?  @unique
+  name       String?
+  avatar     String?
+  isVerified Boolean  @default(false)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@map("users")
+}
+
+model Transaction {
+  id          String   @id @default(cuid())
+  hash        String   @unique
+  from        String
+  to          String
+  amount      Float
+  tokenAmount Int?
+  propertyId  String?
+  type        String
+  status      String
+  blockNumber Int?
+  gasUsed     String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("transactions")
+}
