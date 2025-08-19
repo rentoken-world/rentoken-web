@@ -5,9 +5,10 @@
   "scripts": {
     "dev": "next dev",
     "dev:no-lint": "next dev --no-lint",
-    "build": "next build",
-    "build:no-lint": "NEXT_LINT=false next build",
+    "build": "prisma generate && next build",
+    "build:no-lint": "prisma generate && NEXT_LINT=false next build",
     "start": "next start",
+    "postinstall": "prisma generate",
     "lint": "next lint",
     "lint:fix": "next lint --fix",
     "db:seed": "tsx prisma/seed.ts",
