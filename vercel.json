@@ -1,9 +1,6 @@
 {
   "buildCommand": "prisma generate && pnpm build",
   "installCommand": "pnpm install",
-  "env": {
-    "DATABASE_URL": "@DATABASE_URL"
-  },
   "functions": {
     "app/api/**/*.js": {
       "runtime": "nodejs20.x"
