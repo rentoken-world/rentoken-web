@@ -1,9 +1,4 @@
 {
   "buildCommand": "prisma generate && pnpm build",
-  "installCommand": "pnpm install",
-  "functions": {
-    "app/api/**/*.js": {
-      "runtime": "nodejs20.x"
-    }
-  }
+  "installCommand": "pnpm install"
 }
