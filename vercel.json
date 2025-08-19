@@ -2,7 +2,7 @@
   "buildCommand": "prisma generate && pnpm build",
   "installCommand": "pnpm install",
   "env": {
-    "DATABASE_URL": "@database_url"
+    "DATABASE_URL": "@DATABASE_URL"
   },
   "functions": {
     "app/api/**/*.js": {
