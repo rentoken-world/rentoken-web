@@ -1,12 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // 禁用 TypeScript 错误检查
+  // 启用 TypeScript 错误检查以确保代码质量
   typescript: {
-    ignoreBuildErrors: true,
+    ignoreBuildErrors: false,
   },
-  // 禁用 ESLint 检查
+  // 启用 ESLint 检查以确保代码质量
   eslint: {
-    ignoreDuringBuilds: true,
+    ignoreDuringBuilds: false,
   },
 };
 

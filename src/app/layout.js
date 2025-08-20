@@ -20,6 +20,9 @@ const geistMono = Geist_Mono({
 export const metadata = {
   title: "RenToken - Real Estate Revenue Tokenization",
   description: "Tokenize rental property income. Invest in real estate revenue streams.",
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({ children }) {

@@ -168,7 +168,7 @@ export class PrismaService {
         category: params.category,
         status: 'funding', // 默认状态为募资中
         owner: params.owner,
-        imageUrl: params.imageUrl,
+        imageUrl: params.imageUrl || null,
       },
       include: {
         investments: true,
@@ -198,10 +198,16 @@ export class PrismaService {
     const property = await prisma.property.update({
       where: { id },
       data: {
-        ...updates,
-        tokenPrice: updates.price && updates.tokenSupply 
-          ? updates.price / updates.tokenSupply 
-          : undefined,
+        ...(updates.title && { title: updates.title }),
+        ...(updates.description && { description: updates.description }),
+        ...(updates.location && { location: updates.location }),
+        ...(updates.price && { price: updates.price }),
+        ...(updates.tokenSupply && { tokenSupply: updates.tokenSupply }),
+        ...(updates.expectedYield && { expectedYield: updates.expectedYield }),
+        ...(updates.category && { category: updates.category }),
+        ...(updates.owner && { owner: updates.owner }),
+        ...(updates.imageUrl && { imageUrl: updates.imageUrl }),
+        ...(updates.price && updates.tokenSupply && { tokenPrice: updates.price / updates.tokenSupply }),
       },
       include: {
         investments: true,
@@ -314,9 +320,9 @@ export class PrismaService {
 
     return {
       totalInvested,
-      averageYield,
       monthlyIncome,
-      propertiesCount: investments.length,
+      totalProperties: investments.length, // 统一使用totalProperties
+      averageApy: averageYield, // 统一使用averageApy
     };
   }
 

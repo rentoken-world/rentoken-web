@@ -5,7 +5,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Menu } from "lucide-react";
-
+import { KycStatus } from "@/components/KycStatus";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -179,7 +179,8 @@ export function Navbar() {
                     </Button>
                   </div>
                 </div>
-
+                {/* KYC状态组件 - 暂时隐藏 */}
+                {/* <KycStatus /> */}
                 {/* Settings */}
                 <div className="space-y-3">
                   <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wide">

@@ -236,8 +236,8 @@ export class DatabaseService {
     return {
       totalInvested,
       monthlyIncome,
-      propertiesCount: userInvestments.length,
-      averageYield,
+      totalProperties: userInvestments.length, // 统一使用totalProperties
+      averageApy: averageYield, // 统一使用averageApy
     };
   }
 
@@ -270,6 +270,7 @@ export interface DatabaseInterface {
   getPlatformStats(): Promise<any>;
 }
 
-// 当 Prisma 配置完成后，这里可以切换到 PrismaService
-import { PrismaService } from './database-prisma';
-export const db: DatabaseInterface = PrismaService;
+// 数据库服务导出 - 现在使用内存数据库，准备迁移到 Prisma
+// 当 Prisma 配置完成后，可以切换到 PrismaService
+// import { PrismaService } from './database-prisma';
+export const db: DatabaseInterface = DatabaseService;

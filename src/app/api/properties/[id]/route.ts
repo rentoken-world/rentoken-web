@@ -3,11 +3,12 @@ import { db } from '@/lib/database-service';
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
-  try {
-    const property = await db.getPropertyById(params.id);
-    
+    try {
+    const resolvedParams = await params;
+    const property = await db.getPropertyById(resolvedParams.id);
+
     if (!property) {
       return NextResponse.json(
         { success: false, error: 'Property not found' },
@@ -30,10 +31,11 @@ export async function GET(
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const success = await db.deleteProperty(params.id);
+    const resolvedParams = await params;
+    const success = await db.deleteProperty(resolvedParams.id);
     
     if (!success) {
       return NextResponse.json(
