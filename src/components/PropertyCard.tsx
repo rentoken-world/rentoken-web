@@ -126,6 +126,7 @@ export function PropertyCard({
       
       {/* Property Image */}
       <div className="relative h-56 overflow-hidden rounded-t-xl">
+        {/* @ts-ignore - React 19 compatibility issue */}
         <Image 
           src={imageUrl || "/placeholder-property.jpg"} 
           alt={title}

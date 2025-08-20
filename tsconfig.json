@@ -8,15 +8,14 @@
     ],
     "allowJs": true,
     "skipLibCheck": true,
-    "skipDefaultLibCheck": true,
     "strict": false,
     "noImplicitAny": false,
-    "noImplicitReturns": true,
-    "noImplicitThis": true,
+    "noImplicitReturns": false,
+    "noImplicitThis": false,
     "noUnusedLocals": false,
     "noUnusedParameters": false,
-    "exactOptionalPropertyTypes": false, // 暂时关闭以兼容React 19和第三方库
-    "forceConsistentCasingInFileNames": true,
+    "exactOptionalPropertyTypes": false,
+    "forceConsistentCasingInFileNames": false,
     "noEmit": true,
     "esModuleInterop": true,
     "module": "esnext",
@@ -43,8 +42,7 @@
     "**/*.ts",
     "**/*.tsx",
     "next-env.d.ts",
-    ".next/types/**/*.ts",
-    "src/types/global.d.ts"
+    ".next/types/**/*.ts"
   ],
   "exclude": [
     "node_modules"

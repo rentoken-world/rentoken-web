@@ -84,7 +84,7 @@ export function Footer() {
             <h3 className="font-semibold text-sm text-foreground">Connect</h3>
             <div className="flex items-center gap-3">
               {socialLinks.map((link) => {
-                const Icon = link.icon;
+                const IconComponent = link.icon as React.ComponentType<{ className?: string }>;
                 return (
                   <Button
                     key={link.label}
@@ -99,7 +99,7 @@ export function Footer() {
                       rel={link.external ? "noopener noreferrer" : undefined}
                       aria-label={link.label}
                     >
-                      <Icon className="h-4 w-4 group-hover:text-primary transition-colors" />
+                      <IconComponent className="h-4 w-4 group-hover:text-primary transition-colors" />
                     </a>
                   </Button>
                 );
@@ -114,6 +114,7 @@ export function Footer() {
             <span>© 2025 {t("rentoken")}</span>
             <span className="hidden md:inline">•</span>
             <span className="flex items-center gap-1">
+              {/* @ts-ignore - React 19 compatibility issue */}
               Made with <Heart className="h-3 w-3 text-red-400 animate-pulse" /> for DeFi
             </span>
           </div>

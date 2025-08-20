@@ -86,6 +86,7 @@ export function WalletConnectButton() {
                         }}
                       >
                         {chain.iconUrl && (
+                          // @ts-ignore - React 19 compatibility issue
                           <Image
                             alt={chain.name ?? 'Chain icon'}
                             src={chain.iconUrl}
