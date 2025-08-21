@@ -10,7 +10,7 @@
     "landlord": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8",
     "docHash": "0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef",
     "offchainURL": "https://ipfs.io/ipfs/QmTestApartment"
-  },
+  },  
   {
     "propertyId": 2,
     "payoutToken": "0xA0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
