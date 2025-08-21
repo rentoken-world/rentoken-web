@@ -146,7 +146,7 @@
           - 权限: 仅房产所有者
           - 返回: "{ revenue[], totalRevenue, pendingRevenue }"
         POST:
-          - 参数: { propertyId, amount }
+          - 参数: "{ propertyId, amount }"
           - 权限: 仅房产所有者
           - 功能: 提取房产收益
           - 调用: 合约收益提取方法
@@ -160,10 +160,10 @@
         GET:
           - 参数: investorAddress, page, limit, status, propertyId, sortBy, sortOrder
           - 权限: 需要钱包签名验证身份
-          - 返回: { investments[], totalInvested, totalReturns, currentValue }
+          - 返回: "{ investments[], totalInvested, totalReturns, currentValue }"
           - 调用: 合约投资人查询方法
         POST:
-          - 参数: { propertyId, amount }
+          - 参数: "{ propertyId, amount }"
           - 权限: 需要KYC验证 + 钱包签名
           - 功能: 提取投资收益
           - 调用: 合约收益提取方法

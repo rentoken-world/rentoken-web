@@ -50,7 +50,8 @@ export function Navbar() {
           </Badge>
         </div>
       </Link>
-      
+      {/* KYC状态组件 - 暂时隐藏 */}
+      <KycStatus />
       {/* Desktop Navigation */}
       <div className="hidden lg:flex items-center gap-6 min-w-[600px] justify-end">
         {/* Language Switcher */}
@@ -181,9 +182,7 @@ export function Navbar() {
                       </a>
                     </Button>
                   </div>
-                </div>
-                {/* KYC状态组件 - 暂时隐藏 */}
-                {/* <KycStatus /> */}
+                </div>                
                 {/* Settings */}
                 <div className="space-y-3">
                   <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wide">

@@ -4,9 +4,11 @@ import { useState } from "react";
 import { useI18n } from "@/hooks/useI18n";
 import { useProperties } from "@/hooks/useProperties";
 import { useInvestorStats } from "@/hooks/useInvestorStats";
+import { useInvestorInvestments } from "@/hooks/useInvestorInvestments";
 import { PropertyCard } from "@/components/PropertyCard";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import { useAccount } from "wagmi";
 
 export default function InvestorPage() {
@@ -16,6 +18,12 @@ export default function InvestorPage() {
   // 搜索和分页状态
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+
+  // 投资记录相关状态
+  const [currentView, setCurrentView] = useState<'properties' | 'investments'>('properties');
+  const [investmentsPage, setInvestmentsPage] = useState(1);
+  const [investmentsSortBy, setInvestmentsSortBy] = useState<'date' | 'amount' | 'tokens'>('date');
+  const [investmentsSortOrder, setInvestmentsSortOrder] = useState<'asc' | 'desc'>('desc');
 
     // 获取房产数据
   const { 
@@ -36,6 +44,19 @@ export default function InvestorPage() {
     error: statsError,
     refetch: refetchStats
   } = useInvestorStats();
+
+  // 获取投资记录数据
+  const {
+    data: investmentsData,
+    loading: investmentsLoading,
+    error: investmentsError,
+    refetch: refetchInvestments
+  } = useInvestorInvestments({
+    page: investmentsPage,
+    limit: 10,
+    sortBy: investmentsSortBy,
+    sortOrder: investmentsSortOrder,
+  });
 
   const handleInvestmentSuccess = () => {
     // 刷新数据
