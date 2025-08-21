@@ -65,7 +65,7 @@ export function PropertyCard({
     txHash,
     isConnected: isWalletConnected,
     hasValidRentTokenAddress
-  } = useInvest(id, investmentAmount, sourceData?.payoutToken);
+  } = useInvest(id, investmentAmount, sourceData?.renTokenAddress);
   // 处理投资成功状态
   useEffect(() => {
     if (investSuccess) {

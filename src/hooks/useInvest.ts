@@ -2,7 +2,7 @@
  * @Author: dreamworks.cnn@gmail.com
  * @Date: 2025-08-21 21:15:10
  * @LastEditors: dreamworks.cnn@gmail.com
- * @LastEditTime: 2025-08-22 00:51:20
+ * @LastEditTime: 2025-08-22 00:55:45
  * @FilePath: /rentoken-web/src/hooks/useInvest.ts
  * @Description: 
  * 
@@ -73,7 +73,7 @@ export function useInvest(propertyId: string, contributeAmount: number, rentToke
     abi: USDCABI as any,
     functionName: 'decimals',
   });
-  console.log('usdcDecimals', usdcDecimals)
+  console.log('usdcDecimals', usdcDecimals,USDC_ADDRESS)
   
   // 读取当前用户的RentToken余额
   const { data: currentBalance, refetch: refetchBalance } = useReadContract({

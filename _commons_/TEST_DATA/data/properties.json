@@ -7,13 +7,13 @@
     "monthlyRent": 8500,
     "tokenPrice": 100,
     "totalTokens": 400,
-    "soldTokens": 235,
+    "soldTokens": 240,
     "apy": 283.3,
     "imageUrl": "/property-1.jpg",
     "status": "upcoming",
     "ownerId": "owner_dc79C8",
     "createdAt": "2025-08-22T10:00:00.000Z",
-    "updatedAt": "2025-08-21T16:43:23.946Z",
+    "updatedAt": "2025-08-21T16:58:21.946Z",
     "sourceData": {
       "propertyId": 1,
       "payoutToken": "0xA0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
@@ -24,7 +24,8 @@
       "accrualEnd": 1841392800,
       "landlord": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8",
       "docHash": "0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef",
-      "offchainURL": "https://ipfs.io/ipfs/QmTestApartment"
+      "offchainURL": "https://ipfs.io/ipfs/QmTestApartment",
+      "renTokenAddress": "0x03624F93910f251e0861fabc262d3658b39247C7"
     }
   },
   {
@@ -35,13 +36,13 @@
     "monthlyRent": 15000,
     "tokenPrice": 100,
     "totalTokens": 1800,
-    "soldTokens": 1234,
+    "soldTokens": 1421,
     "apy": 100,
     "imageUrl": "/property-2.jpg",
     "status": "upcoming",
     "ownerId": "owner_dc79C8",
     "createdAt": "2025-08-22T10:00:00.000Z",
-    "updatedAt": "2025-08-21T16:43:23.946Z",
+    "updatedAt": "2025-08-21T16:58:21.946Z",
     "sourceData": {
       "propertyId": 2,
       "payoutToken": "0xA0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
@@ -52,7 +53,8 @@
       "accrualEnd": 1841392800,
       "landlord": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8",
       "docHash": "0xabcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890",
-      "offchainURL": "https://ipfs.io/ipfs/QmLuxuryVilla"
+      "offchainURL": "https://ipfs.io/ipfs/QmLuxuryVilla",
+      "renTokenAddress": "0xd62c31b76C346760f2524630268B44D01c31De58"
     }
   },
   {
@@ -63,13 +65,13 @@
     "monthlyRent": 3200,
     "tokenPrice": 100,
     "totalTokens": 192,
-    "soldTokens": 147,
+    "soldTokens": 133,
     "apy": 200,
     "imageUrl": "/property-3.jpg",
     "status": "upcoming",
     "ownerId": "owner_dc79C8",
     "createdAt": "2025-08-22T10:00:00.000Z",
-    "updatedAt": "2025-08-21T16:43:23.947Z",
+    "updatedAt": "2025-08-21T16:58:21.946Z",
     "sourceData": {
       "propertyId": 3,
       "payoutToken": "0xA0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
@@ -80,7 +82,8 @@
       "accrualEnd": 1841392800,
       "landlord": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8",
       "docHash": "0x567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234",
-      "offchainURL": "https://ipfs.io/ipfs/QmCozyStudio"
+      "offchainURL": "https://ipfs.io/ipfs/QmCozyStudio",
+      "renTokenAddress": "0xcC148AFB7183cb29B731eE1B769Fe42E5380092D"
     }
   }
 ]

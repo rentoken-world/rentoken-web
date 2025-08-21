@@ -18,7 +18,12 @@
     "lint": "next lint",
     "lint:fix": "next lint --fix",
     "db:seed": "tsx prisma/seed.ts",
-    "db:studio": "npx prisma studio"
+    "db:studio": "npx prisma studio",
+    "test:usdc": "node _commons_/utils/test.js",
+    "test:usdc:local": "node _commons_/utils/test.js local",
+    "test:usdc:testnet": "node _commons_/utils/test.js testnet",
+    "test:usdc:mainnet": "node _commons_/utils/test.js mainnet",
+    "test:usdc:all": "node _commons_/utils/test.js --all"
   },
   "dependencies": {
     "@prisma/client": "^6.14.0",

@@ -9,7 +9,8 @@
     "accrualEnd": 1841392800,
     "landlord": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8",
     "docHash": "0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef",
-    "offchainURL": "https://ipfs.io/ipfs/QmTestApartment"
+    "offchainURL": "https://ipfs.io/ipfs/QmTestApartment",
+    "renTokenAddress":"0x03624F93910f251e0861fabc262d3658b39247C7"
   },  
   {
     "propertyId": 2,
@@ -21,7 +22,8 @@
     "accrualEnd": 1841392800,
     "landlord": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8",
     "docHash": "0xabcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890",
-    "offchainURL": "https://ipfs.io/ipfs/QmLuxuryVilla"
+    "offchainURL": "https://ipfs.io/ipfs/QmLuxuryVilla",
+    "renTokenAddress":"0xd62c31b76C346760f2524630268B44D01c31De58"
   },
   {
     "propertyId": 3,
@@ -33,6 +35,7 @@
     "accrualEnd": 1841392800,
     "landlord": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8",
     "docHash": "0x567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234",
-    "offchainURL": "https://ipfs.io/ipfs/QmCozyStudio"
+    "offchainURL": "https://ipfs.io/ipfs/QmCozyStudio",
+    "renTokenAddress":"0xcC148AFB7183cb29B731eE1B769Fe42E5380092D"
   }
 ]
