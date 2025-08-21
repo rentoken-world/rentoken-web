@@ -1,49 +1,34 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
-import { useAccount } from "wagmi";
-
-type KycStatus = 'none' | 'pending' | 'approved' | 'rejected';
+import { useAccount, useReadContract } from "wagmi";
+import { getContractAddress } from "@/config/contracts";
+import KycOracleABI from "../../_commons_/ABI/KYCOracle.json";
 
 export function useKycStatus() {
   const { address, isConnected } = useAccount();
-  const [kycStatus, setKycStatus] = useState<KycStatus>('none');
-  const [loading, setLoading] = useState(false);
 
-  const fetchKycStatus = useCallback(async () => {
-    if (!isConnected || !address) {
-      setKycStatus('none');
-      return;
-    }
+  const { 
+    data: isWhitelisted, 
+    isLoading: loading, 
+    refetch 
+  } = useReadContract({
+    address: getContractAddress('KYC_ORACLE_ADDR') as `0x${string}`,
+    abi: KycOracleABI,
+    functionName: 'isWhitelisted',
+    args: address ? [address] : undefined,
+    query: {
+      enabled: !!address && isConnected,
+    },
+  });
 
-    setLoading(true);
-    try {
-      const response = await fetch(`/api/kyc?address=${encodeURIComponent(address)}`);
-      const result = await response.json();
-      
-      if (result.success) {
-        setKycStatus(result.data.status);
-      } else {
-        console.error('获取KYC状态失败:', result.error);
-        setKycStatus('none');
-      }
-    } catch (error) {
-      console.error('KYC状态查询错误:', error);
-      setKycStatus('none');
-    } finally {
-      setLoading(false);
-    }
-  }, [address, isConnected]);
-
-  useEffect(() => {
-    fetchKycStatus();
-  }, [fetchKycStatus]);
+  const isKycVerified = Boolean(isWhitelisted);
+  const needsKycVerification = isConnected && !isKycVerified;
 
   return {
-    kycStatus,
+    kycStatus: isKycVerified ? 'approved' as const : 'none' as const,
     loading,
-    isKycVerified: kycStatus === 'approved',
-    needsKycVerification: isConnected && kycStatus === 'none',
-    refetch: fetchKycStatus,
+    isKycVerified,
+    needsKycVerification,
+    refetch,
   };
 }

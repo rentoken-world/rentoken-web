@@ -2,7 +2,7 @@
  * @Author: dreamworks.cnn@gmail.com
  * @Date: 2025-08-21 17:26:04
  * @LastEditors: dreamworks.cnn@gmail.com
- * @LastEditTime: 2025-08-21 20:29:06
+ * @LastEditTime: 2025-08-21 23:15:57
  * @FilePath: /rentoken-web/src/hooks/useContractConfig.ts
  * @Description: 
  * 
@@ -27,7 +27,7 @@ export function useContractConfig() {
   
   const contractConfig = useMemo(() => {
     // 根据当前连接的链获取环境
-    console.log('chainId', chainId);
+    // console.log('chainId', chainId);
     const chainEnvironment = getEnvironmentByChainId(chainId);
     const configEnvironment = getCurrentEnvironment();
     

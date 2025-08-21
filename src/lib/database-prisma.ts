@@ -383,4 +383,96 @@ export class PrismaService {
       estimatedMonthlyIncome: (investment.investmentAmount * (investment.property.actualYield || investment.property.expectedYield) / 100) / 12,
     }));
   }
+
+
+  // 获取投资列表（带筛选和分页）
+  static async getInvestments(filters: {
+    page?: number;
+    limit?: number;
+    investorAddress?: string;
+    propertyId?: string;
+    status?: string;
+    sortBy?: 'date' | 'amount' | 'tokens';
+    sortOrder?: 'asc' | 'desc';
+  } = {}) {
+    const {
+      page = 1,
+      limit = 10,
+      investorAddress,
+      propertyId,
+      sortBy = 'date',
+      sortOrder = 'desc'
+    } = filters;
+
+    const skip = (page - 1) * limit;
+    const where: any = {};
+
+    if (investorAddress) {
+      where.investorAddress = investorAddress.toLowerCase();
+    }
+
+    if (propertyId) {
+      where.propertyId = propertyId;
+    }
+
+    // 构建排序
+    let orderBy: any = {};
+    switch (sortBy) {
+      case 'amount':
+        orderBy = { investmentAmount: sortOrder };
+        break;
+      case 'tokens':
+        orderBy = { tokenAmount: sortOrder };
+        break;
+      case 'date':
+      default:
+        orderBy = { purchaseDate: sortOrder };
+        break;
+    }
+
+    const [investments, totalCount] = await Promise.all([
+      prisma.investment.findMany({
+        where,
+        skip,
+        take: limit,
+        orderBy,
+        include: {
+          property: true,
+        },
+      }),
+      prisma.investment.count({ where }),
+    ]);
+
+    const investmentsWithPropertyInfo = investments.map(investment => ({
+      id: investment.id,
+      propertyId: investment.propertyId,
+      investorAddress: investment.investorAddress,
+      tokenAmount: investment.tokenAmount,
+      investmentAmount: investment.investmentAmount,
+      purchaseDate: investment.purchaseDate.toISOString(),
+      property: investment.property ? {
+        id: investment.property.id,
+        title: investment.property.title,
+        location: investment.property.location,
+        description: investment.property.description,
+        monthlyRent: investment.property.price * (investment.property.expectedYield / 100) / 12,
+        tokenPrice: investment.property.tokenPrice,
+        totalTokens: investment.property.tokenSupply,
+        soldTokens: investment.property.tokenSupply - investment.property.availableTokens,
+        apy: investment.property.actualYield || investment.property.expectedYield,
+        imageUrl: investment.property.imageUrl || `/property-${investment.property.id}.jpg`,
+        status: investment.property.status,
+        ownerId: investment.property.owner,
+        createdAt: investment.property.createdAt.toISOString(),
+        updatedAt: investment.property.updatedAt.toISOString(),
+      } : undefined,
+    }));
+
+    return {
+      data: investmentsWithPropertyInfo,
+      totalCount,
+      currentPage: page,
+      totalPages: Math.ceil(totalCount / limit),
+    };
+  }
 }

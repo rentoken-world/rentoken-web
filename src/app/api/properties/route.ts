@@ -1,3 +1,13 @@
+/*
+ * @Author: dreamworks.cnn@gmail.com
+ * @Date: 2025-08-20 17:26:56
+ * @LastEditors: dreamworks.cnn@gmail.com
+ * @LastEditTime: 2025-08-21 22:54:36
+ * @FilePath: /rentoken-web/src/app/api/properties/route.ts
+ * @Description: 
+ * 
+ * Copyright (c) 2025 by ${git_name_email}, All Rights Reserved. 
+ */
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/lib/database-service';
 
@@ -23,7 +33,7 @@ export async function GET(request: NextRequest) {
       minPrice,
       maxPrice,
     });
-
+    console.log('GET:result:', result)
     return NextResponse.json({
       success: true,
       data: result,

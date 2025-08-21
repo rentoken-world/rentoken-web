@@ -1,7 +1,20 @@
+/*
+ * @Author: dreamworks.cnn@gmail.com
+ * @Date: 2025-08-21 16:28:59
+ * @LastEditors: dreamworks.cnn@gmail.com
+ * @LastEditTime: 2025-08-21 23:31:14
+ * @FilePath: /rentoken-web/src/app/api/kyc/route.ts
+ * @Description: 
+ * 
+ * Copyright (c) 2025 by ${git_name_email}, All Rights Reserved. 
+ */
 import { NextRequest, NextResponse } from 'next/server';
-import { db } from '@/lib/database-service';
+import { createPublicClient, http } from 'viem';
+import { getContractAddress, getCurrentEnvironment } from '@/config/contracts';
+import { getSupportedChains } from '@/config/chains';
+import KycOracleABI from '../../../../_commons_/ABI/KYCOracle.json';
 
-// KYC状态查询接口
+// KYC状态查询接口 - 直接调用合约
 export async function GET(request: NextRequest) {
   try {
     const searchParams = request.nextUrl.searchParams;
@@ -14,92 +27,36 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    // 这里应该调用合约查询KYC状态
-    // 目前先使用模拟数据
-    const kycStatus = await db.getKycStatus(walletAddress);
+    // 获取当前链配置
+    const chains = getSupportedChains();
+    const currentChain = chains[0]; // 使用第一个链作为默认链
 
-    return NextResponse.json({
-      success: true,
-      data: kycStatus,
-    });
-  } catch (error) {
-    console.error('Error fetching KYC status:', error);
-    return NextResponse.json(
-      { success: false, error: 'Failed to fetch KYC status' },
-      { status: 500 }
-    );
-  }
-}
-
-// KYC申请提交接口
-export async function POST(request: NextRequest) {
-  try {
-    const body = await request.json();
-    const { walletAddress, email, fullName, documents } = body;
-
-    // 验证必填字段
-    if (!walletAddress || !email || !fullName) {
-      return NextResponse.json(
-        { success: false, error: 'Missing required fields: walletAddress, email, fullName' },
-        { status: 400 }
-      );
-    }
-
-    // 验证邮箱格式
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      return NextResponse.json(
-        { success: false, error: 'Invalid email format' },
-        { status: 400 }
-      );
-    }
-
-    // 创建KYC申请记录
-    const kycApplication = await db.createKycApplication({
-      walletAddress,
-      email,
-      fullName,
-      documents: documents || [],
-      status: 'pending',
-      submittedAt: new Date(),
+    // 创建公共客户端
+    const publicClient = createPublicClient({
+      chain: currentChain,
+      transport: http(),
     });
 
-    // 生成邮件内容
-    const emailSubject = `RWA Platform KYC Application - ${walletAddress}`;
-    const emailBody = `
-Dear KYC Team,
-
-A new KYC application has been submitted:
-
-- Wallet Address: ${walletAddress}
-- Full Name: ${fullName}
-- Email: ${email}
-- Submitted At: ${new Date().toISOString()}
-
-Documents: ${documents && documents.length > 0 ? documents.join(', ') : 'None provided'}
-
-Please review this application and update the status accordingly.
-
-Best regards,
-RWA Platform System
-    `.trim();
-
-    // 创建邮箱链接 (mailto)
-    const mailtoLink = `mailto:kyc@rwa-platform.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+    // 调用KYC Oracle合约的isWhitelisted方法
+    const isWhitelisted = await publicClient.readContract({
+      address: getContractAddress('KYC_ORACLE_ADDR') as `0x${string}`,
+      abi: KycOracleABI,
+      functionName: 'isWhitelisted',
+      args: [walletAddress as `0x${string}`],
+    });
 
     return NextResponse.json({
       success: true,
       data: {
-        application: kycApplication,
-        mailtoLink,
-        message: 'KYC application created successfully. Please send the email to complete your submission.',
+        address: walletAddress,
+        status: isWhitelisted ? 'approved' : 'none',
+        isWhitelisted: Boolean(isWhitelisted),
       },
     });
-
   } catch (error) {
-    console.error('Error creating KYC application:', error);
+    console.error('Error fetching KYC status:', error);
     return NextResponse.json(
-      { success: false, error: 'Failed to create KYC application' },
+      { success: false, error: 'Failed to fetch KYC status from contract' },
       { status: 500 }
     );
   }
