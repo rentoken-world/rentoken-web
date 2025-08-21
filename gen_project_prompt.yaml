@@ -1,0 +1,195 @@
+
+项目说明:
+  目标: |
+    建设一个RWA 平台,允许线下的房东和公司将自己的房产未来收益质押到链上,发行erc20 token获得融资。
+    每个房产项目对应一个ERC20 Token,房租定期打入合约,持有人可以随时提取利润。
+    描述: 因为当前工期有限，我们不需要过多的发散思考，只需要聚焦目标实现，保证任务目标的功能性以及可靠性。当前工程
+    已经实现了很多功能，我们只需要在当前的基础上进行扩展，实现我们想要的功能。
+    具体的功能会在下述具体目标中描述
+
+  业务视角角色拆解:       
+    investor 投资人 : 
+      投资人可以查看房产项目信息，包括房产的详细信息、租金收益、投资回报率等。需要KYC模块验证。
+    owner 房产所有者 :
+      房产所有者可以查看房产项目信息，包括房产的详细信息、租金收益、投资回报率等。   
+  
+  工程目标:    
+    WEB前端 : 当前工程是整个项目的WEB客户端，技术栈选用的是Next全栈架构，目标实现一个可以正常运行的WEB前端页面按照当前的UI风格，能够满足投资人以及房产所有者的需求。
+    后端: 使用node.js在src/app/api下开发实现 当前工程的API服务，目标实现一个可以正常运行的API服务，能够满足投资人以及房产所有者的需求。
+  
+  前端目标:
+      描述: |
+        只需要基于现有框架功能去 实现目标任务模块； 
+      KYC组件 src/components/KycStatus.tsx:
+        功能:
+          - 显示当前用户的KYC状态
+          - 提供KYC申请功能, 需要调用目标合约ABI接口实现
+        方法:
+          - 调用服务端接口实现KYC申请功能, 用户点击后直接拉起本地邮箱向目标邮箱发送邮件,提交KYC材料
+          - 调用服务端接口实现KYC状态查询功能, 需要调用目标合约ABI接口实现
+
+      房东模块 src/app/owner/page.tsx:
+        功能:
+          - 显示当前用户的房产列表
+          - 提供房产列表的查询功能
+          - 提供房产列表的排序功能
+          - 提供房产列表的筛选功能
+          - 提供房产列表的翻页功能
+        方法:
+          - 调用服务端接口实现房产列表的查询功能
+          - 调用服务端接口实现房产列表的排序功能
+          - 调用服务端接口实现房产列表的筛选功能
+          - 调用服务端接口实现房产列表的翻页功能
+      
+      投资人模块 src/app/investor/page.tsx:
+        功能:
+          - 显示当前用户的投资列表
+          - 提供投资列表的查询功能
+          - 提供投资列表的排序功能
+          - 提供投资列表的筛选功能
+          - 提供投资列表的翻页功能
+        方法:
+          - 调用服务端接口实现投资列表的查询功能
+          - 调用服务端接口实现投资列表的排序功能
+          - 调用服务端接口实现投资列表的筛选功能
+          - 调用服务端接口实现投资列表的翻页功能
+
+  服务端目标:    
+    目标规划: 
+      根据前端规划对齐服务端的功能设计及规划，提供完整的API服务支持
+    
+    src/app/api/kyc/route.ts:
+      功能:
+        - KYC状态查询接口
+        - KYC申请提交接口
+      业务依赖路径: 需要调用目标合约ABI接口实现KYC验证
+      方法:
+        GET:
+          - 参数: walletAddress (查询参数)
+          - 权限: 公开访问
+          - 返回: "{ status: 'pending'|'approved'|'rejected', submittedAt?: Date }"
+          - 调用: 合约KYC查询方法
+        POST:
+          - 参数: "{ walletAddress, email, documents }"
+          - 权限: 需要钱包签名验证
+          - 功能: 触发邮箱发送KYC材料，更新链上状态
+          - 调用: 合约KYC申请方法
+          - 事件: KYCSubmitted事件
+    
+    src/app/api/investments/route.ts:
+      功能:
+        - 获取投资列表接口（新增GET方法）
+        - 创建投资记录接口（已有POST方法）
+        - 投资统计信息接口
+      业务依赖路径: 需要调用目标合约ABI接口获取投资数据
+      方法:
+        GET:
+          - 参数: page, limit, investorAddress, propertyId, status, sortBy, sortOrder
+          - 权限: 公开访问，可按投资人地址筛选
+          - 返回: "{ investments[], totalCount, pagination }"
+          - 调用: 合约投资查询方法
+        POST:
+          - 参数: "{ propertyId, investorAddress, tokenAmount, investmentAmount }"
+          - 权限: 需要KYC验证 + 钱包签名
+          - 功能: 记录投资交易，更新代币余额
+          - 调用: 合约投资方法
+          - 事件: InvestmentCreated事件
+    
+    src/app/api/properties/route.ts:
+      功能:
+        - 房产列表查询接口（已有GET方法，需增强筛选功能）
+        - 房产项目创建接口（已有POST方法）
+      业务依赖路径: 需要调用目标合约ABI接口管理房产代币
+      方法:
+        GET:
+          - 参数: page, limit, search, category, status, owner, minPrice, maxPrice, sortBy, sortOrder
+          - 权限: 公开访问
+          - 返回: "{ properties[], totalCount, pagination }"
+          - 增强功能: 按房东owner筛选，支持更多排序选项
+        POST:
+          - 参数: "{ title, description, price, tokenSupply, location, expectedYield, category, owner }"
+          - 权限: 需要房东KYC验证 + 钱包签名
+          - 功能: 创建房产项目，部署ERC20合约
+          - 调用: 工厂合约创建房产代币方法
+          - 事件: PropertyCreated事件
+    
+    src/app/api/properties/[id]/route.ts:
+      功能:
+        - 房产详情查询接口（已有GET方法）
+        - 房产信息更新接口（需增加PUT方法）
+        - 房产删除接口（已有DELETE方法）
+      方法:
+        PUT:
+          - 参数: "{ title?, description?, status?, expectedYield? }"
+          - 权限: 仅房产所有者
+          - 功能: 更新房产信息
+          - 调用: 合约属性更新方法
+    
+    src/app/api/owner/properties/route.ts:
+      功能:
+        - 房东专用房产列表接口
+        - 房东房产统计信息接口
+      方法:
+        GET:
+          - 参数: ownerAddress, page, limit, status, sortBy, sortOrder
+          - 权限: 需要钱包签名验证所有权
+          - 返回: "{ properties[], stats: { total, funding, active, completed } }"
+          - 调用: 合约房东查询方法
+    
+    src/app/api/owner/revenue/route.ts:
+      功能:
+        - 房东收益提取接口
+        - 房东收益统计接口
+      方法:
+        GET:
+          - 参数: ownerAddress, propertyId?, startDate?, endDate?
+          - 权限: 仅房产所有者
+          - 返回: "{ revenue[], totalRevenue, pendingRevenue }"
+        POST:
+          - 参数: { propertyId, amount }
+          - 权限: 仅房产所有者
+          - 功能: 提取房产收益
+          - 调用: 合约收益提取方法
+          - 事件: RevenueWithdrawn事件
+    
+    src/app/api/investor/investments/route.ts:
+      功能:
+        - 投资人专用投资列表接口
+        - 投资收益提取接口
+      方法:
+        GET:
+          - 参数: investorAddress, page, limit, status, propertyId, sortBy, sortOrder
+          - 权限: 需要钱包签名验证身份
+          - 返回: { investments[], totalInvested, totalReturns, currentValue }
+          - 调用: 合约投资人查询方法
+        POST:
+          - 参数: { propertyId, amount }
+          - 权限: 需要KYC验证 + 钱包签名
+          - 功能: 提取投资收益
+          - 调用: 合约收益提取方法
+          - 事件: ReturnsWithdrawn事件
+    
+    src/app/api/investor/stats/route.ts:
+      功能:
+        - 投资人统计信息接口（已有，需增强）
+      增强功能:
+        - 添加历史收益曲线数据
+        - 添加投资组合分析
+        - 添加风险评估指标
+    
+    src/app/api/platform/stats/route.ts:
+      功能:
+        - 平台统计信息接口（已有）
+      增强功能:
+        - 总锁仓价值(TVL)
+        - 活跃用户数
+        - 交易量统计
+        - 收益分发统计
+        
+    通用技术要求:
+      - 所有接口都需要错误处理和日志记录
+      - 合约交互需要失败重试机制
+      - 数据缓存策略以提升性能
+      - API限流和安全防护
+      - 跨链兼容性设计
+      - 实时数据同步机制
