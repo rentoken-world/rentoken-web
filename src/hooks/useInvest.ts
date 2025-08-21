@@ -2,7 +2,7 @@
  * @Author: dreamworks.cnn@gmail.com
  * @Date: 2025-08-21 21:15:10
  * @LastEditors: dreamworks.cnn@gmail.com
- * @LastEditTime: 2025-08-21 22:35:12
+ * @LastEditTime: 2025-08-22 00:51:20
  * @FilePath: /rentoken-web/src/hooks/useInvest.ts
  * @Description: 
  * 
@@ -52,7 +52,7 @@ const RENT_TOKEN_ADDRESS_MAP: Record<string, Address> = {
 // 使用配置中的USDC地址，如果没有则使用主网地址作为fallback  
 const USDC_ADDRESS = ((contractAddresses as any).USDC_ADDR || "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48") as Address;
 
-export function useInvest(propertyId: string, contributeAmount: number) {
+export function useInvest(propertyId: string, contributeAmount: number, rentTokenAddress:string) {
   const { address } = useAccount();
   const { data: walletClient } = useWalletClient();
   const publicClient = usePublicClient();
@@ -65,7 +65,7 @@ export function useInvest(propertyId: string, contributeAmount: number) {
   const [txHash, setTxHash] = useState<string>("");
 
   // 获取对应房产的RentToken合约地址
-  const rentTokenAddress = RENT_TOKEN_ADDRESS_MAP[propertyId] as Address;
+  // const rentTokenAddress = RENT_TOKEN_ADDRESS_MAP[propertyId] as Address;
 
   // 读取USDC精度
   const { data: usdcDecimals } = useReadContract({
@@ -73,7 +73,8 @@ export function useInvest(propertyId: string, contributeAmount: number) {
     abi: USDCABI as any,
     functionName: 'decimals',
   });
-
+  console.log('usdcDecimals', usdcDecimals)
+  
   // 读取当前用户的RentToken余额
   const { data: currentBalance, refetch: refetchBalance } = useReadContract({
     address: rentTokenAddress,
