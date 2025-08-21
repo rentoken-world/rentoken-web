@@ -33,6 +33,41 @@ let investmentsDB: Investment[] = [
   },
 ];
 
+// KYC数据库模拟
+let kycDB: KycStatus[] = [
+  {
+    walletAddress: "0x742d35Cc6634C0532925a3b8D6A0a4D3B6c8b1A2",
+    status: "approved",
+    submittedAt: new Date("2024-10-01T00:00:00Z"),
+    approvedAt: new Date("2024-10-02T00:00:00Z"),
+  },
+  {
+    walletAddress: "0x1234567890123456789012345678901234567890",
+    status: "pending",
+    submittedAt: new Date("2024-11-15T00:00:00Z"),
+  },
+];
+
+// KYC状态接口
+export interface KycStatus {
+  walletAddress: string;
+  status: 'none' | 'pending' | 'approved' | 'rejected';
+  submittedAt?: Date;
+  approvedAt?: Date;
+  rejectedAt?: Date;
+  reason?: string;
+}
+
+// KYC申请参数接口
+export interface CreateKycApplicationParams {
+  walletAddress: string;
+  email: string;
+  fullName: string;
+  documents?: string[];
+  status: 'pending';
+  submittedAt: Date;
+}
+
 // 房产筛选参数接口
 export interface PropertyFilters {
   page?: number;
@@ -52,6 +87,19 @@ export interface CreateInvestmentParams {
   tokenAmount: number;
   investmentAmount: number;
 }
+
+// 投资筛选参数接口
+export interface InvestmentFilters {
+  page?: number;
+  limit?: number;
+  investorAddress?: string;
+  propertyId?: string;
+  status?: string;
+  sortBy?: 'date' | 'amount' | 'tokens';
+  sortOrder?: 'asc' | 'desc';
+}
+
+// 从API类型中导入Investment类型（已包含property字段）
 
 // 房产创建参数接口
 export interface CreatePropertyParams {
@@ -257,6 +305,172 @@ export class DatabaseService {
       averageYield,
     };
   }
+
+  // KYC状态查询
+  static async getKycStatus(walletAddress: string): Promise<KycStatus> {
+    const kycRecord = kycDB.find(
+      (kyc) => kyc.walletAddress.toLowerCase() === walletAddress.toLowerCase()
+    );
+
+    return kycRecord || {
+      walletAddress,
+      status: 'none',
+    };
+  }
+
+  // 创建KYC申请
+  static async createKycApplication(params: CreateKycApplicationParams): Promise<KycStatus> {
+    const { walletAddress, email, fullName, documents, status, submittedAt } = params;
+
+    // 检查是否已经存在KYC记录
+    const existingIndex = kycDB.findIndex(
+      (kyc) => kyc.walletAddress.toLowerCase() === walletAddress.toLowerCase()
+    );
+
+    const newKycRecord: KycStatus = {
+      walletAddress,
+      status,
+      submittedAt,
+    };
+
+    if (existingIndex >= 0) {
+      // 更新现有记录
+      kycDB[existingIndex] = { ...kycDB[existingIndex], ...newKycRecord };
+      return kycDB[existingIndex];
+    } else {
+      // 创建新记录
+      kycDB.push(newKycRecord);
+      return newKycRecord;
+    }
+  }
+
+  // 更新KYC状态（管理员用）
+  static async updateKycStatus(
+    walletAddress: string, 
+    status: 'approved' | 'rejected', 
+    reason?: string
+  ): Promise<KycStatus | null> {
+    const index = kycDB.findIndex(
+      (kyc) => kyc.walletAddress.toLowerCase() === walletAddress.toLowerCase()
+    );
+
+    if (index === -1) {
+      return null;
+    }
+
+    const now = new Date();
+    kycDB[index] = {
+      ...kycDB[index],
+      status,
+      reason,
+      ...(status === 'approved' && { approvedAt: now }),
+      ...(status === 'rejected' && { rejectedAt: now }),
+    };
+
+    return kycDB[index];
+  }
+
+  // 获取所有KYC记录（管理员用）
+  static async getAllKycRecords(statusFilter?: string): Promise<KycStatus[]> {
+    let filteredRecords = [...kycDB];
+
+    if (statusFilter && statusFilter !== 'all') {
+      filteredRecords = filteredRecords.filter(record => record.status === statusFilter);
+    }
+
+    // 按提交时间排序（最新的在前）
+    filteredRecords.sort((a, b) => {
+      const aTime = a.submittedAt ? new Date(a.submittedAt).getTime() : 0;
+      const bTime = b.submittedAt ? new Date(b.submittedAt).getTime() : 0;
+      return bTime - aTime;
+    });
+
+    return filteredRecords;
+  }
+
+  // 获取投资列表
+  static async getInvestments(filters: InvestmentFilters = {}): Promise<{
+    data: Investment[];
+    totalCount: number;
+    currentPage: number;
+    totalPages: number;
+  }> {
+    const {
+      page = 1,
+      limit = 10,
+      investorAddress,
+      propertyId,
+      status,
+      sortBy = 'date',
+      sortOrder = 'desc'
+    } = filters;
+
+    // 筛选投资
+    let filteredInvestments = [...investmentsDB];
+
+    if (investorAddress) {
+      filteredInvestments = filteredInvestments.filter(
+        inv => inv.investorAddress.toLowerCase() === investorAddress.toLowerCase()
+      );
+    }
+
+    if (propertyId) {
+      filteredInvestments = filteredInvestments.filter(
+        inv => inv.propertyId === propertyId
+      );
+    }
+
+    // 根据sortBy排序
+    filteredInvestments.sort((a, b) => {
+      let aValue: number | string;
+      let bValue: number | string;
+
+      switch (sortBy) {
+        case 'amount':
+          aValue = a.investmentAmount;
+          bValue = b.investmentAmount;
+          break;
+        case 'tokens':
+          aValue = a.tokenAmount;
+          bValue = b.tokenAmount;
+          break;
+        case 'date':
+        default:
+          aValue = new Date(a.purchaseDate).getTime();
+          bValue = new Date(b.purchaseDate).getTime();
+          break;
+      }
+
+      if (sortOrder === 'asc') {
+        return aValue < bValue ? -1 : aValue > bValue ? 1 : 0;
+      } else {
+        return aValue > bValue ? -1 : aValue < bValue ? 1 : 0;
+      }
+    });
+
+    // 分页
+    const totalCount = filteredInvestments.length;
+    const totalPages = Math.ceil(totalCount / limit);
+    const startIndex = (page - 1) * limit;
+    const endIndex = startIndex + limit;
+    const paginatedInvestments = filteredInvestments.slice(startIndex, endIndex);
+
+    // 添加房产信息到投资记录
+    const investmentsWithPropertyInfo = paginatedInvestments.map(investment => {
+      const property = propertiesDB.find(p => p.id === investment.propertyId);
+      return {
+        ...investment,
+        property: property || undefined,
+      };
+    });
+
+    return {
+      data: investmentsWithPropertyInfo,
+      totalCount,
+      currentPage: page,
+      totalPages,
+    };
+  }
 }
 
 // 数据库接口，为将来的 Prisma 迁移做准备
@@ -266,8 +480,14 @@ export interface DatabaseInterface {
   createProperty(params: CreatePropertyParams): Promise<Property>;
   deleteProperty(id: string): Promise<boolean>;
   createInvestment(params: CreateInvestmentParams): Promise<Investment | null>;
+  getInvestments(filters: InvestmentFilters): Promise<any>;
   getInvestorStats(investorAddress: string): Promise<InvestorStats>;
   getPlatformStats(): Promise<any>;
+  // KYC相关方法
+  getKycStatus(walletAddress: string): Promise<KycStatus>;
+  createKycApplication(params: CreateKycApplicationParams): Promise<KycStatus>;
+  updateKycStatus(walletAddress: string, status: 'approved' | 'rejected', reason?: string): Promise<KycStatus | null>;
+  getAllKycRecords(statusFilter?: string): Promise<KycStatus[]>;
 }
 
 // 数据库服务导出 - 现在使用内存数据库，准备迁移到 Prisma

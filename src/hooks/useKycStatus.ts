@@ -1,38 +1,49 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useAccount } from "wagmi";
 
-// Mock KYC 状态 - 实际项目中这应该从后端API获取
-const mockKycStatus = {
-  "0x1234567890123456789012345678901234567890": true,
-  "0xabcdefabcdefabcdefabcdefabcdefabcdefabcd": false,
-};
+type KycStatus = 'none' | 'pending' | 'approved' | 'rejected';
 
 export function useKycStatus() {
   const { address, isConnected } = useAccount();
-  const [kycStatus, setKycStatus] = useState<boolean | null>(null);
+  const [kycStatus, setKycStatus] = useState<KycStatus>('none');
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    if (isConnected && address) {
-      setLoading(true);
-      // 模拟API调用延迟
-      setTimeout(() => {
-        const status = mockKycStatus[address as keyof typeof mockKycStatus] ?? false;
-        setKycStatus(status);
-        setLoading(false);
-      }, 1000);
-    } else {
-      setKycStatus(null);
+  const fetchKycStatus = useCallback(async () => {
+    if (!isConnected || !address) {
+      setKycStatus('none');
+      return;
+    }
+
+    setLoading(true);
+    try {
+      const response = await fetch(`/api/kyc?address=${encodeURIComponent(address)}`);
+      const result = await response.json();
+      
+      if (result.success) {
+        setKycStatus(result.data.status);
+      } else {
+        console.error('获取KYC状态失败:', result.error);
+        setKycStatus('none');
+      }
+    } catch (error) {
+      console.error('KYC状态查询错误:', error);
+      setKycStatus('none');
+    } finally {
       setLoading(false);
     }
   }, [address, isConnected]);
 
+  useEffect(() => {
+    fetchKycStatus();
+  }, [fetchKycStatus]);
+
   return {
     kycStatus,
     loading,
-    isKycVerified: kycStatus === true,
-    needsKycVerification: isConnected && kycStatus === false,
+    isKycVerified: kycStatus === 'approved',
+    needsKycVerification: isConnected && kycStatus === 'none',
+    refetch: fetchKycStatus,
   };
 }

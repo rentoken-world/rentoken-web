@@ -6,6 +6,7 @@ import { Footer } from "@/components/Footer";
 import { Providers } from "@/components/Providers";
 import { I18nProvider } from "@/hooks/useI18n";
 import { HydrationFix } from "@/components/HydrationFix";
+import { EnvironmentIndicator } from "@/components/EnvironmentIndicator";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -40,6 +41,7 @@ export default function RootLayout({ children }) {
               {children}
             </main>
             <Footer />
+            <EnvironmentIndicator />
           </Providers>
         </I18nProvider>
       </body>
