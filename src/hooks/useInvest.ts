@@ -2,7 +2,7 @@
  * @Author: dreamworks.cnn@gmail.com
  * @Date: 2025-08-21 21:15:10
  * @LastEditors: dreamworks.cnn@gmail.com
- * @LastEditTime: 2025-08-22 00:55:45
+ * @LastEditTime: 2025-08-22 01:59:17
  * @FilePath: /rentoken-web/src/hooks/useInvest.ts
  * @Description: 
  * 
@@ -34,11 +34,13 @@ import {
   usePublicClient, 
   useReadContract, 
   useWriteContract,
-  useWaitForTransactionReceipt 
+  useWaitForTransactionReceipt,
+  useChainId
 } from "wagmi";
 import RentTokenABI from "_commons_/ABI/RentToken.json";
 import USDCABI from "_commons_/ABI/USDC.json";
 import { getContractAddresses } from "@/config/contracts";
+import { getSupportedChains } from "@/config/chains";
 
 // 获取合约地址配置
 const contractAddresses = getContractAddresses();
@@ -52,11 +54,16 @@ const RENT_TOKEN_ADDRESS_MAP: Record<string, Address> = {
 // 使用配置中的USDC地址，如果没有则使用主网地址作为fallback  
 const USDC_ADDRESS = ((contractAddresses as any).USDC_ADDR || "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48") as Address;
 
-export function useInvest(propertyId: string, contributeAmount: number, rentTokenAddress:string) {
+export function useInvest(propertyId: string, contributeAmount: number, rentTokenAddress: `0x${string}`) {
   const { address } = useAccount();
   const { data: walletClient } = useWalletClient();
   const publicClient = usePublicClient();
   const { writeContractAsync } = useWriteContract();
+  const chainId = useChainId();
+  
+  // 获取当前链信息
+  const supportedChains = getSupportedChains();
+  const currentChain = supportedChains.find(chain => chain.id === chainId) || supportedChains[0];
   
   const [isInvesting, setIsInvesting] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -81,7 +88,9 @@ export function useInvest(propertyId: string, contributeAmount: number, rentToke
     abi: RentTokenABI as any,
     functionName: 'balanceOf',
     args: [address],
-    enabled: !!address && !!rentTokenAddress,
+    query: {
+      enabled: !!address && !!rentTokenAddress,
+    },
   });
 
   // 读取当前授权额度
@@ -90,7 +99,9 @@ export function useInvest(propertyId: string, contributeAmount: number, rentToke
     abi: USDCABI as any,
     functionName: 'allowance',
     args: [address, rentTokenAddress],
-    enabled: !!address && !!rentTokenAddress,
+    query: {
+      enabled: !!address && !!rentTokenAddress,
+    },
   });
 
   // 监听交易状态
@@ -125,20 +136,26 @@ export function useInvest(propertyId: string, contributeAmount: number, rentToke
     setIsInvesting(true);
     
     try {
-      const amount = parseUnits(contributeAmount.toString(), usdcDecimals);
+      const amount = parseUnits(contributeAmount.toString(), Number(usdcDecimals));
       
       // 检查是否需要授权
       const needsApproval = !currentAllowance || (currentAllowance as bigint) < amount;
       
       if (needsApproval) {
         console.log("需要授权USDC...");
-        
+        console.log("amount", amount);
+        console.log("rentTokenAddress", rentTokenAddress);
+        console.log("USDC_ADDRESS", USDC_ADDRESS);
+        console.log("address", address);
+        console.log("currentChain", currentChain);
         // 1. USDC授权
         const approveTxHash = await writeContractAsync({
           address: USDC_ADDRESS,
           abi: USDCABI as any,
           functionName: 'approve',
-          args: [rentTokenAddress, amount],
+          args: ["0x6E0D1a311Db4525e0953A751EA32E810c6E464C8", amount],
+          account: address!,
+          chain: currentChain,
         });
 
         console.log("授权交易哈希:", approveTxHash);
@@ -165,6 +182,8 @@ export function useInvest(propertyId: string, contributeAmount: number, rentToke
         abi: RentTokenABI as any,
         functionName: 'contribute',
         args: [amount],
+        account: address!,
+        chain: currentChain,
       });
 
       console.log("投资交易哈希:", contributeTxHash);
@@ -223,7 +242,7 @@ export function useInvest(propertyId: string, contributeAmount: number, rentToke
       const result = await refetchBalance();
       
       if (result.data) {
-        const formattedBalance = formatUnits(result.data as bigint, usdcDecimals);
+        const formattedBalance = formatUnits(result.data as bigint, Number(usdcDecimals));
         setBalance(formattedBalance);
         return formattedBalance;
       }
@@ -237,7 +256,7 @@ export function useInvest(propertyId: string, contributeAmount: number, rentToke
   // 初始化和更新余额显示
   useEffect(() => {
     if (currentBalance && usdcDecimals) {
-      const formattedBalance = formatUnits(currentBalance as bigint, usdcDecimals);
+      const formattedBalance = formatUnits(currentBalance as bigint, Number(usdcDecimals));
       setBalance(formattedBalance);
     }
   }, [currentBalance, usdcDecimals]);
@@ -260,7 +279,7 @@ export function useInvest(propertyId: string, contributeAmount: number, rentToke
     rentTokenAddress,
     usdcDecimals,
     currentAllowance: currentAllowance && usdcDecimals 
-      ? formatUnits(currentAllowance as bigint, usdcDecimals) 
+      ? formatUnits(currentAllowance as bigint, Number(usdcDecimals)) 
       : "0",
     isConfirming,
     txHash,
