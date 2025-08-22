@@ -29,7 +29,7 @@ interface PropertyCardProps {
   apy: number;
   imageUrl: string;
   status: "funding" | "active" | "completed";
-  sourceData:any;
+  renTokenAddress:any;
   onInvestmentSuccess?: () => void;
 }
 
@@ -44,7 +44,7 @@ export function PropertyCard({
   apy,
   imageUrl,
   status,
-  sourceData,
+  renTokenAddress,
   onInvestmentSuccess
 }: PropertyCardProps) {
   const { t } = useI18n();
@@ -65,7 +65,7 @@ export function PropertyCard({
     txHash,
     isConnected: isWalletConnected,
     hasValidRentTokenAddress
-  } = useInvest(id, investmentAmount, sourceData?.renTokenAddress);
+  } = useInvest(id, investmentAmount, renTokenAddress);
   // 处理投资成功状态
   useEffect(() => {
     if (investSuccess) {

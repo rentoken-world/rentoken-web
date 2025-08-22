@@ -101,18 +101,19 @@ export class PrismaService {
       title: property.title,
       location: property.location,
       description: property.description,
-      monthlyRent: property.price * (property.expectedYield / 100) / 12, // 计算月租金
-      tokenPrice: property.price / property.tokenSupply, // 计算单个代币价格
-      totalTokens: property.tokenSupply,
-      soldTokens: property.tokenSupply - property.availableTokens,
-      apy: property.actualYield || property.expectedYield,
+      monthlyRent: property.monthlyRent, // 直接使用新字段
+      tokenPrice: property.tokenPrice, // 直接使用新字段
+      totalTokens: property.totalTokens, // 直接使用新字段
+      soldTokens: property.soldTokens, // 直接使用新字段
+      apy: property.apy, // 直接使用新字段
       imageUrl: property.imageUrl || `/property-${property.id}.jpg`,
       status: property.status as Property['status'],
-      ownerId: property.owner,
+      ownerId: property.ownerId, // 使用新字段名 ownerId 而不是 owner
       createdAt: property.createdAt.toISOString(),
       updatedAt: property.updatedAt.toISOString(),
+      renTokenAddress: property.renTokenAddress,
     }));
-
+    console.log('formattedProperties', formattedProperties)
     return {
       data: formattedProperties,
       pagination: {
@@ -140,14 +141,14 @@ export class PrismaService {
       title: property.title,
       location: property.location,
       description: property.description,
-      monthlyRent: property.price * (property.expectedYield / 100) / 12,
-      tokenPrice: property.price / property.tokenSupply,
-      totalTokens: property.tokenSupply,
-      soldTokens: property.tokenSupply - property.availableTokens,
-      apy: property.actualYield || property.expectedYield,
+      monthlyRent: property.monthlyRent, // 直接使用新字段
+      tokenPrice: property.tokenPrice, // 直接使用新字段
+      totalTokens: property.totalTokens, // 直接使用新字段
+      soldTokens: property.soldTokens, // 直接使用新字段
+      apy: property.apy, // 直接使用新字段
       imageUrl: property.imageUrl || `/property-${property.id}.jpg`,
       status: property.status as Property['status'],
-      ownerId: property.owner,
+      ownerId: property.ownerId, // 使用新字段名
       createdAt: property.createdAt.toISOString(),
       updatedAt: property.updatedAt.toISOString(),
     };

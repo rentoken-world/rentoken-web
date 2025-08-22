@@ -12,18 +12,46 @@ model Property {
   title           String
   location        String
   description     String
-  price           Float
-  tokenSupply     Int
-  availableTokens Int
-  tokenPrice      Float
-  expectedYield   Float
-  actualYield     Float?
-  category        String
-  status          String
-  imageUrl        String?
-  owner           String
+  
+  // 财务相关字段（保留原有字段，向后兼容）
+  price           Float        // 原有价格字段
+  tokenSupply     Int?         // 原有字段，保持可选
+  availableTokens Int          // 剩余可售代币数量
+  tokenPrice      Float        // 代币价格
+  expectedYield   Float?       // 原有字段，保持可选
+  actualYield     Float?       // 实际收益率（可选）
+  
+  // 新增财务字段
+  monthlyRent     Float        @default(0.0)     // 月租金，默认为0
+  totalTokens     Int          @default(1000)    // 总代币数量，默认1000
+  soldTokens      Int          @default(0)       // 已售代币数量，默认0
+  apy             Float        @default(0.0)     // 年化收益率，默认0
+  
+  // 区块链相关字段
+  propertyId      Int          @default(1) // 数字类型的属性ID，默认值1
+  payoutToken     String       @default("0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48") // 默认USDC地址
+  valuation       BigInt       @default(0)       // 房产估值，默认0
+  minRaising      BigInt       @default(0)       // 最小筹资额，默认0
+  maxRaising      BigInt       @default(0)       // 最大筹资额，默认0
+  accrualStart    BigInt       @default(0)       // 收益累计开始时间戳，默认0
+  accrualEnd      BigInt       @default(0)       // 收益累计结束时间戳，默认0
+  landlord        String       @default("0x0000000000000000000000000000000000000000") // 默认地址
+  docHash         String       @default("0x0000000000000000000000000000000000000000000000000000000000000000") // 默认哈希
+  offchainURL     String       @default("https://example.com")  // 默认URL
+  renTokenAddress String       @default("0x0000000000000000000000000000000000000000") // 默认地址
+  
+  // 基本信息字段
+  category        String?      // 房产类别（可选，向后兼容）
+  status          String       // 状态
+  imageUrl        String?      // 图片URL（可选）
+  owner           String?      // 保留原有字段
+  ownerId         String       @default("unknown") // 所有者ID，默认值
+  
+  // 时间戳字段
   createdAt       DateTime     @default(now())
   updatedAt       DateTime     @updatedAt
+  
+  // 关系字段
   investments     Investment[]
 
   @@map("properties")
@@ -70,4 +98,19 @@ model Transaction {
   updatedAt   DateTime @updatedAt
 
   @@map("transactions")
+}
+
+model kyc_status {
+  id            String    @id
+  walletAddress String    @unique
+  status        String
+  email         String?
+  fullName      String?
+  documents     String[]  @default([])
+  reason        String?
+  submittedAt   DateTime?
+  approvedAt    DateTime?
+  rejectedAt    DateTime?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime
 }

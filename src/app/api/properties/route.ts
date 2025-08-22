@@ -2,7 +2,7 @@
  * @Author: dreamworks.cnn@gmail.com
  * @Date: 2025-08-20 17:26:56
  * @LastEditors: dreamworks.cnn@gmail.com
- * @LastEditTime: 2025-08-22 00:18:40
+ * @LastEditTime: 2025-08-23 00:31:42
  * @FilePath: /rentoken-web/src/app/api/properties/route.ts
  * @Description: 
  * 
@@ -27,11 +27,11 @@ export async function GET(request: NextRequest) {
 
 
 
-    return  NextResponse.json({
-      success: true,
-      data: mock_properties,
-    }) 
-    const result = await mock_properties.getProperties({
+    // return  NextResponse.json({
+    //   success: true,
+    //   data: mock_properties,
+    // }) 
+    const result = await db.getProperties({
       page,
       limit,
       search,

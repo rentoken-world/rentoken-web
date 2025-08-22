@@ -98,7 +98,6 @@ export class DatabaseService {
     } = filters;
     
     let filteredProperties = [...propertiesDB];
-
     // 搜索过滤
     if (search) {
       filteredProperties = filteredProperties.filter(property =>
