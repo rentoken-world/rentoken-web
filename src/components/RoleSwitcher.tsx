@@ -30,10 +30,12 @@ export function RoleSwitcher() {
     return (
       <div className="flex items-center gap-2 min-w-[280px]">
         <Button variant="ghost" size="sm" className="min-w-[130px] justify-start gap-1">
+          {/* @ts-ignore - React 19 compatibility issue */}
           <TrendingUp className="h-4 w-4 flex-shrink-0" />
           <span className="truncate">🚀 {t("investor")}</span>
         </Button>
         <Button variant="ghost" size="sm" className="min-w-[130px] justify-start gap-1">
+          {/* @ts-ignore - React 19 compatibility issue */}
           <Building className="h-4 w-4 flex-shrink-0" />
           <span className="truncate">🏠 {t("owner")}</span>
         </Button>
@@ -49,6 +51,7 @@ export function RoleSwitcher() {
         onClick={() => handleRoleChange("investor")}
         className="gap-1 min-w-[130px] justify-start"
       >
+        {/* @ts-ignore - React 19 compatibility issue */}
         <TrendingUp className="h-4 w-4 flex-shrink-0" />
         <span className="truncate">🚀 {t("investor")}</span>
       </Button>
@@ -58,6 +61,7 @@ export function RoleSwitcher() {
         onClick={() => handleRoleChange("owner")}
         className="gap-1 min-w-[130px] justify-start"
       >
+        {/* @ts-ignore - React 19 compatibility issue */}
         <Building className="h-4 w-4 flex-shrink-0" />
         <span className="truncate">🏠 {t("owner")}</span>
       </Button>

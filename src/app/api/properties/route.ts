@@ -1,5 +1,17 @@
+/*
+ * @Author: dreamworks.cnn@gmail.com
+ * @Date: 2025-08-20 17:26:56
+ * @LastEditors: dreamworks.cnn@gmail.com
+ * @LastEditTime: 2025-08-23 00:31:42
+ * @FilePath: /rentoken-web/src/app/api/properties/route.ts
+ * @Description: 
+ * 
+ * Copyright (c) 2025 by ${git_name_email}, All Rights Reserved. 
+ */
+
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/lib/database-service';
+import { mock_properties } from '@/mockData/data'
 
 export async function GET(request: NextRequest) {
   try {
@@ -13,6 +25,12 @@ export async function GET(request: NextRequest) {
     const minPrice = searchParams.get('minPrice') ? parseFloat(searchParams.get('minPrice')!) : undefined;
     const maxPrice = searchParams.get('maxPrice') ? parseFloat(searchParams.get('maxPrice')!) : undefined;
 
+
+
+    // return  NextResponse.json({
+    //   success: true,
+    //   data: mock_properties,
+    // }) 
     const result = await db.getProperties({
       page,
       limit,
@@ -23,7 +41,7 @@ export async function GET(request: NextRequest) {
       minPrice,
       maxPrice,
     });
-
+    console.log('GET:result:', result)
     return NextResponse.json({
       success: true,
       data: result,
@@ -50,6 +68,8 @@ export async function POST(request: NextRequest) {
         { status: 400 }
       );
     }
+
+
 
     // Create property
     const property = await db.createProperty({

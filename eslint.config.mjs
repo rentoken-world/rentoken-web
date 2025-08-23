@@ -1,3 +1,13 @@
+/*
+ * @Author: dreamworks.cnn@gmail.com
+ * @Date: 2025-08-20 17:26:56
+ * @LastEditors: dreamworks.cnn@gmail.com
+ * @LastEditTime: 2025-08-20 23:35:24
+ * @FilePath: /rentoken-web/eslint.config.mjs
+ * @Description: 
+ * 
+ * Copyright (c) 2025 by ${git_name_email}, All Rights Reserved. 
+ */
 import { dirname } from "path";
 import { fileURLToPath } from "url";
 import { FlatCompat } from "@eslint/eslintrc";

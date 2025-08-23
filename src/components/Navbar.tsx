@@ -5,7 +5,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Menu } from "lucide-react";
-
+import { KycStatus } from "@/components/KycStatus";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -28,8 +28,10 @@ export function Navbar() {
   return (
     <nav className="w-full flex items-center justify-between px-6 py-4 glass-dark border-b border-primary/20 backdrop-blur-md sticky top-0 z-50">
       {/* Logo Section */}
+      {/* @ts-ignore - React 19 compatibility issue */}
       <Link href="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
         <div className="relative group">
+          {/* @ts-ignore - React 19 compatibility issue */}
           <Image 
             src="/logo.jpg" 
             alt={`${t("rentoken")} Logo`} 
@@ -48,7 +50,8 @@ export function Navbar() {
           </Badge>
         </div>
       </Link>
-      
+      {/* KYC状态组件 - 暂时隐藏 */}
+      <KycStatus />
       {/* Desktop Navigation */}
       <div className="hidden lg:flex items-center gap-6 min-w-[600px] justify-end">
         {/* Language Switcher */}
@@ -103,6 +106,7 @@ export function Navbar() {
         <Sheet>
           <SheetTrigger asChild>
             <Button variant="glass" size="icon" className="glass border border-primary/30 hover:border-primary transition-all duration-300 relative">
+              {/* @ts-ignore - React 19 compatibility issue */}
               <Menu className="h-5 w-5 text-primary" />
               <span className="sr-only">Toggle mobile menu</span>
               {/* Indicator dot */}
@@ -178,8 +182,7 @@ export function Navbar() {
                       </a>
                     </Button>
                   </div>
-                </div>
-
+                </div>                
                 {/* Settings */}
                 <div className="space-y-3">
                   <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wide">

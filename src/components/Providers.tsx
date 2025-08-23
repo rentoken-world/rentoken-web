@@ -1,3 +1,13 @@
+/*
+ * @Author: dreamworks.cnn@gmail.com
+ * @Date: 2025-08-20 17:26:56
+ * @LastEditors: dreamworks.cnn@gmail.com
+ * @LastEditTime: 2025-08-20 23:37:37
+ * @FilePath: /rentoken-web/src/components/Providers.tsx
+ * @Description: 
+ * 
+ * Copyright (c) 2025 by ${git_name_email}, All Rights Reserved. 
+ */
 "use client";
 
 import '@rainbow-me/rainbowkit/styles.css';
@@ -51,6 +61,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
       enableSystem
       disableTransitionOnChange
     >
+      {/* @ts-ignore - React 19 compatibility issue */}
       <WagmiProvider config={config}>
         <QueryClientProvider client={queryClient}>
           <RainbowKitWrapper>

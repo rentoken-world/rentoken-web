@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useAccount } from "wagmi";
 import { useI18n } from "@/hooks/useI18n";
 import Image from "next/image";
@@ -17,7 +17,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
-
+import { useInvest } from "@/hooks/useInvest";
 interface PropertyCardProps {
   id: string;
   title: string;
@@ -29,6 +29,7 @@ interface PropertyCardProps {
   apy: number;
   imageUrl: string;
   status: "funding" | "active" | "completed";
+  renTokenAddress:any;
   onInvestmentSuccess?: () => void;
 }
 
@@ -43,18 +44,44 @@ export function PropertyCard({
   apy,
   imageUrl,
   status,
+  renTokenAddress,
   onInvestmentSuccess
 }: PropertyCardProps) {
   const { t } = useI18n();
   const { address, isConnected } = useAccount();
   const [showInvestModal, setShowInvestModal] = useState(false);
   const [tokenAmount, setTokenAmount] = useState(1);
-  const [isInvesting, setIsInvesting] = useState(false);
-
   const remainingTokens = totalTokens - soldTokens;
   const progressPercentage = (soldTokens / totalTokens) * 100;
   const investmentAmount = tokenAmount * tokenPrice;
+  
+  // 使用 useInvest hook 进行区块链投资操作
+  const {
+    invest,
+    isInvesting,
+    error: investError,
+    success: investSuccess,
+    balance,
+    txHash,
+    isConnected: isWalletConnected,
+    hasValidRentTokenAddress
+  } = useInvest(id, investmentAmount, renTokenAddress);
+  // 处理投资成功状态
+  useEffect(() => {
+    if (investSuccess) {
+      alert(`🎉 投资成功！您已购买 ${tokenAmount} 个代币，总投资金额 $${investmentAmount.toLocaleString()}${txHash ? `\n\n交易哈希: ${txHash}` : ''}`);
+      setShowInvestModal(false);
+      setTokenAmount(1);
+      onInvestmentSuccess?.();
+    }
+  }, [investSuccess, tokenAmount, investmentAmount, txHash, onInvestmentSuccess]);
 
+  // 处理投资错误状态
+  useEffect(() => {
+    if (investError) {
+      alert(`❌ 投资失败: ${investError}`);
+    }
+  }, [investError]);
   const getStatusColor = () => {
     switch (status) {
       case "funding":
@@ -82,40 +109,26 @@ export function PropertyCard({
   };
 
   const handleInvest = async () => {
+    // 检查钱包连接状态
     if (!isConnected || !address) {
-      alert("Please connect your wallet first.");
+      alert("请先连接您的钱包");
+      return;
+    }
+
+    // 检查是否有有效的RentToken合约地址
+    if (!hasValidRentTokenAddress) {
+      alert("❌ 未找到该房产对应的合约地址，请联系管理员");
       return;
     }
 
     try {
-      setIsInvesting(true);
-      const response = await fetch('/api/investments', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          propertyId: id,
-          investorAddress: address,
-          tokenAmount,
-          investmentAmount,
-        }),
-      });
-
-      const result = await response.json();
-      if (result.success) {
-        alert(`🎉 Successfully invested $${investmentAmount.toLocaleString()} for ${tokenAmount} tokens!`);
-        setShowInvestModal(false);
-        setTokenAmount(1);
-        onInvestmentSuccess?.();
-      } else {
-        alert(`❌ Investment failed: ${result.error}`);
-      }
+      // 调用 useInvest hook 的 invest 方法进行区块链投资
+      await invest();
+      
+      // 投资成功后的处理会在 useEffect 中处理
     } catch (error) {
       console.error('Investment error:', error);
-      alert('❌ Investment failed. Please try again.');
-    } finally {
-      setIsInvesting(false);
+      // 错误处理已在 useInvest hook 中处理，这里不需要额外处理
     }
   };
 
@@ -126,6 +139,7 @@ export function PropertyCard({
       
       {/* Property Image */}
       <div className="relative h-56 overflow-hidden rounded-t-xl">
+        {/* @ts-ignore - React 19 compatibility issue */}
         <Image 
           src={imageUrl || "/placeholder-property.jpg"} 
           alt={title}
@@ -159,7 +173,7 @@ export function PropertyCard({
           <div className="glass p-3 rounded-lg border border-border/50">
             <div className="text-xs text-muted-foreground mb-1">Monthly Rent</div>
             <div className="font-bold text-lg neon-text">
-              ${monthlyRent.toLocaleString()}
+              {/* ${monthlyRent.toLocaleString()} */}
             </div>
           </div>
           <div className="glass p-3 rounded-lg border border-border/50">
@@ -246,6 +260,20 @@ export function PropertyCard({
               />
             </div>
 
+            {/* 错误信息显示 */}
+            {investError && (
+              <div className="p-3 bg-red-500/20 border border-red-500/30 rounded-lg text-red-400 text-sm">
+                ❌ {investError}
+              </div>
+            )}
+
+            {/* 交易哈希显示 */}
+            {txHash && (
+              <div className="p-3 bg-blue-500/20 border border-blue-500/30 rounded-lg text-blue-400 text-sm">
+                📝 交易哈希: <code className="text-xs break-all">{txHash}</code>
+              </div>
+            )}
+
             <Card variant="glass" className="border border-border/50">
               <CardContent className="p-4 space-y-3">
                 <div className="flex justify-between">
@@ -268,6 +296,12 @@ export function PropertyCard({
                     ${((investmentAmount * apy / 100) / 12).toFixed(2)}
                   </span>
                 </div>
+                {/* 显示当前持有的代币余额 */}
+                {balance !== "0" && (
+                  <div className="text-sm text-green-400 bg-green-500/20 p-3 rounded-lg border border-green-500/30">
+                    💰 您当前持有: {parseFloat(balance).toFixed(2)} 个代币
+                  </div>
+                )}
               </CardContent>
             </Card>
 
@@ -283,10 +317,16 @@ export function PropertyCard({
               <Button
                 variant="sushi"
                 onClick={handleInvest}
-                disabled={isInvesting || !isConnected}
+                disabled={isInvesting || !isConnected || !hasValidRentTokenAddress}
                 className="flex-1"
               >
-                {isInvesting ? "🔄 Investing..." : isConnected ? "🚀 Confirm Investment" : "🔒 Connect Wallet"}
+                {isInvesting 
+                  ? "🔄 投资中..." 
+                  : !isConnected 
+                    ? "🔒 连接钱包" 
+                    : !hasValidRentTokenAddress
+                      ? "❌ 合约未配置"
+                      : "🚀 确认投资"}
               </Button>
             </div>
           </div>

@@ -27,12 +27,12 @@ export interface Investment {
   property?: Property;
 }
 
-// 用户投资统计
+// 用户投资统计 - 统一字段命名
 export interface InvestorStats {
   totalInvested: number;
   monthlyIncome: number;
-  propertiesCount: number;
-  averageYield: number;
+  totalProperties: number; // 统一使用totalProperties
+  averageApy: number; // 统一使用averageApy
   totalTokens?: number;
   nextPaymentDays?: number;
   monthlyGrowth?: number;

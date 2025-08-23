@@ -6,6 +6,7 @@ import { Footer } from "@/components/Footer";
 import { Providers } from "@/components/Providers";
 import { I18nProvider } from "@/hooks/useI18n";
 import { HydrationFix } from "@/components/HydrationFix";
+import { EnvironmentIndicator } from "@/components/EnvironmentIndicator";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -20,6 +21,9 @@ const geistMono = Geist_Mono({
 export const metadata = {
   title: "RenToken - Real Estate Revenue Tokenization",
   description: "Tokenize rental property income. Invest in real estate revenue streams.",
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({ children }) {
@@ -37,6 +41,7 @@ export default function RootLayout({ children }) {
               {children}
             </main>
             <Footer />
+            <EnvironmentIndicator />
           </Providers>
         </I18nProvider>
       </body>

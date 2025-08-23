@@ -33,6 +33,8 @@ let investmentsDB: Investment[] = [
   },
 ];
 
+
+
 // 房产筛选参数接口
 export interface PropertyFilters {
   page?: number;
@@ -52,6 +54,19 @@ export interface CreateInvestmentParams {
   tokenAmount: number;
   investmentAmount: number;
 }
+
+// 投资筛选参数接口
+export interface InvestmentFilters {
+  page?: number;
+  limit?: number;
+  investorAddress?: string;
+  propertyId?: string;
+  status?: string;
+  sortBy?: 'date' | 'amount' | 'tokens';
+  sortOrder?: 'asc' | 'desc';
+}
+
+// 从API类型中导入Investment类型（已包含property字段）
 
 // 房产创建参数接口
 export interface CreatePropertyParams {
@@ -83,7 +98,6 @@ export class DatabaseService {
     } = filters;
     
     let filteredProperties = [...propertiesDB];
-
     // 搜索过滤
     if (search) {
       filteredProperties = filteredProperties.filter(property =>
@@ -236,8 +250,8 @@ export class DatabaseService {
     return {
       totalInvested,
       monthlyIncome,
-      propertiesCount: userInvestments.length,
-      averageYield,
+      totalProperties: userInvestments.length, // 统一使用totalProperties
+      averageApy: averageYield, // 统一使用averageApy
     };
   }
 
@@ -257,6 +271,98 @@ export class DatabaseService {
       averageYield,
     };
   }
+
+
+
+
+
+
+
+
+
+  // 获取投资列表
+  static async getInvestments(filters: InvestmentFilters = {}): Promise<{
+    data: Investment[];
+    totalCount: number;
+    currentPage: number;
+    totalPages: number;
+  }> {
+    const {
+      page = 1,
+      limit = 10,
+      investorAddress,
+      propertyId,
+      status,
+      sortBy = 'date',
+      sortOrder = 'desc'
+    } = filters;
+
+    // 筛选投资
+    let filteredInvestments = [...investmentsDB];
+
+    if (investorAddress) {
+      filteredInvestments = filteredInvestments.filter(
+        inv => inv.investorAddress.toLowerCase() === investorAddress.toLowerCase()
+      );
+    }
+
+    if (propertyId) {
+      filteredInvestments = filteredInvestments.filter(
+        inv => inv.propertyId === propertyId
+      );
+    }
+
+    // 根据sortBy排序
+    filteredInvestments.sort((a, b) => {
+      let aValue: number | string;
+      let bValue: number | string;
+
+      switch (sortBy) {
+        case 'amount':
+          aValue = a.investmentAmount;
+          bValue = b.investmentAmount;
+          break;
+        case 'tokens':
+          aValue = a.tokenAmount;
+          bValue = b.tokenAmount;
+          break;
+        case 'date':
+        default:
+          aValue = new Date(a.purchaseDate).getTime();
+          bValue = new Date(b.purchaseDate).getTime();
+          break;
+      }
+
+      if (sortOrder === 'asc') {
+        return aValue < bValue ? -1 : aValue > bValue ? 1 : 0;
+      } else {
+        return aValue > bValue ? -1 : aValue < bValue ? 1 : 0;
+      }
+    });
+
+    // 分页
+    const totalCount = filteredInvestments.length;
+    const totalPages = Math.ceil(totalCount / limit);
+    const startIndex = (page - 1) * limit;
+    const endIndex = startIndex + limit;
+    const paginatedInvestments = filteredInvestments.slice(startIndex, endIndex);
+
+    // 添加房产信息到投资记录
+    const investmentsWithPropertyInfo = paginatedInvestments.map(investment => {
+      const property = propertiesDB.find(p => p.id === investment.propertyId);
+      return {
+        ...investment,
+        property: property || undefined,
+      };
+    });
+
+    return {
+      data: investmentsWithPropertyInfo,
+      totalCount,
+      currentPage: page,
+      totalPages,
+    };
+  }
 }
 
 // 数据库接口，为将来的 Prisma 迁移做准备
@@ -266,10 +372,14 @@ export interface DatabaseInterface {
   createProperty(params: CreatePropertyParams): Promise<Property>;
   deleteProperty(id: string): Promise<boolean>;
   createInvestment(params: CreateInvestmentParams): Promise<Investment | null>;
+  getInvestments(filters: InvestmentFilters): Promise<any>;
   getInvestorStats(investorAddress: string): Promise<InvestorStats>;
   getPlatformStats(): Promise<any>;
+
 }
 
-// 当 Prisma 配置完成后，这里可以切换到 PrismaService
+// 数据库服务导出 - 已切换到 Prisma 数据库
+// 如果需要切换回内存数据库进行测试，可以取消注释下面一行并注释掉 PrismaService
+// export const db: DatabaseInterface = DatabaseService;
 import { PrismaService } from './database-prisma';
 export const db: DatabaseInterface = PrismaService;

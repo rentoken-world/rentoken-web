@@ -1,0 +1,23 @@
+[
+  {
+    "id": "1",
+    "title": "Manhattan Luxury Apartment",
+    "location": "New York, NY, USA",
+    "description": "A premium luxury apartment in the heart of Manhattan with stunning city views.",
+    "monthlyRent": 8500,
+    "tokenPrice": 100,
+    "totalTokens": 1000,
+    "soldTokens": 650,
+    "apy": 8.5,
+    "imageUrl": "/property-1.jpg",
+    "status": "funding",
+    "ownerId": "owner1",
+    "createdAt": "2024-01-15T00:00:00Z",
+    "updatedAt": "2024-12-01T00:00:00Z",
+    "sourceData":{
+      "landlord":"",
+      "payoutToken":"",
+      "docHash":""
+    }
+  }
+]

@@ -329,22 +329,22 @@ export default function OwnerDashboard() {
                     <div className="flex justify-between">
                       <span className="text-muted-foreground">Price:</span>
                       <span className="font-semibold neon-text bg-gradient-sushi bg-clip-text text-transparent">
-                        ${property.price.toLocaleString()}
+                        ${(property.tokenPrice * property.totalTokens).toLocaleString()}
                       </span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-muted-foreground">Tokens:</span>
-                      <span className="font-semibold">{property.tokenSupply.toLocaleString()}</span>
+                      <span className="font-semibold">{property.totalTokens.toLocaleString()}</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-muted-foreground">Available:</span>
                       <span className="font-semibold text-secondary">
-                        {property.availableTokens.toLocaleString()}
+                        {(property.totalTokens - property.soldTokens).toLocaleString()}
                       </span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-muted-foreground">Yield:</span>
-                      <span className="font-semibold text-secondary">{property.expectedYield}%</span>
+                      <span className="font-semibold text-secondary">{property.apy}%</span>
                     </div>
                     <div className="flex justify-between items-center">
                       <span className="text-muted-foreground">Status:</span>

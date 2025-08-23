@@ -1,3 +1,13 @@
+/*
+ * @Author: dreamworks.cnn@gmail.com
+ * @Date: 2025-08-20 17:26:56
+ * @LastEditors: dreamworks.cnn@gmail.com
+ * @LastEditTime: 2025-08-21 22:53:13
+ * @FilePath: /rentoken-web/src/hooks/useProperties.ts
+ * @Description: 
+ * 
+ * Copyright (c) 2025 by ${git_name_email}, All Rights Reserved. 
+ */
 "use client";
 
 import { useState, useEffect, useCallback } from 'react';
@@ -24,6 +34,8 @@ export function useProperties(params: PaginationParams = {}) {
 
       if (result.success && result.data) {
         setData(result.data);
+        console.log('useProperties.data', result.data)
+        
       } else {
         setError(result.error || 'Failed to fetch properties');
       }

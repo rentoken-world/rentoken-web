@@ -1,0 +1,698 @@
+
+> rentoken-web-fullstack@0.1.0 dev
+> next dev
+
+   ▲ Next.js 15.4.7
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.5.46:3000
+   - Environments: .env
+
+ ✓ Starting...
+ ✓ Ready in 1957ms
+ ○ Compiling /investor ...
+Request timed out after 3000ms
+
+Retrying 1/3...
+Request timed out after 3000ms
+
+Retrying 1/3...
+Request timed out after 3000ms
+
+Retrying 2/3...
+Request timed out after 3000ms
+
+Retrying 2/3...
+ ⚠ ./node_modules/.pnpm/pino@7.11.0/node_modules/pino/lib/tools.js
+Module not found: Can't resolve 'pino-pretty' in '/Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/node_modules/.pnpm/pino@7.11.0/node_modules/pino/lib'
+
+Import trace for requested module:
+./node_modules/.pnpm/pino@7.11.0/node_modules/pino/lib/tools.js
+./node_modules/.pnpm/pino@7.11.0/node_modules/pino/pino.js
+./node_modules/.pnpm/@walletconnect+logger@2.1.2/node_modules/@walletconnect/logger/dist/index.es.js
+./node_modules/.pnpm/@walletconnect+universal-provider@2.21.1_bufferutil@4.0.9_typescript@5.9.2_utf-8-validate@5.0.10_zod@3.25.76/node_modules/@walletconnect/universal-provider/dist/index.es.js
+./node_modules/.pnpm/@walletconnect+ethereum-provider@2.21.1_@types+react@19.1.10_bufferutil@4.0.9_react@19._78555b8d59c12171aa4e3e7b88266b15/node_modules/@walletconnect/ethereum-provider/dist/index.es.js
+./node_modules/.pnpm/@wagmi+connectors@5.9.4_@types+react@19.1.10_@wagmi+core@2.19.0_@tanstack+query-core@5._56d85de47d69ee4414b5268a6699a78d/node_modules/@wagmi/connectors/dist/esm/walletConnect.js
+./node_modules/.pnpm/@wagmi+connectors@5.9.4_@types+react@19.1.10_@wagmi+core@2.19.0_@tanstack+query-core@5._56d85de47d69ee4414b5268a6699a78d/node_modules/@wagmi/connectors/dist/esm/exports/index.js
+./node_modules/.pnpm/wagmi@2.16.4_@tanstack+query-core@5.85.5_@tanstack+react-query@5.85.5_react@19.1.0__@ty_38af56b300346132865e227241f6c55c/node_modules/wagmi/dist/esm/exports/connectors.js
+./node_modules/.pnpm/@rainbow-me+rainbowkit@2.2.8_@tanstack+react-query@5.85.5_react@19.1.0__@types+react@19_0752128e7fc80cb430750b26ccc71a39/node_modules/@rainbow-me/rainbowkit/dist/index.js
+./src/components/Providers.tsx
+[ReferenceError: indexedDB is not defined]
+ ⨯ unhandledRejection: [ReferenceError: indexedDB is not defined]
+ ⨯ unhandledRejection:  [ReferenceError: indexedDB is not defined]
+[ReferenceError: indexedDB is not defined]
+ ⨯ unhandledRejection: [ReferenceError: indexedDB is not defined]
+ ⨯ unhandledRejection:  [ReferenceError: indexedDB is not defined]
+ GET / 200 in 31044ms
+ GET /investor 200 in 37415ms
+ ⚠ ./node_modules/.pnpm/pino@7.11.0/node_modules/pino/lib/tools.js
+Module not found: Can't resolve 'pino-pretty' in '/Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/node_modules/.pnpm/pino@7.11.0/node_modules/pino/lib'
+
+Import trace for requested module:
+./node_modules/.pnpm/pino@7.11.0/node_modules/pino/lib/tools.js
+./node_modules/.pnpm/pino@7.11.0/node_modules/pino/pino.js
+./node_modules/.pnpm/@walletconnect+logger@2.1.2/node_modules/@walletconnect/logger/dist/index.es.js
+./node_modules/.pnpm/@walletconnect+universal-provider@2.21.1_bufferutil@4.0.9_typescript@5.9.2_utf-8-validate@5.0.10_zod@3.25.76/node_modules/@walletconnect/universal-provider/dist/index.es.js
+./node_modules/.pnpm/@walletconnect+ethereum-provider@2.21.1_@types+react@19.1.10_bufferutil@4.0.9_react@19._78555b8d59c12171aa4e3e7b88266b15/node_modules/@walletconnect/ethereum-provider/dist/index.es.js
+./node_modules/.pnpm/@wagmi+connectors@5.9.4_@types+react@19.1.10_@wagmi+core@2.19.0_@tanstack+query-core@5._56d85de47d69ee4414b5268a6699a78d/node_modules/@wagmi/connectors/dist/esm/walletConnect.js
+./node_modules/.pnpm/@wagmi+connectors@5.9.4_@types+react@19.1.10_@wagmi+core@2.19.0_@tanstack+query-core@5._56d85de47d69ee4414b5268a6699a78d/node_modules/@wagmi/connectors/dist/esm/exports/index.js
+./node_modules/.pnpm/wagmi@2.16.4_@tanstack+query-core@5.85.5_@tanstack+react-query@5.85.5_react@19.1.0__@ty_38af56b300346132865e227241f6c55c/node_modules/wagmi/dist/esm/exports/connectors.js
+./node_modules/.pnpm/@rainbow-me+rainbowkit@2.2.8_@tanstack+react-query@5.85.5_react@19.1.0__@types+react@19_0752128e7fc80cb430750b26ccc71a39/node_modules/@rainbow-me/rainbowkit/dist/index.js
+./src/components/Providers.tsx
+ ⚠ ./node_modules/.pnpm/pino@7.11.0/node_modules/pino/lib/tools.js
+Module not found: Can't resolve 'pino-pretty' in '/Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/node_modules/.pnpm/pino@7.11.0/node_modules/pino/lib'
+
+Import trace for requested module:
+./node_modules/.pnpm/pino@7.11.0/node_modules/pino/lib/tools.js
+./node_modules/.pnpm/pino@7.11.0/node_modules/pino/pino.js
+./node_modules/.pnpm/@walletconnect+logger@2.1.2/node_modules/@walletconnect/logger/dist/index.es.js
+./node_modules/.pnpm/@walletconnect+universal-provider@2.21.1_bufferutil@4.0.9_typescript@5.9.2_utf-8-validate@5.0.10_zod@3.25.76/node_modules/@walletconnect/universal-provider/dist/index.es.js
+./node_modules/.pnpm/@walletconnect+ethereum-provider@2.21.1_@types+react@19.1.10_bufferutil@4.0.9_react@19._78555b8d59c12171aa4e3e7b88266b15/node_modules/@walletconnect/ethereum-provider/dist/index.es.js
+./node_modules/.pnpm/@wagmi+connectors@5.9.4_@types+react@19.1.10_@wagmi+core@2.19.0_@tanstack+query-core@5._56d85de47d69ee4414b5268a6699a78d/node_modules/@wagmi/connectors/dist/esm/walletConnect.js
+./node_modules/.pnpm/@wagmi+connectors@5.9.4_@types+react@19.1.10_@wagmi+core@2.19.0_@tanstack+query-core@5._56d85de47d69ee4414b5268a6699a78d/node_modules/@wagmi/connectors/dist/esm/exports/index.js
+./node_modules/.pnpm/wagmi@2.16.4_@tanstack+query-core@5.85.5_@tanstack+react-query@5.85.5_react@19.1.0__@ty_38af56b300346132865e227241f6c55c/node_modules/wagmi/dist/esm/exports/connectors.js
+./node_modules/.pnpm/@rainbow-me+rainbowkit@2.2.8_@tanstack+react-query@5.85.5_react@19.1.0__@types+react@19_0752128e7fc80cb430750b26ccc71a39/node_modules/@rainbow-me/rainbowkit/dist/index.js
+./src/components/Providers.tsx
+ GET /favicon.ico 200 in 733ms
+ GET /favicon.ico 200 in 5ms
+ ⚠ ./node_modules/.pnpm/pino@7.11.0/node_modules/pino/lib/tools.js
+Module not found: Can't resolve 'pino-pretty' in '/Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/node_modules/.pnpm/pino@7.11.0/node_modules/pino/lib'
+
+Import trace for requested module:
+./node_modules/.pnpm/pino@7.11.0/node_modules/pino/lib/tools.js
+./node_modules/.pnpm/pino@7.11.0/node_modules/pino/pino.js
+./node_modules/.pnpm/@walletconnect+logger@2.1.2/node_modules/@walletconnect/logger/dist/index.es.js
+./node_modules/.pnpm/@walletconnect+universal-provider@2.21.1_bufferutil@4.0.9_typescript@5.9.2_utf-8-validate@5.0.10_zod@3.25.76/node_modules/@walletconnect/universal-provider/dist/index.es.js
+./node_modules/.pnpm/@walletconnect+ethereum-provider@2.21.1_@types+react@19.1.10_bufferutil@4.0.9_react@19._78555b8d59c12171aa4e3e7b88266b15/node_modules/@walletconnect/ethereum-provider/dist/index.es.js
+./node_modules/.pnpm/@wagmi+connectors@5.9.4_@types+react@19.1.10_@wagmi+core@2.19.0_@tanstack+query-core@5._56d85de47d69ee4414b5268a6699a78d/node_modules/@wagmi/connectors/dist/esm/walletConnect.js
+./node_modules/.pnpm/@wagmi+connectors@5.9.4_@types+react@19.1.10_@wagmi+core@2.19.0_@tanstack+query-core@5._56d85de47d69ee4414b5268a6699a78d/node_modules/@wagmi/connectors/dist/esm/exports/index.js
+./node_modules/.pnpm/wagmi@2.16.4_@tanstack+query-core@5.85.5_@tanstack+react-query@5.85.5_react@19.1.0__@ty_38af56b300346132865e227241f6c55c/node_modules/wagmi/dist/esm/exports/connectors.js
+./node_modules/.pnpm/@rainbow-me+rainbowkit@2.2.8_@tanstack+react-query@5.85.5_react@19.1.0__@types+react@19_0752128e7fc80cb430750b26ccc71a39/node_modules/@rainbow-me/rainbowkit/dist/index.js
+./src/components/Providers.tsx
+ ⚠ ./node_modules/.pnpm/pino@7.11.0/node_modules/pino/lib/tools.js
+Module not found: Can't resolve 'pino-pretty' in '/Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/node_modules/.pnpm/pino@7.11.0/node_modules/pino/lib'
+
+Import trace for requested module:
+./node_modules/.pnpm/pino@7.11.0/node_modules/pino/lib/tools.js
+./node_modules/.pnpm/pino@7.11.0/node_modules/pino/pino.js
+./node_modules/.pnpm/@walletconnect+logger@2.1.2/node_modules/@walletconnect/logger/dist/index.es.js
+./node_modules/.pnpm/@walletconnect+universal-provider@2.21.1_bufferutil@4.0.9_typescript@5.9.2_utf-8-validate@5.0.10_zod@3.25.76/node_modules/@walletconnect/universal-provider/dist/index.es.js
+./node_modules/.pnpm/@walletconnect+ethereum-provider@2.21.1_@types+react@19.1.10_bufferutil@4.0.9_react@19._78555b8d59c12171aa4e3e7b88266b15/node_modules/@walletconnect/ethereum-provider/dist/index.es.js
+./node_modules/.pnpm/@wagmi+connectors@5.9.4_@types+react@19.1.10_@wagmi+core@2.19.0_@tanstack+query-core@5._56d85de47d69ee4414b5268a6699a78d/node_modules/@wagmi/connectors/dist/esm/walletConnect.js
+./node_modules/.pnpm/@wagmi+connectors@5.9.4_@types+react@19.1.10_@wagmi+core@2.19.0_@tanstack+query-core@5._56d85de47d69ee4414b5268a6699a78d/node_modules/@wagmi/connectors/dist/esm/exports/index.js
+./node_modules/.pnpm/wagmi@2.16.4_@tanstack+query-core@5.85.5_@tanstack+react-query@5.85.5_react@19.1.0__@ty_38af56b300346132865e227241f6c55c/node_modules/wagmi/dist/esm/exports/connectors.js
+./node_modules/.pnpm/@rainbow-me+rainbowkit@2.2.8_@tanstack+react-query@5.85.5_react@19.1.0__@types+react@19_0752128e7fc80cb430750b26ccc71a39/node_modules/@rainbow-me/rainbowkit/dist/index.js
+./src/components/Providers.tsx
+ GET /api/properties?page=1&limit=9 200 in 1440ms
+WalletConnect Core is already initialized. This is probably a mistake and can lead to unexpected behavior. Init() was called 2 times.
+WalletConnect Core is already initialized. This is probably a mistake and can lead to unexpected behavior. Init() was called 2 times.
+ HEAD /investor 200 in 946ms
+ ⚠ ./node_modules/.pnpm/pino@7.11.0/node_modules/pino/lib/tools.js
+Module not found: Can't resolve 'pino-pretty' in '/Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/node_modules/.pnpm/pino@7.11.0/node_modules/pino/lib'
+
+Import trace for requested module:
+./node_modules/.pnpm/pino@7.11.0/node_modules/pino/lib/tools.js
+./node_modules/.pnpm/pino@7.11.0/node_modules/pino/pino.js
+./node_modules/.pnpm/@walletconnect+logger@2.1.2/node_modules/@walletconnect/logger/dist/index.es.js
+./node_modules/.pnpm/@walletconnect+universal-provider@2.21.1_bufferutil@4.0.9_typescript@5.9.2_utf-8-validate@5.0.10_zod@3.25.76/node_modules/@walletconnect/universal-provider/dist/index.es.js
+./node_modules/.pnpm/@walletconnect+ethereum-provider@2.21.1_@types+react@19.1.10_bufferutil@4.0.9_react@19._78555b8d59c12171aa4e3e7b88266b15/node_modules/@walletconnect/ethereum-provider/dist/index.es.js
+./node_modules/.pnpm/@wagmi+connectors@5.9.4_@types+react@19.1.10_@wagmi+core@2.19.0_@tanstack+query-core@5._56d85de47d69ee4414b5268a6699a78d/node_modules/@wagmi/connectors/dist/esm/walletConnect.js
+./node_modules/.pnpm/@wagmi+connectors@5.9.4_@types+react@19.1.10_@wagmi+core@2.19.0_@tanstack+query-core@5._56d85de47d69ee4414b5268a6699a78d/node_modules/@wagmi/connectors/dist/esm/exports/index.js
+./node_modules/.pnpm/wagmi@2.16.4_@tanstack+query-core@5.85.5_@tanstack+react-query@5.85.5_react@19.1.0__@ty_38af56b300346132865e227241f6c55c/node_modules/wagmi/dist/esm/exports/connectors.js
+./node_modules/.pnpm/@rainbow-me+rainbowkit@2.2.8_@tanstack+react-query@5.85.5_react@19.1.0__@types+react@19_0752128e7fc80cb430750b26ccc71a39/node_modules/@rainbow-me/rainbowkit/dist/index.js
+./src/components/Providers.tsx
+ ⚠ ./node_modules/.pnpm/pino@7.11.0/node_modules/pino/lib/tools.js
+Module not found: Can't resolve 'pino-pretty' in '/Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/node_modules/.pnpm/pino@7.11.0/node_modules/pino/lib'
+
+Import trace for requested module:
+./node_modules/.pnpm/pino@7.11.0/node_modules/pino/lib/tools.js
+./node_modules/.pnpm/pino@7.11.0/node_modules/pino/pino.js
+./node_modules/.pnpm/@walletconnect+logger@2.1.2/node_modules/@walletconnect/logger/dist/index.es.js
+./node_modules/.pnpm/@walletconnect+universal-provider@2.21.1_bufferutil@4.0.9_typescript@5.9.2_utf-8-validate@5.0.10_zod@3.25.76/node_modules/@walletconnect/universal-provider/dist/index.es.js
+./node_modules/.pnpm/@walletconnect+ethereum-provider@2.21.1_@types+react@19.1.10_bufferutil@4.0.9_react@19._78555b8d59c12171aa4e3e7b88266b15/node_modules/@walletconnect/ethereum-provider/dist/index.es.js
+./node_modules/.pnpm/@wagmi+connectors@5.9.4_@types+react@19.1.10_@wagmi+core@2.19.0_@tanstack+query-core@5._56d85de47d69ee4414b5268a6699a78d/node_modules/@wagmi/connectors/dist/esm/walletConnect.js
+./node_modules/.pnpm/@wagmi+connectors@5.9.4_@types+react@19.1.10_@wagmi+core@2.19.0_@tanstack+query-core@5._56d85de47d69ee4414b5268a6699a78d/node_modules/@wagmi/connectors/dist/esm/exports/index.js
+./node_modules/.pnpm/wagmi@2.16.4_@tanstack+query-core@5.85.5_@tanstack+react-query@5.85.5_react@19.1.0__@ty_38af56b300346132865e227241f6c55c/node_modules/wagmi/dist/esm/exports/connectors.js
+./node_modules/.pnpm/@rainbow-me+rainbowkit@2.2.8_@tanstack+react-query@5.85.5_react@19.1.0__@types+react@19_0752128e7fc80cb430750b26ccc71a39/node_modules/@rainbow-me/rainbowkit/dist/index.js
+./src/components/Providers.tsx
+ GET /api/investments?page=1&limit=10&investorAddress=0xcC44277d1d6eC279Cd81e23111B1701758A3f82F&sortBy=date&sortOrder=desc 200 in 1716ms
+ GET /api/investor/stats?address=0xcC44277d1d6eC279Cd81e23111B1701758A3f82F 200 in 1722ms
+ ⚠ ./node_modules/.pnpm/pino@7.11.0/node_modules/pino/lib/tools.js
+Module not found: Can't resolve 'pino-pretty' in '/Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/node_modules/.pnpm/pino@7.11.0/node_modules/pino/lib'
+
+Import trace for requested module:
+./node_modules/.pnpm/pino@7.11.0/node_modules/pino/lib/tools.js
+./node_modules/.pnpm/pino@7.11.0/node_modules/pino/pino.js
+./node_modules/.pnpm/@walletconnect+logger@2.1.2/node_modules/@walletconnect/logger/dist/index.es.js
+./node_modules/.pnpm/@walletconnect+universal-provider@2.21.1_bufferutil@4.0.9_typescript@5.9.2_utf-8-validate@5.0.10_zod@3.25.76/node_modules/@walletconnect/universal-provider/dist/index.es.js
+./node_modules/.pnpm/@walletconnect+ethereum-provider@2.21.1_@types+react@19.1.10_bufferutil@4.0.9_react@19._78555b8d59c12171aa4e3e7b88266b15/node_modules/@walletconnect/ethereum-provider/dist/index.es.js
+./node_modules/.pnpm/@wagmi+connectors@5.9.4_@types+react@19.1.10_@wagmi+core@2.19.0_@tanstack+query-core@5._56d85de47d69ee4414b5268a6699a78d/node_modules/@wagmi/connectors/dist/esm/walletConnect.js
+./node_modules/.pnpm/@wagmi+connectors@5.9.4_@types+react@19.1.10_@wagmi+core@2.19.0_@tanstack+query-core@5._56d85de47d69ee4414b5268a6699a78d/node_modules/@wagmi/connectors/dist/esm/exports/index.js
+./node_modules/.pnpm/wagmi@2.16.4_@tanstack+query-core@5.85.5_@tanstack+react-query@5.85.5_react@19.1.0__@ty_38af56b300346132865e227241f6c55c/node_modules/wagmi/dist/esm/exports/connectors.js
+./node_modules/.pnpm/@rainbow-me+rainbowkit@2.2.8_@tanstack+react-query@5.85.5_react@19.1.0__@types+react@19_0752128e7fc80cb430750b26ccc71a39/node_modules/@rainbow-me/rainbowkit/dist/index.js
+./src/components/Providers.tsx
+ ⚠ ./node_modules/.pnpm/pino@7.11.0/node_modules/pino/lib/tools.js
+Module not found: Can't resolve 'pino-pretty' in '/Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/node_modules/.pnpm/pino@7.11.0/node_modules/pino/lib'
+
+Import trace for requested module:
+./node_modules/.pnpm/pino@7.11.0/node_modules/pino/lib/tools.js
+./node_modules/.pnpm/pino@7.11.0/node_modules/pino/pino.js
+./node_modules/.pnpm/@walletconnect+logger@2.1.2/node_modules/@walletconnect/logger/dist/index.es.js
+./node_modules/.pnpm/@walletconnect+universal-provider@2.21.1_bufferutil@4.0.9_typescript@5.9.2_utf-8-validate@5.0.10_zod@3.25.76/node_modules/@walletconnect/universal-provider/dist/index.es.js
+./node_modules/.pnpm/@walletconnect+ethereum-provider@2.21.1_@types+react@19.1.10_bufferutil@4.0.9_react@19._78555b8d59c12171aa4e3e7b88266b15/node_modules/@walletconnect/ethereum-provider/dist/index.es.js
+./node_modules/.pnpm/@wagmi+connectors@5.9.4_@types+react@19.1.10_@wagmi+core@2.19.0_@tanstack+query-core@5._56d85de47d69ee4414b5268a6699a78d/node_modules/@wagmi/connectors/dist/esm/walletConnect.js
+./node_modules/.pnpm/@wagmi+connectors@5.9.4_@types+react@19.1.10_@wagmi+core@2.19.0_@tanstack+query-core@5._56d85de47d69ee4414b5268a6699a78d/node_modules/@wagmi/connectors/dist/esm/exports/index.js
+./node_modules/.pnpm/wagmi@2.16.4_@tanstack+query-core@5.85.5_@tanstack+react-query@5.85.5_react@19.1.0__@ty_38af56b300346132865e227241f6c55c/node_modules/wagmi/dist/esm/exports/connectors.js
+./node_modules/.pnpm/@rainbow-me+rainbowkit@2.2.8_@tanstack+react-query@5.85.5_react@19.1.0__@types+react@19_0752128e7fc80cb430750b26ccc71a39/node_modules/@rainbow-me/rainbowkit/dist/index.js
+./src/components/Providers.tsx
+ GET /api/kyc?address=0x742d35Cc6634C0532925a3b8D6A0a4D3B6c8b1A2 200 in 926ms
+ GET /api/kyc?address=0x1234567890123456789012345678901234567890 200 in 15ms
+ GET /api/kyc?address=0xNewUserAddressForTesting 200 in 7ms
+ POST /api/kyc 200 in 11ms
+ GET /api/kyc?address=0xTestUser123456789012345678901234567890 200 in 11ms
+ GET /investor 200 in 224ms
+ ⚠ ./node_modules/.pnpm/pino@7.11.0/node_modules/pino/lib/tools.js
+Module not found: Can't resolve 'pino-pretty' in '/Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/node_modules/.pnpm/pino@7.11.0/node_modules/pino/lib'
+
+Import trace for requested module:
+./node_modules/.pnpm/pino@7.11.0/node_modules/pino/lib/tools.js
+./node_modules/.pnpm/pino@7.11.0/node_modules/pino/pino.js
+./node_modules/.pnpm/@walletconnect+logger@2.1.2/node_modules/@walletconnect/logger/dist/index.es.js
+./node_modules/.pnpm/@walletconnect+universal-provider@2.21.1_bufferutil@4.0.9_typescript@5.9.2_utf-8-validate@5.0.10_zod@3.25.76/node_modules/@walletconnect/universal-provider/dist/index.es.js
+./node_modules/.pnpm/@walletconnect+ethereum-provider@2.21.1_@types+react@19.1.10_bufferutil@4.0.9_react@19._78555b8d59c12171aa4e3e7b88266b15/node_modules/@walletconnect/ethereum-provider/dist/index.es.js
+./node_modules/.pnpm/@wagmi+connectors@5.9.4_@types+react@19.1.10_@wagmi+core@2.19.0_@tanstack+query-core@5._56d85de47d69ee4414b5268a6699a78d/node_modules/@wagmi/connectors/dist/esm/walletConnect.js
+./node_modules/.pnpm/@wagmi+connectors@5.9.4_@types+react@19.1.10_@wagmi+core@2.19.0_@tanstack+query-core@5._56d85de47d69ee4414b5268a6699a78d/node_modules/@wagmi/connectors/dist/esm/exports/index.js
+./node_modules/.pnpm/wagmi@2.16.4_@tanstack+query-core@5.85.5_@tanstack+react-query@5.85.5_react@19.1.0__@ty_38af56b300346132865e227241f6c55c/node_modules/wagmi/dist/esm/exports/connectors.js
+./node_modules/.pnpm/@rainbow-me+rainbowkit@2.2.8_@tanstack+react-query@5.85.5_react@19.1.0__@types+react@19_0752128e7fc80cb430750b26ccc71a39/node_modules/@rainbow-me/rainbowkit/dist/index.js
+./src/components/Providers.tsx
+ ⚠ ./node_modules/.pnpm/pino@7.11.0/node_modules/pino/lib/tools.js
+Module not found: Can't resolve 'pino-pretty' in '/Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/node_modules/.pnpm/pino@7.11.0/node_modules/pino/lib'
+
+Import trace for requested module:
+./node_modules/.pnpm/pino@7.11.0/node_modules/pino/lib/tools.js
+./node_modules/.pnpm/pino@7.11.0/node_modules/pino/pino.js
+./node_modules/.pnpm/@walletconnect+logger@2.1.2/node_modules/@walletconnect/logger/dist/index.es.js
+./node_modules/.pnpm/@walletconnect+universal-provider@2.21.1_bufferutil@4.0.9_typescript@5.9.2_utf-8-validate@5.0.10_zod@3.25.76/node_modules/@walletconnect/universal-provider/dist/index.es.js
+./node_modules/.pnpm/@walletconnect+ethereum-provider@2.21.1_@types+react@19.1.10_bufferutil@4.0.9_react@19._78555b8d59c12171aa4e3e7b88266b15/node_modules/@walletconnect/ethereum-provider/dist/index.es.js
+./node_modules/.pnpm/@wagmi+connectors@5.9.4_@types+react@19.1.10_@wagmi+core@2.19.0_@tanstack+query-core@5._56d85de47d69ee4414b5268a6699a78d/node_modules/@wagmi/connectors/dist/esm/walletConnect.js
+./node_modules/.pnpm/@wagmi+connectors@5.9.4_@types+react@19.1.10_@wagmi+core@2.19.0_@tanstack+query-core@5._56d85de47d69ee4414b5268a6699a78d/node_modules/@wagmi/connectors/dist/esm/exports/index.js
+./node_modules/.pnpm/wagmi@2.16.4_@tanstack+query-core@5.85.5_@tanstack+react-query@5.85.5_react@19.1.0__@ty_38af56b300346132865e227241f6c55c/node_modules/wagmi/dist/esm/exports/connectors.js
+./node_modules/.pnpm/@rainbow-me+rainbowkit@2.2.8_@tanstack+react-query@5.85.5_react@19.1.0__@types+react@19_0752128e7fc80cb430750b26ccc71a39/node_modules/@rainbow-me/rainbowkit/dist/index.js
+./src/components/Providers.tsx
+ ⚠ ./node_modules/.pnpm/pino@7.11.0/node_modules/pino/lib/tools.js
+Module not found: Can't resolve 'pino-pretty' in '/Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/node_modules/.pnpm/pino@7.11.0/node_modules/pino/lib'
+
+Import trace for requested module:
+./node_modules/.pnpm/pino@7.11.0/node_modules/pino/lib/tools.js
+./node_modules/.pnpm/pino@7.11.0/node_modules/pino/pino.js
+./node_modules/.pnpm/@walletconnect+logger@2.1.2/node_modules/@walletconnect/logger/dist/index.es.js
+./node_modules/.pnpm/@walletconnect+universal-provider@2.21.1_bufferutil@4.0.9_typescript@5.9.2_utf-8-validate@5.0.10_zod@3.25.76/node_modules/@walletconnect/universal-provider/dist/index.es.js
+./node_modules/.pnpm/@walletconnect+ethereum-provider@2.21.1_@types+react@19.1.10_bufferutil@4.0.9_react@19._78555b8d59c12171aa4e3e7b88266b15/node_modules/@walletconnect/ethereum-provider/dist/index.es.js
+./node_modules/.pnpm/@wagmi+connectors@5.9.4_@types+react@19.1.10_@wagmi+core@2.19.0_@tanstack+query-core@5._56d85de47d69ee4414b5268a6699a78d/node_modules/@wagmi/connectors/dist/esm/walletConnect.js
+./node_modules/.pnpm/@wagmi+connectors@5.9.4_@types+react@19.1.10_@wagmi+core@2.19.0_@tanstack+query-core@5._56d85de47d69ee4414b5268a6699a78d/node_modules/@wagmi/connectors/dist/esm/exports/index.js
+./node_modules/.pnpm/wagmi@2.16.4_@tanstack+query-core@5.85.5_@tanstack+react-query@5.85.5_react@19.1.0__@ty_38af56b300346132865e227241f6c55c/node_modules/wagmi/dist/esm/exports/connectors.js
+./node_modules/.pnpm/@rainbow-me+rainbowkit@2.2.8_@tanstack+react-query@5.85.5_react@19.1.0__@types+react@19_0752128e7fc80cb430750b26ccc71a39/node_modules/@rainbow-me/rainbowkit/dist/index.js
+./src/components/Providers.tsx
+ ⚠ ./node_modules/.pnpm/pino@7.11.0/node_modules/pino/lib/tools.js
+Module not found: Can't resolve 'pino-pretty' in '/Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/node_modules/.pnpm/pino@7.11.0/node_modules/pino/lib'
+
+Import trace for requested module:
+./node_modules/.pnpm/pino@7.11.0/node_modules/pino/lib/tools.js
+./node_modules/.pnpm/pino@7.11.0/node_modules/pino/pino.js
+./node_modules/.pnpm/@walletconnect+logger@2.1.2/node_modules/@walletconnect/logger/dist/index.es.js
+./node_modules/.pnpm/@walletconnect+universal-provider@2.21.1_bufferutil@4.0.9_typescript@5.9.2_utf-8-validate@5.0.10_zod@3.25.76/node_modules/@walletconnect/universal-provider/dist/index.es.js
+./node_modules/.pnpm/@walletconnect+ethereum-provider@2.21.1_@types+react@19.1.10_bufferutil@4.0.9_react@19._78555b8d59c12171aa4e3e7b88266b15/node_modules/@walletconnect/ethereum-provider/dist/index.es.js
+./node_modules/.pnpm/@wagmi+connectors@5.9.4_@types+react@19.1.10_@wagmi+core@2.19.0_@tanstack+query-core@5._56d85de47d69ee4414b5268a6699a78d/node_modules/@wagmi/connectors/dist/esm/walletConnect.js
+./node_modules/.pnpm/@wagmi+connectors@5.9.4_@types+react@19.1.10_@wagmi+core@2.19.0_@tanstack+query-core@5._56d85de47d69ee4414b5268a6699a78d/node_modules/@wagmi/connectors/dist/esm/exports/index.js
+./node_modules/.pnpm/wagmi@2.16.4_@tanstack+query-core@5.85.5_@tanstack+react-query@5.85.5_react@19.1.0__@ty_38af56b300346132865e227241f6c55c/node_modules/wagmi/dist/esm/exports/connectors.js
+./node_modules/.pnpm/@rainbow-me+rainbowkit@2.2.8_@tanstack+react-query@5.85.5_react@19.1.0__@types+react@19_0752128e7fc80cb430750b26ccc71a39/node_modules/@rainbow-me/rainbowkit/dist/index.js
+./src/components/Providers.tsx
+ ⚠ ./node_modules/.pnpm/pino@7.11.0/node_modules/pino/lib/tools.js
+Module not found: Can't resolve 'pino-pretty' in '/Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/node_modules/.pnpm/pino@7.11.0/node_modules/pino/lib'
+
+Import trace for requested module:
+./node_modules/.pnpm/pino@7.11.0/node_modules/pino/lib/tools.js
+./node_modules/.pnpm/pino@7.11.0/node_modules/pino/pino.js
+./node_modules/.pnpm/@walletconnect+logger@2.1.2/node_modules/@walletconnect/logger/dist/index.es.js
+./node_modules/.pnpm/@walletconnect+universal-provider@2.21.1_bufferutil@4.0.9_typescript@5.9.2_utf-8-validate@5.0.10_zod@3.25.76/node_modules/@walletconnect/universal-provider/dist/index.es.js
+./node_modules/.pnpm/@walletconnect+ethereum-provider@2.21.1_@types+react@19.1.10_bufferutil@4.0.9_react@19._78555b8d59c12171aa4e3e7b88266b15/node_modules/@walletconnect/ethereum-provider/dist/index.es.js
+./node_modules/.pnpm/@wagmi+connectors@5.9.4_@types+react@19.1.10_@wagmi+core@2.19.0_@tanstack+query-core@5._56d85de47d69ee4414b5268a6699a78d/node_modules/@wagmi/connectors/dist/esm/walletConnect.js
+./node_modules/.pnpm/@wagmi+connectors@5.9.4_@types+react@19.1.10_@wagmi+core@2.19.0_@tanstack+query-core@5._56d85de47d69ee4414b5268a6699a78d/node_modules/@wagmi/connectors/dist/esm/exports/index.js
+./node_modules/.pnpm/wagmi@2.16.4_@tanstack+query-core@5.85.5_@tanstack+react-query@5.85.5_react@19.1.0__@ty_38af56b300346132865e227241f6c55c/node_modules/wagmi/dist/esm/exports/connectors.js
+./node_modules/.pnpm/@rainbow-me+rainbowkit@2.2.8_@tanstack+react-query@5.85.5_react@19.1.0__@types+react@19_0752128e7fc80cb430750b26ccc71a39/node_modules/@rainbow-me/rainbowkit/dist/index.js
+./src/components/Providers.tsx
+ ⚠ ./node_modules/.pnpm/pino@7.11.0/node_modules/pino/lib/tools.js
+Module not found: Can't resolve 'pino-pretty' in '/Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/node_modules/.pnpm/pino@7.11.0/node_modules/pino/lib'
+
+Import trace for requested module:
+./node_modules/.pnpm/pino@7.11.0/node_modules/pino/lib/tools.js
+./node_modules/.pnpm/pino@7.11.0/node_modules/pino/pino.js
+./node_modules/.pnpm/@walletconnect+logger@2.1.2/node_modules/@walletconnect/logger/dist/index.es.js
+./node_modules/.pnpm/@walletconnect+universal-provider@2.21.1_bufferutil@4.0.9_typescript@5.9.2_utf-8-validate@5.0.10_zod@3.25.76/node_modules/@walletconnect/universal-provider/dist/index.es.js
+./node_modules/.pnpm/@walletconnect+ethereum-provider@2.21.1_@types+react@19.1.10_bufferutil@4.0.9_react@19._78555b8d59c12171aa4e3e7b88266b15/node_modules/@walletconnect/ethereum-provider/dist/index.es.js
+./node_modules/.pnpm/@wagmi+connectors@5.9.4_@types+react@19.1.10_@wagmi+core@2.19.0_@tanstack+query-core@5._56d85de47d69ee4414b5268a6699a78d/node_modules/@wagmi/connectors/dist/esm/walletConnect.js
+./node_modules/.pnpm/@wagmi+connectors@5.9.4_@types+react@19.1.10_@wagmi+core@2.19.0_@tanstack+query-core@5._56d85de47d69ee4414b5268a6699a78d/node_modules/@wagmi/connectors/dist/esm/exports/index.js
+./node_modules/.pnpm/wagmi@2.16.4_@tanstack+query-core@5.85.5_@tanstack+react-query@5.85.5_react@19.1.0__@ty_38af56b300346132865e227241f6c55c/node_modules/wagmi/dist/esm/exports/connectors.js
+./node_modules/.pnpm/@rainbow-me+rainbowkit@2.2.8_@tanstack+react-query@5.85.5_react@19.1.0__@types+react@19_0752128e7fc80cb430750b26ccc71a39/node_modules/@rainbow-me/rainbowkit/dist/index.js
+./src/components/Providers.tsx
+ ⚠ ./node_modules/.pnpm/pino@7.11.0/node_modules/pino/lib/tools.js
+Module not found: Can't resolve 'pino-pretty' in '/Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/node_modules/.pnpm/pino@7.11.0/node_modules/pino/lib'
+
+Import trace for requested module:
+./node_modules/.pnpm/pino@7.11.0/node_modules/pino/lib/tools.js
+./node_modules/.pnpm/pino@7.11.0/node_modules/pino/pino.js
+./node_modules/.pnpm/@walletconnect+logger@2.1.2/node_modules/@walletconnect/logger/dist/index.es.js
+./node_modules/.pnpm/@walletconnect+universal-provider@2.21.1_bufferutil@4.0.9_typescript@5.9.2_utf-8-validate@5.0.10_zod@3.25.76/node_modules/@walletconnect/universal-provider/dist/index.es.js
+./node_modules/.pnpm/@walletconnect+ethereum-provider@2.21.1_@types+react@19.1.10_bufferutil@4.0.9_react@19._78555b8d59c12171aa4e3e7b88266b15/node_modules/@walletconnect/ethereum-provider/dist/index.es.js
+./node_modules/.pnpm/@wagmi+connectors@5.9.4_@types+react@19.1.10_@wagmi+core@2.19.0_@tanstack+query-core@5._56d85de47d69ee4414b5268a6699a78d/node_modules/@wagmi/connectors/dist/esm/walletConnect.js
+./node_modules/.pnpm/@wagmi+connectors@5.9.4_@types+react@19.1.10_@wagmi+core@2.19.0_@tanstack+query-core@5._56d85de47d69ee4414b5268a6699a78d/node_modules/@wagmi/connectors/dist/esm/exports/index.js
+./node_modules/.pnpm/wagmi@2.16.4_@tanstack+query-core@5.85.5_@tanstack+react-query@5.85.5_react@19.1.0__@ty_38af56b300346132865e227241f6c55c/node_modules/wagmi/dist/esm/exports/connectors.js
+./node_modules/.pnpm/@rainbow-me+rainbowkit@2.2.8_@tanstack+react-query@5.85.5_react@19.1.0__@types+react@19_0752128e7fc80cb430750b26ccc71a39/node_modules/@rainbow-me/rainbowkit/dist/index.js
+./src/components/Providers.tsx
+ ⚠ ./node_modules/.pnpm/pino@7.11.0/node_modules/pino/lib/tools.js
+Module not found: Can't resolve 'pino-pretty' in '/Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/node_modules/.pnpm/pino@7.11.0/node_modules/pino/lib'
+
+Import trace for requested module:
+./node_modules/.pnpm/pino@7.11.0/node_modules/pino/lib/tools.js
+./node_modules/.pnpm/pino@7.11.0/node_modules/pino/pino.js
+./node_modules/.pnpm/@walletconnect+logger@2.1.2/node_modules/@walletconnect/logger/dist/index.es.js
+./node_modules/.pnpm/@walletconnect+universal-provider@2.21.1_bufferutil@4.0.9_typescript@5.9.2_utf-8-validate@5.0.10_zod@3.25.76/node_modules/@walletconnect/universal-provider/dist/index.es.js
+./node_modules/.pnpm/@walletconnect+ethereum-provider@2.21.1_@types+react@19.1.10_bufferutil@4.0.9_react@19._78555b8d59c12171aa4e3e7b88266b15/node_modules/@walletconnect/ethereum-provider/dist/index.es.js
+./node_modules/.pnpm/@wagmi+connectors@5.9.4_@types+react@19.1.10_@wagmi+core@2.19.0_@tanstack+query-core@5._56d85de47d69ee4414b5268a6699a78d/node_modules/@wagmi/connectors/dist/esm/walletConnect.js
+./node_modules/.pnpm/@wagmi+connectors@5.9.4_@types+react@19.1.10_@wagmi+core@2.19.0_@tanstack+query-core@5._56d85de47d69ee4414b5268a6699a78d/node_modules/@wagmi/connectors/dist/esm/exports/index.js
+./node_modules/.pnpm/wagmi@2.16.4_@tanstack+query-core@5.85.5_@tanstack+react-query@5.85.5_react@19.1.0__@ty_38af56b300346132865e227241f6c55c/node_modules/wagmi/dist/esm/exports/connectors.js
+./node_modules/.pnpm/@rainbow-me+rainbowkit@2.2.8_@tanstack+react-query@5.85.5_react@19.1.0__@types+react@19_0752128e7fc80cb430750b26ccc71a39/node_modules/@rainbow-me/rainbowkit/dist/index.js
+./src/components/Providers.tsx
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/.next/server/middleware-manifest.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/.next/server/middleware-manifest.json'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/.next/server/middleware-manifest.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/.next/server/middleware-manifest.json'
+}
+ ⚠ ./node_modules/.pnpm/pino@7.11.0/node_modules/pino/lib/tools.js
+Module not found: Can't resolve 'pino-pretty' in '/Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/node_modules/.pnpm/pino@7.11.0/node_modules/pino/lib'
+
+Import trace for requested module:
+./node_modules/.pnpm/pino@7.11.0/node_modules/pino/lib/tools.js
+./node_modules/.pnpm/pino@7.11.0/node_modules/pino/pino.js
+./node_modules/.pnpm/@walletconnect+logger@2.1.2/node_modules/@walletconnect/logger/dist/index.es.js
+./node_modules/.pnpm/@walletconnect+universal-provider@2.21.1_bufferutil@4.0.9_typescript@5.9.2_utf-8-validate@5.0.10_zod@3.25.76/node_modules/@walletconnect/universal-provider/dist/index.es.js
+./node_modules/.pnpm/@walletconnect+ethereum-provider@2.21.1_@types+react@19.1.10_bufferutil@4.0.9_react@19._78555b8d59c12171aa4e3e7b88266b15/node_modules/@walletconnect/ethereum-provider/dist/index.es.js
+./node_modules/.pnpm/@wagmi+connectors@5.9.4_@types+react@19.1.10_@wagmi+core@2.19.0_@tanstack+query-core@5._56d85de47d69ee4414b5268a6699a78d/node_modules/@wagmi/connectors/dist/esm/walletConnect.js
+./node_modules/.pnpm/@wagmi+connectors@5.9.4_@types+react@19.1.10_@wagmi+core@2.19.0_@tanstack+query-core@5._56d85de47d69ee4414b5268a6699a78d/node_modules/@wagmi/connectors/dist/esm/exports/index.js
+./node_modules/.pnpm/wagmi@2.16.4_@tanstack+query-core@5.85.5_@tanstack+react-query@5.85.5_react@19.1.0__@ty_38af56b300346132865e227241f6c55c/node_modules/wagmi/dist/esm/exports/connectors.js
+./node_modules/.pnpm/@rainbow-me+rainbowkit@2.2.8_@tanstack+react-query@5.85.5_react@19.1.0__@types+react@19_0752128e7fc80cb430750b26ccc71a39/node_modules/@rainbow-me/rainbowkit/dist/index.js
+./src/components/Providers.tsx
+ ⚠ ./node_modules/.pnpm/pino@7.11.0/node_modules/pino/lib/tools.js
+Module not found: Can't resolve 'pino-pretty' in '/Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/node_modules/.pnpm/pino@7.11.0/node_modules/pino/lib'
+
+Import trace for requested module:
+./node_modules/.pnpm/pino@7.11.0/node_modules/pino/lib/tools.js
+./node_modules/.pnpm/pino@7.11.0/node_modules/pino/pino.js
+./node_modules/.pnpm/@walletconnect+logger@2.1.2/node_modules/@walletconnect/logger/dist/index.es.js
+./node_modules/.pnpm/@walletconnect+universal-provider@2.21.1_bufferutil@4.0.9_typescript@5.9.2_utf-8-validate@5.0.10_zod@3.25.76/node_modules/@walletconnect/universal-provider/dist/index.es.js
+./node_modules/.pnpm/@walletconnect+ethereum-provider@2.21.1_@types+react@19.1.10_bufferutil@4.0.9_react@19._78555b8d59c12171aa4e3e7b88266b15/node_modules/@walletconnect/ethereum-provider/dist/index.es.js
+./node_modules/.pnpm/@wagmi+connectors@5.9.4_@types+react@19.1.10_@wagmi+core@2.19.0_@tanstack+query-core@5._56d85de47d69ee4414b5268a6699a78d/node_modules/@wagmi/connectors/dist/esm/walletConnect.js
+./node_modules/.pnpm/@wagmi+connectors@5.9.4_@types+react@19.1.10_@wagmi+core@2.19.0_@tanstack+query-core@5._56d85de47d69ee4414b5268a6699a78d/node_modules/@wagmi/connectors/dist/esm/exports/index.js
+./node_modules/.pnpm/wagmi@2.16.4_@tanstack+query-core@5.85.5_@tanstack+react-query@5.85.5_react@19.1.0__@ty_38af56b300346132865e227241f6c55c/node_modules/wagmi/dist/esm/exports/connectors.js
+./node_modules/.pnpm/@rainbow-me+rainbowkit@2.2.8_@tanstack+react-query@5.85.5_react@19.1.0__@types+react@19_0752128e7fc80cb430750b26ccc71a39/node_modules/@rainbow-me/rainbowkit/dist/index.js
+./src/components/Providers.tsx
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/.next/routes-manifest.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/.next/routes-manifest.json'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/.next/routes-manifest.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/.next/routes-manifest.json'
+}
+ GET /owner 500 in 11706ms
+ GET /investor 500 in 11147ms
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/.next/server/middleware-manifest.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/.next/server/middleware-manifest.json'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/.next/routes-manifest.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/.next/routes-manifest.json'
+}
+ GET /owner 500 in 321ms
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/.next/server/middleware-manifest.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/.next/server/middleware-manifest.json'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/.next/routes-manifest.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/.next/routes-manifest.json'
+}
+ GET /owner 500 in 288ms
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/.next/server/middleware-manifest.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/.next/server/middleware-manifest.json'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/.next/routes-manifest.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/.next/routes-manifest.json'
+}
+ GET /owner 500 in 276ms
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/.next/server/middleware-manifest.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/.next/server/middleware-manifest.json'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/.next/routes-manifest.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/.next/routes-manifest.json'
+}
+ GET /owner 500 in 727ms
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/.next/server/middleware-manifest.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/.next/server/middleware-manifest.json'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/.next/routes-manifest.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/.next/routes-manifest.json'
+}
+ GET /owner 500 in 350ms
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/.next/server/middleware-manifest.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/.next/server/middleware-manifest.json'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/.next/routes-manifest.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/.next/routes-manifest.json'
+}
+ GET /owner 500 in 301ms
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/.next/server/middleware-manifest.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/.next/server/middleware-manifest.json'
+}
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename '/Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/.next/cache/webpack/client-development-fallback/0.pack.gz_' -> '/Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/.next/cache/webpack/client-development-fallback/0.pack.gz'
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/.next/routes-manifest.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/.next/routes-manifest.json'
+}
+ GET /owner 500 in 282ms
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/.next/server/middleware-manifest.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/.next/server/middleware-manifest.json'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/.next/routes-manifest.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/.next/routes-manifest.json'
+}
+ GET /owner 500 in 274ms
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/.next/server/middleware-manifest.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/.next/server/middleware-manifest.json'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/.next/routes-manifest.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/.next/routes-manifest.json'
+}
+ GET /owner 500 in 288ms
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/.next/server/middleware-manifest.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/.next/server/middleware-manifest.json'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/.next/routes-manifest.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/.next/routes-manifest.json'
+}
+ GET /owner 500 in 289ms
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/.next/server/middleware-manifest.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/.next/server/middleware-manifest.json'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/.next/routes-manifest.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/.next/routes-manifest.json'
+}
+ GET /owner 500 in 266ms
+ ⚠ ./node_modules/.pnpm/pino@7.11.0/node_modules/pino/lib/tools.js
+Module not found: Can't resolve 'pino-pretty' in '/Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/node_modules/.pnpm/pino@7.11.0/node_modules/pino/lib'
+
+Import trace for requested module:
+./node_modules/.pnpm/pino@7.11.0/node_modules/pino/lib/tools.js
+./node_modules/.pnpm/pino@7.11.0/node_modules/pino/pino.js
+./node_modules/.pnpm/@walletconnect+logger@2.1.2/node_modules/@walletconnect/logger/dist/index.es.js
+./node_modules/.pnpm/@walletconnect+universal-provider@2.21.1_bufferutil@4.0.9_typescript@5.9.2_utf-8-validate@5.0.10_zod@3.25.76/node_modules/@walletconnect/universal-provider/dist/index.es.js
+./node_modules/.pnpm/@walletconnect+ethereum-provider@2.21.1_@types+react@19.1.10_bufferutil@4.0.9_react@19._78555b8d59c12171aa4e3e7b88266b15/node_modules/@walletconnect/ethereum-provider/dist/index.es.js
+./node_modules/.pnpm/@wagmi+connectors@5.9.4_@types+react@19.1.10_@wagmi+core@2.19.0_@tanstack+query-core@5._56d85de47d69ee4414b5268a6699a78d/node_modules/@wagmi/connectors/dist/esm/walletConnect.js
+./node_modules/.pnpm/@wagmi+connectors@5.9.4_@types+react@19.1.10_@wagmi+core@2.19.0_@tanstack+query-core@5._56d85de47d69ee4414b5268a6699a78d/node_modules/@wagmi/connectors/dist/esm/exports/index.js
+./node_modules/.pnpm/wagmi@2.16.4_@tanstack+query-core@5.85.5_@tanstack+react-query@5.85.5_react@19.1.0__@ty_38af56b300346132865e227241f6c55c/node_modules/wagmi/dist/esm/exports/connectors.js
+./node_modules/.pnpm/@rainbow-me+rainbowkit@2.2.8_@tanstack+react-query@5.85.5_react@19.1.0__@types+react@19_0752128e7fc80cb430750b26ccc71a39/node_modules/@rainbow-me/rainbowkit/dist/index.js
+./src/components/Providers.tsx
+ ⚠ ./node_modules/.pnpm/pino@7.11.0/node_modules/pino/lib/tools.js
+Module not found: Can't resolve 'pino-pretty' in '/Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/node_modules/.pnpm/pino@7.11.0/node_modules/pino/lib'
+
+Import trace for requested module:
+./node_modules/.pnpm/pino@7.11.0/node_modules/pino/lib/tools.js
+./node_modules/.pnpm/pino@7.11.0/node_modules/pino/pino.js
+./node_modules/.pnpm/@walletconnect+logger@2.1.2/node_modules/@walletconnect/logger/dist/index.es.js
+./node_modules/.pnpm/@walletconnect+universal-provider@2.21.1_bufferutil@4.0.9_typescript@5.9.2_utf-8-validate@5.0.10_zod@3.25.76/node_modules/@walletconnect/universal-provider/dist/index.es.js
+./node_modules/.pnpm/@walletconnect+ethereum-provider@2.21.1_@types+react@19.1.10_bufferutil@4.0.9_react@19._78555b8d59c12171aa4e3e7b88266b15/node_modules/@walletconnect/ethereum-provider/dist/index.es.js
+./node_modules/.pnpm/@wagmi+connectors@5.9.4_@types+react@19.1.10_@wagmi+core@2.19.0_@tanstack+query-core@5._56d85de47d69ee4414b5268a6699a78d/node_modules/@wagmi/connectors/dist/esm/walletConnect.js
+./node_modules/.pnpm/@wagmi+connectors@5.9.4_@types+react@19.1.10_@wagmi+core@2.19.0_@tanstack+query-core@5._56d85de47d69ee4414b5268a6699a78d/node_modules/@wagmi/connectors/dist/esm/exports/index.js
+./node_modules/.pnpm/wagmi@2.16.4_@tanstack+query-core@5.85.5_@tanstack+react-query@5.85.5_react@19.1.0__@ty_38af56b300346132865e227241f6c55c/node_modules/wagmi/dist/esm/exports/connectors.js
+./node_modules/.pnpm/@rainbow-me+rainbowkit@2.2.8_@tanstack+react-query@5.85.5_react@19.1.0__@types+react@19_0752128e7fc80cb430750b26ccc71a39/node_modules/@rainbow-me/rainbowkit/dist/index.js
+./src/components/Providers.tsx
+ ⨯ [TypeError: Cannot read properties of undefined (reading 'call')] {
+  digest: '1965100198'
+}
+[TypeError: Cannot read properties of undefined (reading 'call')]
+ ⨯ [TypeError: Cannot read properties of undefined (reading 'call')]
+ ⨯ [TypeError: Cannot read properties of undefined (reading 'call')] {
+  page: '/'
+}
+ ⨯ Error: Cannot find module './5274.js'
+Require stack:
+- /Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/.next/server/webpack-runtime.js
+- /Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/.next/server/app/page.js
+- /Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/node_modules/.pnpm/next@15.4.7_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/server/require.js
+- /Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/node_modules/.pnpm/next@15.4.7_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/server/load-components.js
+- /Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/node_modules/.pnpm/next@15.4.7_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/build/utils.js
+- /Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/node_modules/.pnpm/next@15.4.7_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/build/swc/options.js
+- /Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/node_modules/.pnpm/next@15.4.7_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/build/swc/index.js
+- /Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/node_modules/.pnpm/next@15.4.7_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/build/analysis/parse-module.js
+- /Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/node_modules/.pnpm/next@15.4.7_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/build/analysis/get-page-static-info.js
+- /Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/node_modules/.pnpm/next@15.4.7_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/node_modules/.pnpm/next@15.4.7_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/server/lib/router-server.js
+- /Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/node_modules/.pnpm/next@15.4.7_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/server/lib/start-server.js
+    at <unknown> (.next/server/pages/_document.js:1:327)
+    at Object.<anonymous> (.next/server/pages/_document.js:1:373) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ GET / 500 in 1696ms
+ ⚠ ./node_modules/.pnpm/pino@7.11.0/node_modules/pino/lib/tools.js
+Module not found: Can't resolve 'pino-pretty' in '/Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/node_modules/.pnpm/pino@7.11.0/node_modules/pino/lib'
+
+Import trace for requested module:
+./node_modules/.pnpm/pino@7.11.0/node_modules/pino/lib/tools.js
+./node_modules/.pnpm/pino@7.11.0/node_modules/pino/pino.js
+./node_modules/.pnpm/@walletconnect+logger@2.1.2/node_modules/@walletconnect/logger/dist/index.es.js
+./node_modules/.pnpm/@walletconnect+universal-provider@2.21.1_bufferutil@4.0.9_typescript@5.9.2_utf-8-validate@5.0.10_zod@3.25.76/node_modules/@walletconnect/universal-provider/dist/index.es.js
+./node_modules/.pnpm/@walletconnect+ethereum-provider@2.21.1_@types+react@19.1.10_bufferutil@4.0.9_react@19._78555b8d59c12171aa4e3e7b88266b15/node_modules/@walletconnect/ethereum-provider/dist/index.es.js
+./node_modules/.pnpm/@wagmi+connectors@5.9.4_@types+react@19.1.10_@wagmi+core@2.19.0_@tanstack+query-core@5._56d85de47d69ee4414b5268a6699a78d/node_modules/@wagmi/connectors/dist/esm/walletConnect.js
+./node_modules/.pnpm/@wagmi+connectors@5.9.4_@types+react@19.1.10_@wagmi+core@2.19.0_@tanstack+query-core@5._56d85de47d69ee4414b5268a6699a78d/node_modules/@wagmi/connectors/dist/esm/exports/index.js
+./node_modules/.pnpm/wagmi@2.16.4_@tanstack+query-core@5.85.5_@tanstack+react-query@5.85.5_react@19.1.0__@ty_38af56b300346132865e227241f6c55c/node_modules/wagmi/dist/esm/exports/connectors.js
+./node_modules/.pnpm/@rainbow-me+rainbowkit@2.2.8_@tanstack+react-query@5.85.5_react@19.1.0__@types+react@19_0752128e7fc80cb430750b26ccc71a39/node_modules/@rainbow-me/rainbowkit/dist/index.js
+./src/components/Providers.tsx
+ ⚠ ./node_modules/.pnpm/pino@7.11.0/node_modules/pino/lib/tools.js
+Module not found: Can't resolve 'pino-pretty' in '/Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/node_modules/.pnpm/pino@7.11.0/node_modules/pino/lib'
+
+Import trace for requested module:
+./node_modules/.pnpm/pino@7.11.0/node_modules/pino/lib/tools.js
+./node_modules/.pnpm/pino@7.11.0/node_modules/pino/pino.js
+./node_modules/.pnpm/@walletconnect+logger@2.1.2/node_modules/@walletconnect/logger/dist/index.es.js
+./node_modules/.pnpm/@walletconnect+universal-provider@2.21.1_bufferutil@4.0.9_typescript@5.9.2_utf-8-validate@5.0.10_zod@3.25.76/node_modules/@walletconnect/universal-provider/dist/index.es.js
+./node_modules/.pnpm/@walletconnect+ethereum-provider@2.21.1_@types+react@19.1.10_bufferutil@4.0.9_react@19._78555b8d59c12171aa4e3e7b88266b15/node_modules/@walletconnect/ethereum-provider/dist/index.es.js
+./node_modules/.pnpm/@wagmi+connectors@5.9.4_@types+react@19.1.10_@wagmi+core@2.19.0_@tanstack+query-core@5._56d85de47d69ee4414b5268a6699a78d/node_modules/@wagmi/connectors/dist/esm/walletConnect.js
+./node_modules/.pnpm/@wagmi+connectors@5.9.4_@types+react@19.1.10_@wagmi+core@2.19.0_@tanstack+query-core@5._56d85de47d69ee4414b5268a6699a78d/node_modules/@wagmi/connectors/dist/esm/exports/index.js
+./node_modules/.pnpm/wagmi@2.16.4_@tanstack+query-core@5.85.5_@tanstack+react-query@5.85.5_react@19.1.0__@ty_38af56b300346132865e227241f6c55c/node_modules/wagmi/dist/esm/exports/connectors.js
+./node_modules/.pnpm/@rainbow-me+rainbowkit@2.2.8_@tanstack+react-query@5.85.5_react@19.1.0__@types+react@19_0752128e7fc80cb430750b26ccc71a39/node_modules/@rainbow-me/rainbowkit/dist/index.js
+./src/components/Providers.tsx
+WalletConnect Core is already initialized. This is probably a mistake and can lead to unexpected behavior. Init() was called 3 times.
+WalletConnect Core is already initialized. This is probably a mistake and can lead to unexpected behavior. Init() was called 3 times.
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ GET / 404 in 1612ms
+ GET /_next/static/webpack/65fc08aaa101f89f.webpack.hot-update.json 404 in 1160ms
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/.next/server/app/page.js'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/.next/server/app/page.js',
+  page: '/'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/.next/server/pages/_document.js'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/.next/server/pages/_document.js'
+}
+ GET / 500 in 57ms
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/.next/server/app/page.js'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/.next/server/app/page.js',
+  page: '/'
+}
+ GET /_next/static/chunks/fallback/react-refresh.js 404 in 269ms
+ GET /_next/static/chunks/fallback/webpack.js 404 in 271ms
+ GET /_next/static/chunks/fallback/main.js 404 in 270ms
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/.next/server/pages/_document.js'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/.next/server/pages/_document.js'
+}
+ GET / 500 in 46ms
+ GET /_next/static/chunks/fallback/pages/_app.js 404 in 106ms
+ GET /_next/static/chunks/fallback/pages/_error.js 404 in 105ms
+ GET /_next/static/chunks/fallback/webpack.js 404 in 157ms
+ GET /_next/static/chunks/fallback/main.js 404 in 107ms
+ GET /_next/static/chunks/fallback/react-refresh.js 404 in 105ms
+ GET /_next/static/chunks/fallback/pages/_error.js 404 in 277ms
+ GET /_next/static/media/93f479601ee12b01-s.p.woff2 404 in 155ms
+ GET /_next/static/media/569ce4b8f30dc480-s.p.woff2 404 in 156ms
+ GET /_next/static/chunks/fallback/pages/_app.js 404 in 156ms
+ ⚠ ./node_modules/.pnpm/pino@7.11.0/node_modules/pino/lib/tools.js
+Module not found: Can't resolve 'pino-pretty' in '/Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/node_modules/.pnpm/pino@7.11.0/node_modules/pino/lib'
+
+Import trace for requested module:
+./node_modules/.pnpm/pino@7.11.0/node_modules/pino/lib/tools.js
+./node_modules/.pnpm/pino@7.11.0/node_modules/pino/pino.js
+./node_modules/.pnpm/@walletconnect+logger@2.1.2/node_modules/@walletconnect/logger/dist/index.es.js
+./node_modules/.pnpm/@walletconnect+universal-provider@2.21.1_bufferutil@4.0.9_typescript@5.9.2_utf-8-validate@5.0.10_zod@3.25.76/node_modules/@walletconnect/universal-provider/dist/index.es.js
+./node_modules/.pnpm/@walletconnect+ethereum-provider@2.21.1_@types+react@19.1.10_bufferutil@4.0.9_react@19._78555b8d59c12171aa4e3e7b88266b15/node_modules/@walletconnect/ethereum-provider/dist/index.es.js
+./node_modules/.pnpm/@wagmi+connectors@5.9.4_@types+react@19.1.10_@wagmi+core@2.19.0_@tanstack+query-core@5._56d85de47d69ee4414b5268a6699a78d/node_modules/@wagmi/connectors/dist/esm/walletConnect.js
+./node_modules/.pnpm/@wagmi+connectors@5.9.4_@types+react@19.1.10_@wagmi+core@2.19.0_@tanstack+query-core@5._56d85de47d69ee4414b5268a6699a78d/node_modules/@wagmi/connectors/dist/esm/exports/index.js
+./node_modules/.pnpm/wagmi@2.16.4_@tanstack+query-core@5.85.5_@tanstack+react-query@5.85.5_react@19.1.0__@ty_38af56b300346132865e227241f6c55c/node_modules/wagmi/dist/esm/exports/connectors.js
+./node_modules/.pnpm/@rainbow-me+rainbowkit@2.2.8_@tanstack+react-query@5.85.5_react@19.1.0__@types+react@19_0752128e7fc80cb430750b26ccc71a39/node_modules/@rainbow-me/rainbowkit/dist/index.js
+./src/components/Providers.tsx
+ ⚠ ./node_modules/.pnpm/pino@7.11.0/node_modules/pino/lib/tools.js
+Module not found: Can't resolve 'pino-pretty' in '/Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/node_modules/.pnpm/pino@7.11.0/node_modules/pino/lib'
+
+Import trace for requested module:
+./node_modules/.pnpm/pino@7.11.0/node_modules/pino/lib/tools.js
+./node_modules/.pnpm/pino@7.11.0/node_modules/pino/pino.js
+./node_modules/.pnpm/@walletconnect+logger@2.1.2/node_modules/@walletconnect/logger/dist/index.es.js
+./node_modules/.pnpm/@walletconnect+universal-provider@2.21.1_bufferutil@4.0.9_typescript@5.9.2_utf-8-validate@5.0.10_zod@3.25.76/node_modules/@walletconnect/universal-provider/dist/index.es.js
+./node_modules/.pnpm/@walletconnect+ethereum-provider@2.21.1_@types+react@19.1.10_bufferutil@4.0.9_react@19._78555b8d59c12171aa4e3e7b88266b15/node_modules/@walletconnect/ethereum-provider/dist/index.es.js
+./node_modules/.pnpm/@wagmi+connectors@5.9.4_@types+react@19.1.10_@wagmi+core@2.19.0_@tanstack+query-core@5._56d85de47d69ee4414b5268a6699a78d/node_modules/@wagmi/connectors/dist/esm/walletConnect.js
+./node_modules/.pnpm/@wagmi+connectors@5.9.4_@types+react@19.1.10_@wagmi+core@2.19.0_@tanstack+query-core@5._56d85de47d69ee4414b5268a6699a78d/node_modules/@wagmi/connectors/dist/esm/exports/index.js
+./node_modules/.pnpm/wagmi@2.16.4_@tanstack+query-core@5.85.5_@tanstack+react-query@5.85.5_react@19.1.0__@ty_38af56b300346132865e227241f6c55c/node_modules/wagmi/dist/esm/exports/connectors.js
+./node_modules/.pnpm/@rainbow-me+rainbowkit@2.2.8_@tanstack+react-query@5.85.5_react@19.1.0__@types+react@19_0752128e7fc80cb430750b26ccc71a39/node_modules/@rainbow-me/rainbowkit/dist/index.js
+./src/components/Providers.tsx
+ GET /favicon.ico 200 in 985ms
+ ⚠ ./node_modules/.pnpm/pino@7.11.0/node_modules/pino/lib/tools.js
+Module not found: Can't resolve 'pino-pretty' in '/Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/node_modules/.pnpm/pino@7.11.0/node_modules/pino/lib'
+
+Import trace for requested module:
+./node_modules/.pnpm/pino@7.11.0/node_modules/pino/lib/tools.js
+./node_modules/.pnpm/pino@7.11.0/node_modules/pino/pino.js
+./node_modules/.pnpm/@walletconnect+logger@2.1.2/node_modules/@walletconnect/logger/dist/index.es.js
+./node_modules/.pnpm/@walletconnect+universal-provider@2.21.1_bufferutil@4.0.9_typescript@5.9.2_utf-8-validate@5.0.10_zod@3.25.76/node_modules/@walletconnect/universal-provider/dist/index.es.js
+./node_modules/.pnpm/@walletconnect+ethereum-provider@2.21.1_@types+react@19.1.10_bufferutil@4.0.9_react@19._78555b8d59c12171aa4e3e7b88266b15/node_modules/@walletconnect/ethereum-provider/dist/index.es.js
+./node_modules/.pnpm/@wagmi+connectors@5.9.4_@types+react@19.1.10_@wagmi+core@2.19.0_@tanstack+query-core@5._56d85de47d69ee4414b5268a6699a78d/node_modules/@wagmi/connectors/dist/esm/walletConnect.js
+./node_modules/.pnpm/@wagmi+connectors@5.9.4_@types+react@19.1.10_@wagmi+core@2.19.0_@tanstack+query-core@5._56d85de47d69ee4414b5268a6699a78d/node_modules/@wagmi/connectors/dist/esm/exports/index.js
+./node_modules/.pnpm/wagmi@2.16.4_@tanstack+query-core@5.85.5_@tanstack+react-query@5.85.5_react@19.1.0__@ty_38af56b300346132865e227241f6c55c/node_modules/wagmi/dist/esm/exports/connectors.js
+./node_modules/.pnpm/@rainbow-me+rainbowkit@2.2.8_@tanstack+react-query@5.85.5_react@19.1.0__@types+react@19_0752128e7fc80cb430750b26ccc71a39/node_modules/@rainbow-me/rainbowkit/dist/index.js
+./src/components/Providers.tsx
+ ⚠ ./node_modules/.pnpm/pino@7.11.0/node_modules/pino/lib/tools.js
+Module not found: Can't resolve 'pino-pretty' in '/Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/node_modules/.pnpm/pino@7.11.0/node_modules/pino/lib'
+
+Import trace for requested module:
+./node_modules/.pnpm/pino@7.11.0/node_modules/pino/lib/tools.js
+./node_modules/.pnpm/pino@7.11.0/node_modules/pino/pino.js
+./node_modules/.pnpm/@walletconnect+logger@2.1.2/node_modules/@walletconnect/logger/dist/index.es.js
+./node_modules/.pnpm/@walletconnect+universal-provider@2.21.1_bufferutil@4.0.9_typescript@5.9.2_utf-8-validate@5.0.10_zod@3.25.76/node_modules/@walletconnect/universal-provider/dist/index.es.js
+./node_modules/.pnpm/@walletconnect+ethereum-provider@2.21.1_@types+react@19.1.10_bufferutil@4.0.9_react@19._78555b8d59c12171aa4e3e7b88266b15/node_modules/@walletconnect/ethereum-provider/dist/index.es.js
+./node_modules/.pnpm/@wagmi+connectors@5.9.4_@types+react@19.1.10_@wagmi+core@2.19.0_@tanstack+query-core@5._56d85de47d69ee4414b5268a6699a78d/node_modules/@wagmi/connectors/dist/esm/walletConnect.js
+./node_modules/.pnpm/@wagmi+connectors@5.9.4_@types+react@19.1.10_@wagmi+core@2.19.0_@tanstack+query-core@5._56d85de47d69ee4414b5268a6699a78d/node_modules/@wagmi/connectors/dist/esm/exports/index.js
+./node_modules/.pnpm/wagmi@2.16.4_@tanstack+query-core@5.85.5_@tanstack+react-query@5.85.5_react@19.1.0__@ty_38af56b300346132865e227241f6c55c/node_modules/wagmi/dist/esm/exports/connectors.js
+./node_modules/.pnpm/@rainbow-me+rainbowkit@2.2.8_@tanstack+react-query@5.85.5_react@19.1.0__@types+react@19_0752128e7fc80cb430750b26ccc71a39/node_modules/@rainbow-me/rainbowkit/dist/index.js
+./src/components/Providers.tsx
+ ⚠ ./node_modules/.pnpm/pino@7.11.0/node_modules/pino/lib/tools.js
+Module not found: Can't resolve 'pino-pretty' in '/Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/node_modules/.pnpm/pino@7.11.0/node_modules/pino/lib'
+
+Import trace for requested module:
+./node_modules/.pnpm/pino@7.11.0/node_modules/pino/lib/tools.js
+./node_modules/.pnpm/pino@7.11.0/node_modules/pino/pino.js
+./node_modules/.pnpm/@walletconnect+logger@2.1.2/node_modules/@walletconnect/logger/dist/index.es.js
+./node_modules/.pnpm/@walletconnect+universal-provider@2.21.1_bufferutil@4.0.9_typescript@5.9.2_utf-8-validate@5.0.10_zod@3.25.76/node_modules/@walletconnect/universal-provider/dist/index.es.js
+./node_modules/.pnpm/@walletconnect+ethereum-provider@2.21.1_@types+react@19.1.10_bufferutil@4.0.9_react@19._78555b8d59c12171aa4e3e7b88266b15/node_modules/@walletconnect/ethereum-provider/dist/index.es.js
+./node_modules/.pnpm/@wagmi+connectors@5.9.4_@types+react@19.1.10_@wagmi+core@2.19.0_@tanstack+query-core@5._56d85de47d69ee4414b5268a6699a78d/node_modules/@wagmi/connectors/dist/esm/walletConnect.js
+./node_modules/.pnpm/@wagmi+connectors@5.9.4_@types+react@19.1.10_@wagmi+core@2.19.0_@tanstack+query-core@5._56d85de47d69ee4414b5268a6699a78d/node_modules/@wagmi/connectors/dist/esm/exports/index.js
+./node_modules/.pnpm/wagmi@2.16.4_@tanstack+query-core@5.85.5_@tanstack+react-query@5.85.5_react@19.1.0__@ty_38af56b300346132865e227241f6c55c/node_modules/wagmi/dist/esm/exports/connectors.js
+./node_modules/.pnpm/@rainbow-me+rainbowkit@2.2.8_@tanstack+react-query@5.85.5_react@19.1.0__@types+react@19_0752128e7fc80cb430750b26ccc71a39/node_modules/@rainbow-me/rainbowkit/dist/index.js
+./src/components/Providers.tsx
+ ⚠ ./node_modules/.pnpm/pino@7.11.0/node_modules/pino/lib/tools.js
+Module not found: Can't resolve 'pino-pretty' in '/Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/node_modules/.pnpm/pino@7.11.0/node_modules/pino/lib'
+
+Import trace for requested module:
+./node_modules/.pnpm/pino@7.11.0/node_modules/pino/lib/tools.js
+./node_modules/.pnpm/pino@7.11.0/node_modules/pino/pino.js
+./node_modules/.pnpm/@walletconnect+logger@2.1.2/node_modules/@walletconnect/logger/dist/index.es.js
+./node_modules/.pnpm/@walletconnect+universal-provider@2.21.1_bufferutil@4.0.9_typescript@5.9.2_utf-8-validate@5.0.10_zod@3.25.76/node_modules/@walletconnect/universal-provider/dist/index.es.js
+./node_modules/.pnpm/@walletconnect+ethereum-provider@2.21.1_@types+react@19.1.10_bufferutil@4.0.9_react@19._78555b8d59c12171aa4e3e7b88266b15/node_modules/@walletconnect/ethereum-provider/dist/index.es.js
+./node_modules/.pnpm/@wagmi+connectors@5.9.4_@types+react@19.1.10_@wagmi+core@2.19.0_@tanstack+query-core@5._56d85de47d69ee4414b5268a6699a78d/node_modules/@wagmi/connectors/dist/esm/walletConnect.js
+./node_modules/.pnpm/@wagmi+connectors@5.9.4_@types+react@19.1.10_@wagmi+core@2.19.0_@tanstack+query-core@5._56d85de47d69ee4414b5268a6699a78d/node_modules/@wagmi/connectors/dist/esm/exports/index.js
+./node_modules/.pnpm/wagmi@2.16.4_@tanstack+query-core@5.85.5_@tanstack+react-query@5.85.5_react@19.1.0__@ty_38af56b300346132865e227241f6c55c/node_modules/wagmi/dist/esm/exports/connectors.js
+./node_modules/.pnpm/@rainbow-me+rainbowkit@2.2.8_@tanstack+react-query@5.85.5_react@19.1.0__@types+react@19_0752128e7fc80cb430750b26ccc71a39/node_modules/@rainbow-me/rainbowkit/dist/index.js
+./src/components/Providers.tsx
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename '/Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/.next/cache/webpack/client-development/5.pack.gz_' -> '/Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/.next/cache/webpack/client-development/5.pack.gz'
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename '/Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/.next/cache/webpack/server-development/5.pack.gz_' -> '/Users/zhuizhui/网盘同步/work/学习/web3-DL/rentoken-web/.next/cache/webpack/server-development/5.pack.gz'

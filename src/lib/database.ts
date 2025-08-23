@@ -199,8 +199,8 @@ export class DatabaseService {
     return {
       totalInvested,
       monthlyIncome: Math.round(monthlyIncome * 100) / 100,
-      totalProperties: investments.length,
-      averageApy: Math.round(weightedApy * 10) / 10,
+      totalProperties: investments.length, // 字段名已经正确
+      averageApy: Math.round(weightedApy * 10) / 10, // 字段名已经正确
       nextPaymentDays: 12,
       monthlyGrowth: 5.2,
     };
