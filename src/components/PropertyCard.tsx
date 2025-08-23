@@ -30,6 +30,7 @@ interface PropertyCardProps {
   imageUrl: string;
   status: "0" | "1" | "2" | "3" | "4";
   renTokenAddress:any;
+  blockchainState:any;
   onInvestmentSuccess?: () => void;
 }
 
@@ -45,6 +46,7 @@ export function PropertyCard({
   imageUrl,
   status,
   renTokenAddress,
+  blockchainState,
   onInvestmentSuccess
 }: PropertyCardProps) {
   const { t } = useI18n();
@@ -75,6 +77,8 @@ export function PropertyCard({
       onInvestmentSuccess?.();
     }
   }, [investSuccess, tokenAmount, investmentAmount, txHash, onInvestmentSuccess]);
+
+  console.log('blockchainState', blockchainState)
 
   // 处理投资错误状态
   useEffect(() => {
@@ -192,7 +196,7 @@ export function PropertyCard({
         <div className="glass p-3 rounded-lg border border-border/50">
           <div className="text-xs text-muted-foreground mb-1">可提取收益</div>
           <div className="font-bold text-xl text-emerald-400 flex items-center gap-1">
-            {apy}
+            {blockchainState?.claimable?.formattedAmount || 0}
           </div>
         </div>
         </div>
@@ -227,13 +231,13 @@ export function PropertyCard({
             variant="sushi"
             size="default"
             className="flex-1"
-            disabled={status*1 > 2 || status == 1 || remainingTokens === 0}
+            disabled={status*1 > 0 || remainingTokens === 0}
             onClick={() => setShowInvestModal(true)}
           >
-            {status*1 > 2 || status == 1  || remainingTokens === 0 ? "Sold Out" : "Invest Now"}
+            {status*1 > 0  || remainingTokens === 0 ? "Sold Out" : "Invest Now"}
           </Button>
           {
-            status == "1" && (
+            status == "1" && blockchainState?.claimable?.formattedAmount > 0 && (
               <Button 
                 variant="sushi"
                 size="default"
