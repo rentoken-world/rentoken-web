@@ -223,14 +223,15 @@ export function PropertyCard({
 
         {/* Action Buttons */}
         <div className="flex gap-3">
+          
           <Button 
             variant="sushi"
             size="default"
             className="flex-1"
-            disabled={status === "completed" || remainingTokens === 0}
+            disabled={status === "completed" || status === "active" || remainingTokens === 0}
             onClick={() => setShowInvestModal(true)}
           >
-            {status === "completed" || remainingTokens === 0 ? "Sold Out" : "Invest Now"}
+            {status === "completed" || status === "active"  || remainingTokens === 0 ? "Sold Out" : "Invest Now"}
           </Button>
           {
             status === "active" && (

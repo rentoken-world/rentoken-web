@@ -8,7 +8,7 @@ datasource db {
 }
 
 model Property {
-  id              String       @id @default(cuid())
+  id              Int          @id @default(autoincrement())
   title           String
   location        String
   description     String
@@ -59,7 +59,7 @@ model Property {
 
 model Investment {
   id               String   @id @default(cuid())
-  propertyId       String
+  propertyId       String   // 修复：改为 String 类型以匹配 Property.id
   investorAddress  String
   tokenAmount      Int
   investmentAmount Float
@@ -89,7 +89,7 @@ model Transaction {
   to          String
   amount      Float
   tokenAmount Int?
-  propertyId  String?
+  propertyId  Int?
   type        String
   status      String
   blockNumber Int?
