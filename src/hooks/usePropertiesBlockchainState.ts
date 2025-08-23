@@ -2,7 +2,7 @@
  * @Author: dreamworks.cnn@gmail.com
  * @Date: 2025-08-23 20:30:00
  * @LastEditors: dreamworks.cnn@gmail.com
- * @LastEditTime: 2025-08-23 20:30:00
+ * @LastEditTime: 2025-08-23 22:12:39
  * @FilePath: /rentoken-web/src/hooks/usePropertiesBlockchainState.ts
  * @Description: 为properties数组添加区块链状态信息
  * 
@@ -22,8 +22,25 @@ import {
 // 单个property的区块链状态hook
 function usePropertyBlockchainState(property: Property, enabled: boolean = true) {
   const { address } = useAccount();
+  if(!property || !property.renTokenAddress){
+    return {
+      blockchainState: {
+        isLoading: false,
+        isError: false,
+        lastUpdated: Date.now(),
+      } as PropertyBlockchainState,
+    };
+  }
   const rentTokenAddress = property.renTokenAddress as Address | undefined;
-  
+  if(!rentTokenAddress || rentTokenAddress === "0x0000000000000000000000000000000000000000") {
+    return {
+      blockchainState: {
+        isLoading: false,
+        isError: false,
+        lastUpdated: Date.now(),
+      } as PropertyBlockchainState,
+    };
+  }
   // 获取用户余额
   const balance = useRentTokenBalance(rentTokenAddress, enabled && !!address);
   
@@ -32,42 +49,44 @@ function usePropertyBlockchainState(property: Property, enabled: boolean = true)
   
   // 获取可领取收益
   const claimable = useRentTokenClaimable(rentTokenAddress, enabled && !!address);
-  
+    console.log('balance' , balance)
+    console.log('phase' , phase)
+    console.log('claimable' , claimable)
   // 组装区块链状态
-  const blockchainState = useMemo((): PropertyBlockchainState => {
-    return {
-      userBalance: balance.isConnected ? {
-        balance: balance.balance?.toString() || '0',
-        formattedBalance: balance.formattedBalance,
-        decimals: balance.decimals,
-      } : undefined,
-      phase: phase.phaseInfo ? {
-        value: phase.phaseInfo.value,
-        name: phase.phaseInfo.name,
-        description: phase.phaseInfo.description,
-        isFundraising: phase.phaseInfo.isFundraising,
-        isOperating: phase.phaseInfo.isOperating,
-        isMatured: phase.phaseInfo.isMatured,
-        isRefunding: phase.phaseInfo.isRefunding,
-      } : undefined,
-      claimable: claimable.isConnected ? {
-        amount: claimable.claimableAmount?.toString() || '0',
-        formattedAmount: claimable.formattedClaimableAmount,
-        hasClaimableAmount: claimable.hasClaimableAmount,
-        payoutTokenAddress: claimable.payoutTokenAddress,
-      } : undefined,
-      isLoading: balance.isLoading || phase.isLoading || claimable.isLoading,
-      isError: balance.isError || phase.isError || claimable.isError,
-      lastUpdated: Date.now(),
-    };
-  }, [
-    balance.isConnected, balance.balance, balance.formattedBalance, balance.decimals, balance.isLoading, balance.isError,
-    phase.phaseInfo, phase.isLoading, phase.isError,
-    claimable.isConnected, claimable.claimableAmount, claimable.formattedClaimableAmount, claimable.hasClaimableAmount, claimable.payoutTokenAddress, claimable.isLoading, claimable.isError
-  ]);
+  // const blockchainState = useMemo((): PropertyBlockchainState => {
+  //   return {
+  //     userBalance: balance.isConnected ? {
+  //       balance: balance.balance?.toString() || '0',
+  //       formattedBalance: balance.formattedBalance,
+  //       decimals: balance.decimals,
+  //     } : undefined,
+  //     phase: phase.phaseInfo ? {
+  //       value: phase.phaseInfo.value,
+  //       name: phase.phaseInfo.name,
+  //       description: phase.phaseInfo.description,
+  //       isFundraising: phase.phaseInfo.isFundraising,
+  //       isOperating: phase.phaseInfo.isOperating,
+  //       isMatured: phase.phaseInfo.isMatured,
+  //       isRefunding: phase.phaseInfo.isRefunding,
+  //     } : undefined,
+  //     claimable: claimable.isConnected ? {
+  //       amount: claimable.claimableAmount?.toString() || '0',
+  //       formattedAmount: claimable.formattedClaimableAmount,
+  //       hasClaimableAmount: claimable.hasClaimableAmount,
+  //       payoutTokenAddress: claimable.payoutTokenAddress,
+  //     } : undefined,
+  //     isLoading: balance.isLoading || phase.isLoading || claimable.isLoading,
+  //     isError: balance.isError || phase.isError || claimable.isError,
+  //     lastUpdated: Date.now(),
+  //   };
+  // }, [
+  //   balance.isConnected, balance.balance, balance.formattedBalance, balance.decimals, balance.isLoading, balance.isError,
+  //   phase.phaseInfo, phase.isLoading, phase.isError,
+  //   claimable.isConnected, claimable.claimableAmount, claimable.formattedClaimableAmount, claimable.hasClaimableAmount, claimable.payoutTokenAddress, claimable.isLoading, claimable.isError
+  // ]);
   
   return {
-    blockchainState,
+    // blockchainState,
     refetch: () => {
       balance.refetch();
       phase.refetch();
@@ -93,18 +112,9 @@ export function usePropertiesBlockchainState(properties: Property[], enabled: bo
   // 为每个property创建区块链状态查询
   const property0State = usePropertyBlockchainState(limitedProperties[0], enabled && limitedProperties.length > 0);
   const property1State = usePropertyBlockchainState(limitedProperties[1], enabled && limitedProperties.length > 1);
-  const property2State = usePropertyBlockchainState(limitedProperties[2], enabled && limitedProperties.length > 2);
-  const property3State = usePropertyBlockchainState(limitedProperties[3], enabled && limitedProperties.length > 3);
-  const property4State = usePropertyBlockchainState(limitedProperties[4], enabled && limitedProperties.length > 4);
-  const property5State = usePropertyBlockchainState(limitedProperties[5], enabled && limitedProperties.length > 5);
-  const property6State = usePropertyBlockchainState(limitedProperties[6], enabled && limitedProperties.length > 6);
-  const property7State = usePropertyBlockchainState(limitedProperties[7], enabled && limitedProperties.length > 7);
-  const property8State = usePropertyBlockchainState(limitedProperties[8], enabled && limitedProperties.length > 8);
-  const property9State = usePropertyBlockchainState(limitedProperties[9], enabled && limitedProperties.length > 9);
-  
+  const property2State = usePropertyBlockchainState(limitedProperties[2], enabled && limitedProperties.length > 2);  
   const propertiesStates = [
-    property0State, property1State, property2State, property3State, property4State,
-    property5State, property6State, property7State, property8State, property9State
+    property0State, property1State, property2State,
   ];
   
   // 组装增强后的properties数据
@@ -145,10 +155,7 @@ export function usePropertiesBlockchainState(properties: Property[], enabled: bo
     
   }, [
     properties, enabled,
-    property0State.blockchainState, property1State.blockchainState, property2State.blockchainState,
-    property3State.blockchainState, property4State.blockchainState, property5State.blockchainState,
-    property6State.blockchainState, property7State.blockchainState, property8State.blockchainState,
-    property9State.blockchainState,
+    property0State.blockchainState, property1State.blockchainState, property2State.blockchainState,   
   ]);
   
   // 刷新所有区块链状态

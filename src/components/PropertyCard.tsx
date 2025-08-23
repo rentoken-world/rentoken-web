@@ -28,7 +28,7 @@ interface PropertyCardProps {
   soldTokens: number;
   apy: number;
   imageUrl: string;
-  status: "funding" | "active" | "completed";
+  status: "0" | "1" | "2" | "3" | "4";
   renTokenAddress:any;
   onInvestmentSuccess?: () => void;
 }
@@ -84,11 +84,11 @@ export function PropertyCard({
   }, [investError]);
   const getStatusColor = () => {
     switch (status) {
-      case "funding":
+      case "0":
         return "bg-primary/90 text-primary-foreground border-primary shadow-lg backdrop-blur-sm";
-      case "active":
+      case "1":
         return "bg-emerald-500/90 text-white border-emerald-600 shadow-lg backdrop-blur-sm";
-      case "completed":
+      case "2":
         return "bg-muted/90 text-muted-foreground border-border shadow-lg backdrop-blur-sm";
       default:
         return "bg-primary/90 text-primary-foreground border-primary shadow-lg backdrop-blur-sm";
@@ -96,13 +96,12 @@ export function PropertyCard({
   };
 
   const getStatusText = () => {
-    console.log('getStatusText', status)
     switch (status) {
-      case "funding":
+      case "0":
         return "🚀 Funding";
-      case "active":
+      case "1":
         return "✅ Active";
-      case "completed":
+      case "2":
         return "🏁 Completed";
       default:
         return status;
@@ -228,18 +227,18 @@ export function PropertyCard({
             variant="sushi"
             size="default"
             className="flex-1"
-            disabled={status === "completed" || status === "active" || remainingTokens === 0}
+            disabled={status*1 > 2 || status == 1 || remainingTokens === 0}
             onClick={() => setShowInvestModal(true)}
           >
-            {status === "completed" || status === "active"  || remainingTokens === 0 ? "Sold Out" : "Invest Now"}
+            {status*1 > 2 || status == 1  || remainingTokens === 0 ? "Sold Out" : "Invest Now"}
           </Button>
           {
-            status === "active" && (
+            status == "1" && (
               <Button 
                 variant="sushi"
                 size="default"
                 className="flex-1"
-                disabled={status === "completed" || remainingTokens === 0}
+                disabled={status * 1 > 2 || remainingTokens === 0}
                 onClick={() => setShowInvestModal(true)}
               >
                 提取收益
