@@ -31,6 +31,7 @@ export interface CreatePropertyParams {
   expectedYield: number;
   category: string;
   owner: string;
+  status?: number;  // 添加可选的状态字段
   imageUrl?: string;
 }
 
@@ -156,6 +157,7 @@ export class PrismaService {
 
   // 创建房产
   static async createProperty(params: CreatePropertyParams): Promise<Property> {
+    console.log('createProperty:params', params)
     const property = await prisma.property.create({
       data: {
         title: params.title,
@@ -167,7 +169,7 @@ export class PrismaService {
         tokenPrice: params.price / params.tokenSupply,
         expectedYield: params.expectedYield,
         category: params.category,
-        status: 'funding', // 默认状态为募资中
+        status:  0, // 使用传入的状态或默认为0（募资中）
         owner: params.owner,
         imageUrl: params.imageUrl || null,
       },
@@ -278,8 +280,8 @@ export class PrismaService {
         where: { id: params.propertyId },
         data: {
           availableTokens: property.availableTokens - params.tokenAmount,
-          // 如果所有代币都售完，更新状态为活跃
-          status: property.availableTokens - params.tokenAmount === 0 ? 'active' : property.status,
+          // 如果所有代币都售完，更新状态为活跃 (1 = active)
+          status: property.availableTokens - params.tokenAmount === 0 ? 1 : property.status,
         },
       });
 

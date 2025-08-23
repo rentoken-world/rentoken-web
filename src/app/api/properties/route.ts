@@ -2,7 +2,7 @@
  * @Author: dreamworks.cnn@gmail.com
  * @Date: 2025-08-20 17:26:56
  * @LastEditors: dreamworks.cnn@gmail.com
- * @LastEditTime: 2025-08-23 00:31:42
+ * @LastEditTime: 2025-08-24 00:09:29
  * @FilePath: /rentoken-web/src/app/api/properties/route.ts
  * @Description: 
  * 
@@ -60,9 +60,9 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     
     // Validate required fields
-    const { title, description, price, tokenSupply, location, expectedYield, category, owner } = body;
+    const { title, description, price, tokenSupply, location, category, owner } = body;
     
-    if (!title || !description || !price || !tokenSupply || !location || !expectedYield || !category || !owner) {
+    if (!title || !description || !price || !tokenSupply || !location  || !category || !owner) {
       return NextResponse.json(
         { success: false, error: 'Missing required fields' },
         { status: 400 }
@@ -78,9 +78,10 @@ export async function POST(request: NextRequest) {
       price: parseFloat(price),
       tokenSupply: parseInt(tokenSupply),
       location,
-      expectedYield: parseFloat(expectedYield),
+      expectedYield: 8,
       category,
       owner,
+      status: 0,
     });
 
     return NextResponse.json({

@@ -18,9 +18,8 @@ export default function OwnerDashboard() {
     title: "",
     description: "",
     price: "",
-    TotalValue: "",
-    location: "",
-    expectedYield: "",
+    tokenSupply: "",
+    location: "",    
     category: "residential" as const,
   });
 
@@ -62,8 +61,7 @@ export default function OwnerDashboard() {
         body: JSON.stringify({
           ...formData,
           price: parseFloat(formData.price),
-          TotalValue: parseInt(formData.TotalValue),
-          expectedYield: parseFloat(formData.expectedYield),
+          tokenSupply: parseInt(formData.tokenSupply),          
           owner: address,
         }),
       });
@@ -75,9 +73,8 @@ export default function OwnerDashboard() {
           title: "",
           description: "",
           price: "",
-          TotalValue: "",
-          location: "",
-          expectedYield: "",
+          tokenSupply: "",
+          location: "",          
           category: "residential",
         });
         fetchMyProperties(); // Refresh the list
@@ -227,8 +224,8 @@ export default function OwnerDashboard() {
                       <label className="block text-sm font-medium mb-2 text-card-foreground">Token Supply</label>
                       <input
                         type="number"
-                        value={formData.TotalValue}
-                        onChange={(e) => setFormData({ ...formData, TotalValue: e.target.value })}
+                        value={formData.tokenSupply}
+                        onChange={(e) => setFormData({ ...formData, tokenSupply: e.target.value })}
                         className="w-full p-3 bg-background/50 border border-primary/30 rounded-lg backdrop-blur-sm focus:border-primary focus:outline-none transition-colors"
                         required
                       />
@@ -339,14 +336,14 @@ export default function OwnerDashboard() {
                     <div className="flex justify-between items-center">
                       <span className="text-muted-foreground">Status:</span>
                       <span className={`px-3 py-1 rounded-full text-xs font-medium ${
-                        property.status === 'active' 
+                        property.status === '1' 
                           ? 'bg-secondary/20 text-secondary border border-secondary/30' 
-                          : property.status === 'funding'
+                          : property.status === '0'
                           ? 'bg-primary/20 text-primary border border-primary/30'
                           : 'bg-destructive/20 text-destructive border border-destructive/30'
                       }`}>
-                        {property.status === 'active' ? '✅ Active' : 
-                         property.status === 'funding' ? '💰 Funding' : 
+                        {property.status === '1' ? '✅ Active' : 
+                         property.status === '0' ? '💰 Funding' : 
                          '⏸️ Inactive'}
                       </span>
                     </div>

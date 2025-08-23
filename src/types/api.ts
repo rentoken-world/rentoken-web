@@ -49,7 +49,7 @@ export interface Property {
   soldTokens: number;
   apy: number;
   imageUrl: string;
-  status: "funding" | "active" | "completed";
+  status: "0" | "1" | "2" | "3" | "4";
   ownerId: string;
   createdAt: string;
   updatedAt: string;

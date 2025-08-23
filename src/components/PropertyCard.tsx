@@ -78,8 +78,6 @@ export function PropertyCard({
     }
   }, [investSuccess, tokenAmount, investmentAmount, txHash, onInvestmentSuccess]);
 
-  console.log('blockchainState', blockchainState)
-
   // 处理投资错误状态
   useEffect(() => {
     if (investError) {

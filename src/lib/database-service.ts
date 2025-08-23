@@ -79,6 +79,7 @@ export interface CreatePropertyParams {
   category: string;
   owner: string;
   imageUrl?: string;
+  status: number;
 }
 
 // 数据库服务类 - 现在使用内存数据，准备迁移到 Prisma
@@ -176,7 +177,7 @@ export class DatabaseService {
       soldTokens: 0,
       apy: params.expectedYield,
       imageUrl: params.imageUrl || `/property-placeholder.jpg`,
-      status: 'funding',
+      status: 0,
       ownerId: params.owner,
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
