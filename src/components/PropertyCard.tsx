@@ -96,6 +96,7 @@ export function PropertyCard({
   };
 
   const getStatusText = () => {
+    console.log('getStatusText', status)
     switch (status) {
       case "funding":
         return "🚀 Funding";
@@ -104,7 +105,7 @@ export function PropertyCard({
       case "completed":
         return "🏁 Completed";
       default:
-        return "🚀 Funding";
+        return status;
     }
   };
 
@@ -188,6 +189,7 @@ export function PropertyCard({
             {apy}%
           </div>
         </div>
+        
         <div className="glass p-3 rounded-lg border border-border/50">
           <div className="text-xs text-muted-foreground mb-1">可提取收益</div>
           <div className="font-bold text-xl text-emerald-400 flex items-center gap-1">
@@ -230,18 +232,19 @@ export function PropertyCard({
           >
             {status === "completed" || remainingTokens === 0 ? "Sold Out" : "Invest Now"}
           </Button>
-          <Button 
-            variant="sushi"
-            size="default"
-            className="flex-1"
-            disabled={status === "completed" || remainingTokens === 0}
-            onClick={() => setShowInvestModal(true)}
-          >
-            提取收益
-          </Button>
-          {/* <Button variant="glass" size="default" className="px-4">
-            📊
-          </Button> */}
+          {
+            status === "active" && (
+              <Button 
+                variant="sushi"
+                size="default"
+                className="flex-1"
+                disabled={status === "completed" || remainingTokens === 0}
+                onClick={() => setShowInvestModal(true)}
+              >
+                提取收益
+              </Button>
+            )
+          }          
         </div>
       </CardContent>
 

@@ -18,7 +18,7 @@ export default function OwnerDashboard() {
     title: "",
     description: "",
     price: "",
-    tokenSupply: "",
+    TotalValue: "",
     location: "",
     expectedYield: "",
     category: "residential" as const,
@@ -62,7 +62,7 @@ export default function OwnerDashboard() {
         body: JSON.stringify({
           ...formData,
           price: parseFloat(formData.price),
-          tokenSupply: parseInt(formData.tokenSupply),
+          TotalValue: parseInt(formData.TotalValue),
           expectedYield: parseFloat(formData.expectedYield),
           owner: address,
         }),
@@ -75,7 +75,7 @@ export default function OwnerDashboard() {
           title: "",
           description: "",
           price: "",
-          tokenSupply: "",
+          TotalValue: "",
           location: "",
           expectedYield: "",
           category: "residential",
@@ -214,7 +214,7 @@ export default function OwnerDashboard() {
                   </div>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-sm font-medium mb-2 text-card-foreground">Price ($)</label>
+                      <label className="block text-sm font-medium mb-2 text-card-foreground">Monthly Rent ($)</label>
                       <input
                         type="number"
                         value={formData.price}
@@ -227,25 +227,14 @@ export default function OwnerDashboard() {
                       <label className="block text-sm font-medium mb-2 text-card-foreground">Token Supply</label>
                       <input
                         type="number"
-                        value={formData.tokenSupply}
-                        onChange={(e) => setFormData({ ...formData, tokenSupply: e.target.value })}
+                        value={formData.TotalValue}
+                        onChange={(e) => setFormData({ ...formData, TotalValue: e.target.value })}
                         className="w-full p-3 bg-background/50 border border-primary/30 rounded-lg backdrop-blur-sm focus:border-primary focus:outline-none transition-colors"
                         required
                       />
                     </div>
                   </div>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-sm font-medium mb-2 text-card-foreground">Expected Yield (%)</label>
-                      <input
-                        type="number"
-                        step="0.1"
-                        value={formData.expectedYield}
-                        onChange={(e) => setFormData({ ...formData, expectedYield: e.target.value })}
-                        className="w-full p-3 bg-background/50 border border-primary/30 rounded-lg backdrop-blur-sm focus:border-primary focus:outline-none transition-colors"
-                        required
-                      />
-                    </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">                   
                     <div>
                       <label className="block text-sm font-medium mb-2 text-card-foreground">Category</label>
                       <select
@@ -328,24 +317,24 @@ export default function OwnerDashboard() {
                   </p>
                   <div className="space-y-3 text-sm">
                     <div className="flex justify-between">
-                      <span className="text-muted-foreground">Price:</span>
+                      <span className="text-muted-foreground">Monthly Rent:</span>
                       <span className="font-semibold neon-text bg-gradient-sushi bg-clip-text text-transparent">
                         ${(property.tokenPrice * property.totalTokens).toLocaleString()}
                       </span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-muted-foreground">Tokens:</span>
+                      <span className="text-muted-foreground">Total Tokens:</span>
                       <span className="font-semibold">{property.totalTokens.toLocaleString()}</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-muted-foreground">Available:</span>
                       <span className="font-semibold text-secondary">
-                        {(property.totalTokens - property.soldTokens).toLocaleString()}
+                        {(property.totalTokens).toLocaleString()}
                       </span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-muted-foreground">Yield:</span>
-                      <span className="font-semibold text-secondary">{property.apy}%</span>
+                      <span className="font-semibold text-secondary">{7}%</span>
                     </div>
                     <div className="flex justify-between items-center">
                       <span className="text-muted-foreground">Status:</span>
