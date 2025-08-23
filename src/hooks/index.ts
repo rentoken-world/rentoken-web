@@ -18,8 +18,8 @@ export { useKycStatus } from './useKycStatus';
 export { useProperties } from './useProperties';
 export { useI18n } from './useI18n';
 
-// RentToken相关hooks
-export { useRentTokenBalance } from './useRentTokenBalance';
-export { useRentTokenPhase, RentTokenPhase, PHASE_DESCRIPTIONS } from './useRentTokenPhase';
-export { useRentTokenClaimable } from './useRentTokenClaimable';
-export { usePropertiesBlockchainState } from './usePropertiesBlockchainState';
+// RentToken相关hooks（已废弃，现在使用utils中的工具函数）
+// export { useRentTokenBalance } from './useRentTokenBalance';
+// export { useRentTokenPhase, RentTokenPhase, PHASE_DESCRIPTIONS } from './useRentTokenPhase';
+// export { useRentTokenClaimable } from './useRentTokenClaimable';
+// export { usePropertiesBlockchainState } from './usePropertiesBlockchainState';
