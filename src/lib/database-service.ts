@@ -373,7 +373,7 @@ export interface DatabaseInterface {
   deleteProperty(id: string): Promise<boolean>;
   createInvestment(params: CreateInvestmentParams): Promise<Investment | null>;
   getInvestments(filters: InvestmentFilters): Promise<any>;
-  getInvestorStats(investorAddress: string): Promise<InvestorStats>;
+  getInvestorStats(): Promise<InvestorStats>;
   getPlatformStats(): Promise<any>;
 
 }

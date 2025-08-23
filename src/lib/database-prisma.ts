@@ -297,9 +297,9 @@ export class PrismaService {
   }
 
   // 获取投资者统计数据
-  static async getInvestorStats(investorAddress: string): Promise<InvestorStats> {
+  static async getInvestorStats(): Promise<InvestorStats> {
     const investments = await prisma.investment.findMany({
-      where: { investorAddress },
+      where: {  },
       include: {
         property: true,
       },

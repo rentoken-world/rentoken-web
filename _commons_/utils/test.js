@@ -2,7 +2,7 @@
  * @Author: dreamworks.cnn@gmail.com
  * @Date: 2025-08-22 01:01:53
  * @LastEditors: dreamworks.cnn@gmail.com
- * @LastEditTime: 2025-08-23 17:00:28
+ * @LastEditTime: 2025-08-23 18:03:46
  * @FilePath: /rentoken-web/_commons_/utils/test.js
  * @Description: 
  * 
@@ -304,3 +304,7 @@ if (process.argv[1] === __filename) {
 // RPC_URL=https://eth-sepolia.public.blastapi.io
 // export KYC_ORACLE=0x14A0639E7f3225618469191E09D5dcC566Ce954c
 // cast call 0x14A0639E7f3225618469191E09D5dcC566Ce954c "isWhitelisted(address)(bool)" "0xcC44277d1d6eC279Cd81e23111B1701758A3f82F" --rpc-url https://1rpc.io/sepolia --private-key 
+
+
+export SERIES3_ADDR=0xA2897aA551284DfDc418B550072CC94FaA3eBc51
+cast send --rpc-url https://eth-sepolia.public.blastapi.io 0xA2897aA551284DfDc418B550072CC94FaA3eBc51 "setStartTime()" --private-key 

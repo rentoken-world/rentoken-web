@@ -24,7 +24,7 @@ export default function InvestorPage() {
   const [investmentsPage, setInvestmentsPage] = useState(1);
   const [investmentsSortBy, setInvestmentsSortBy] = useState<'date' | 'amount' | 'tokens'>('date');
   const [investmentsSortOrder, setInvestmentsSortOrder] = useState<'asc' | 'desc'>('desc');
-
+  const [propertiesListType, setPropertiesListType] = useState("all")
     // 获取房产数据
   const { 
     data: propertiesData, 
@@ -162,7 +162,14 @@ export default function InvestorPage() {
                     🔍 Search
                   </Button>
                 </form>
-                <Button variant="glass" size="sm" className="border-primary/30 hover:border-primary">
+                <Button variant="glass" onClick={()=>{
+                  setPropertiesListType('all')
+                }} size="sm" className="border-primary/30 hover:border-primary">
+                  📊 全部项目
+                </Button>
+                <Button variant="glass"  onClick={()=>{
+                  setPropertiesListType('myself')
+                }} size="sm" className="border-primary/30 hover:border-primary">
                   📊 {t("myProjects")}
                 </Button>
               </div>
@@ -194,7 +201,19 @@ export default function InvestorPage() {
           )}
 
           {/* Property Cards Grid */}
-          {propertiesData && propertiesData.data && !propertiesLoading && (
+          {propertiesData && propertiesData.data && !propertiesLoading &&  propertiesListType === "all" && (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {propertiesData.data.map((property) => (
+                <PropertyCard 
+                  key={property.id} 
+                  {...property} 
+                  onInvestmentSuccess={handleInvestmentSuccess}
+                />
+              ))}
+            </div>
+          )}
+
+        {propertiesData && propertiesData.data && !propertiesLoading && propertiesListType === "myself" && (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {propertiesData.data.map((property) => (
                 <PropertyCard 
@@ -207,7 +226,7 @@ export default function InvestorPage() {
           )}
 
           {/* 空状态 */}
-          {propertiesData && (!propertiesData.data || propertiesData.data.length === 0) && !propertiesLoading && (
+          {propertiesData && (!propertiesData.data || propertiesData.data.length === 0) && !propertiesLoading && 1  &&(
             <Card variant="glass" className="p-12 text-center border-primary/20">
               <div className="w-24 h-24 bg-gradient-sushi-secondary rounded-full flex items-center justify-center mx-auto mb-6 animate-float">
                 <span className="text-4xl">🏠</span>

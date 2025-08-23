@@ -181,12 +181,19 @@ export function PropertyCard({
             <div className="font-bold text-lg">${tokenPrice}</div>
           </div>
         </div>
-
+        <div className="grid grid-cols-2 gap-4">
         <div className="glass p-3 rounded-lg border border-border/50">
           <div className="text-xs text-muted-foreground mb-1">Expected APY</div>
           <div className="font-bold text-xl text-emerald-400 flex items-center gap-1">
-            🚀 {apy}%
+            {apy}%
           </div>
+        </div>
+        <div className="glass p-3 rounded-lg border border-border/50">
+          <div className="text-xs text-muted-foreground mb-1">可提取收益</div>
+          <div className="font-bold text-xl text-emerald-400 flex items-center gap-1">
+            {apy}
+          </div>
+        </div>
         </div>
       </CardHeader>
 
@@ -221,11 +228,20 @@ export function PropertyCard({
             disabled={status === "completed" || remainingTokens === 0}
             onClick={() => setShowInvestModal(true)}
           >
-            {status === "completed" || remainingTokens === 0 ? "🔒 Sold Out" : "🦄 Invest Now"}
+            {status === "completed" || remainingTokens === 0 ? "Sold Out" : "Invest Now"}
           </Button>
-          <Button variant="glass" size="default" className="px-4">
+          <Button 
+            variant="sushi"
+            size="default"
+            className="flex-1"
+            disabled={status === "completed" || remainingTokens === 0}
+            onClick={() => setShowInvestModal(true)}
+          >
+            提取收益
+          </Button>
+          {/* <Button variant="glass" size="default" className="px-4">
             📊
-          </Button>
+          </Button> */}
         </div>
       </CardContent>
 
