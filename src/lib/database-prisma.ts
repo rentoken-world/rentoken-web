@@ -15,7 +15,7 @@ export interface PropertyFilters {
 
 // 投资创建参数接口
 export interface CreateInvestmentParams {
-  propertyId: string;
+  propertyId: number; // 改为 number 以匹配数据库
   investorAddress: string;
   tokenAmount: number;
   investmentAmount: number;
@@ -98,7 +98,7 @@ export class PrismaService {
 
     // 转换数据格式以匹配现有的 API 接口
     const formattedProperties: Property[] = properties.map(property => ({
-      id: property.id,
+      id: property.id.toString(), // 转换为字符串
       title: property.title,
       location: property.location,
       description: property.description,
@@ -108,7 +108,7 @@ export class PrismaService {
       soldTokens: property.soldTokens, // 直接使用新字段
       apy: property.apy, // 直接使用新字段
       imageUrl: property.imageUrl || `/property-${property.id}.jpg`,
-      status: property.status as Property['status'],
+      status: property.status.toString() as Property['status'], // 转换为字符串枚举
       ownerId: property.ownerId, // 使用新字段名 ownerId 而不是 owner
       createdAt: property.createdAt.toISOString(),
       updatedAt: property.updatedAt.toISOString(),
@@ -129,7 +129,7 @@ export class PrismaService {
   // 根据ID获取单个房产
   static async getPropertyById(id: string): Promise<Property | null> {
     const property = await prisma.property.findUnique({
-      where: { id },
+      where: { id: parseInt(id) }, // 转换为数字
       include: {
         investments: true,
       },
@@ -138,7 +138,7 @@ export class PrismaService {
     if (!property) return null;
 
     return {
-      id: property.id,
+      id: property.id.toString(), // 转换为字符串
       title: property.title,
       location: property.location,
       description: property.description,
@@ -148,7 +148,7 @@ export class PrismaService {
       soldTokens: property.soldTokens, // 直接使用新字段
       apy: property.apy, // 直接使用新字段
       imageUrl: property.imageUrl || `/property-${property.id}.jpg`,
-      status: property.status as Property['status'],
+      status: property.status.toString() as Property['status'], // 转换为字符串枚举
       ownerId: property.ownerId, // 使用新字段名
       createdAt: property.createdAt.toISOString(),
       updatedAt: property.updatedAt.toISOString(),
@@ -158,88 +158,95 @@ export class PrismaService {
   // 创建房产
   static async createProperty(params: CreatePropertyParams): Promise<Property> {
     console.log('createProperty:params', params)
-    const property = await prisma.property.create({
-      data: {
-        title: params.title,
-        description: params.description,
-        location: params.location,
-        price: params.price,
-        tokenSupply: params.tokenSupply,
-        availableTokens: params.tokenSupply, // 初始时所有代币都可用
-        tokenPrice: params.price / params.tokenSupply,
-        expectedYield: params.expectedYield,
-        category: params.category,
-        status:  0, // 使用传入的状态或默认为0（募资中）
-        owner: params.owner,
-        imageUrl: params.imageUrl || null,
-      },
-      include: {
-        investments: true,
-      },
-    });
+    console.log('status type:', typeof params.status, 'value:', params.status)
+    
+    try {
+      // 直接构建最小化的数据对象，只包含必需字段
+      const property = await prisma.property.create({
+        data: {
+          title: params.title,
+          description: params.description,
+          location: params.location,
+          price: Number(params.price),
+          tokenSupply: Number(params.tokenSupply || 1000),
+          availableTokens: Number(params.tokenSupply || 1000),
+          tokenPrice: Number(params.price) / Number(params.tokenSupply || 1000),
+          expectedYield: Number(params.expectedYield || 0),
+          category: params.category || "residential",
+          status: 0, // 硬编码为 0，避免类型问题
+          imageUrl: "/property-1.jpg",
+          ownerId: params.owner,
+          // 所有其他字段使用默认值
+        },
+        include: {
+          investments: true,
+        },
+      });
 
-    return {
-      id: property.id,
-      title: property.title,
-      location: property.location,
-      description: property.description,
-      monthlyRent: property.price * (property.expectedYield / 100) / 12,
-      tokenPrice: property.price / property.tokenSupply,
-      totalTokens: property.tokenSupply,
-      soldTokens: 0, // 新创建的房产没有投资
-      apy: property.expectedYield,
-      imageUrl: property.imageUrl || `/property-${property.id}.jpg`,
-      status: property.status as Property['status'],
-      ownerId: property.owner,
-      createdAt: property.createdAt.toISOString(),
-      updatedAt: property.updatedAt.toISOString(),
-    };
+      return {
+        id: property.id.toString(),
+        title: property.title,
+        location: property.location,
+        description: property.description,
+        monthlyRent: property.monthlyRent,
+        tokenPrice: property.tokenPrice,
+        totalTokens: property.totalTokens,
+        soldTokens: property.soldTokens,
+        apy: property.apy,
+        imageUrl: property.imageUrl || `/property-${property.id}.jpg`,
+        status: property.status.toString() as Property['status'],
+        ownerId: property.ownerId,
+        createdAt: property.createdAt.toISOString(),
+        updatedAt: property.updatedAt.toISOString(),
+        renTokenAddress: property.renTokenAddress,
+      };
+    } catch (error) {
+      console.error('Error in createProperty:', error);
+      throw error;
+    }
   }
 
   // 更新房产
   static async updateProperty(id: string, updates: Partial<CreatePropertyParams>): Promise<Property | null> {
-    const property = await prisma.property.update({
-      where: { id },
-      data: {
-        ...(updates.title && { title: updates.title }),
-        ...(updates.description && { description: updates.description }),
-        ...(updates.location && { location: updates.location }),
-        ...(updates.price && { price: updates.price }),
-        ...(updates.tokenSupply && { tokenSupply: updates.tokenSupply }),
-        ...(updates.expectedYield && { expectedYield: updates.expectedYield }),
-        ...(updates.category && { category: updates.category }),
-        ...(updates.owner && { owner: updates.owner }),
-        ...(updates.imageUrl && { imageUrl: updates.imageUrl }),
-        ...(updates.price && updates.tokenSupply && { tokenPrice: updates.price / updates.tokenSupply }),
-      },
-      include: {
-        investments: true,
-      },
-    });
+    try {
+      const property = await prisma.property.update({
+        where: { id: parseInt(id) }, // 转换为数字
+        data: {
+          ...updates,
+          status: updates.status ? Number(updates.status) : undefined, // 确保状态为数字
+        },
+        include: {
+          investments: true,
+        },
+      });
 
-    return {
-      id: property.id,
-      title: property.title,
-      location: property.location,
-      description: property.description,
-      monthlyRent: property.price * (property.expectedYield / 100) / 12,
-      tokenPrice: property.price / property.tokenSupply,
-      totalTokens: property.tokenSupply,
-      soldTokens: property.tokenSupply - property.availableTokens,
-      apy: property.actualYield || property.expectedYield,
-      imageUrl: property.imageUrl || `/property-${property.id}.jpg`,
-      status: property.status as Property['status'],
-      ownerId: property.owner,
-      createdAt: property.createdAt.toISOString(),
-      updatedAt: property.updatedAt.toISOString(),
-    };
+      return {
+        id: property.id.toString(), // 转换为字符串
+        title: property.title,
+        location: property.location,
+        description: property.description,
+        monthlyRent: property.price * (property.expectedYield / 100) / 12,
+        tokenPrice: property.price / property.tokenSupply,
+        totalTokens: property.tokenSupply,
+        soldTokens: property.tokenSupply - property.availableTokens,
+        apy: property.actualYield || property.expectedYield,
+        imageUrl: property.imageUrl || `/property-${property.id}.jpg`,
+        status: property.status.toString() as Property['status'], // 转换为字符串枚举
+        ownerId: property.owner,
+        createdAt: property.createdAt.toISOString(),
+        updatedAt: property.updatedAt.toISOString(),
+      };
+    } catch (error) {
+      console.error('Error updating property:', error);
+      return null;
+    }
   }
 
   // 删除房产
   static async deleteProperty(id: string): Promise<boolean> {
     try {
       await prisma.property.delete({
-        where: { id },
+        where: { id: parseInt(id) }, // 转换为数字
       });
       return true;
     } catch (error) {
@@ -290,7 +297,7 @@ export class PrismaService {
 
     return {
       id: result.id,
-      propertyId: result.propertyId,
+      propertyId: result.propertyId.toString(), // 转换为字符串以匹配 API 类型
       investorAddress: result.investorAddress,
       tokenAmount: result.tokenAmount,
       investmentAmount: result.investmentAmount,
@@ -376,7 +383,7 @@ export class PrismaService {
 
     return investments.map(investment => ({
       id: investment.id,
-      propertyId: investment.propertyId,
+      propertyId: investment.propertyId.toString(), // 转换为字符串
       propertyTitle: investment.property.title,
       propertyLocation: investment.property.location,
       tokenAmount: investment.tokenAmount,
@@ -448,13 +455,13 @@ export class PrismaService {
 
     const investmentsWithPropertyInfo = investments.map(investment => ({
       id: investment.id,
-      propertyId: investment.propertyId,
+      propertyId: investment.propertyId.toString(), // 转换为字符串
       investorAddress: investment.investorAddress,
       tokenAmount: investment.tokenAmount,
       investmentAmount: investment.investmentAmount,
       purchaseDate: investment.purchaseDate.toISOString(),
       property: investment.property ? {
-        id: investment.property.id,
+        id: investment.property.id.toString(), // 转换为字符串
         title: investment.property.title,
         location: investment.property.location,
         description: investment.property.description,
@@ -464,7 +471,7 @@ export class PrismaService {
         soldTokens: investment.property.tokenSupply - investment.property.availableTokens,
         apy: investment.property.actualYield || investment.property.expectedYield,
         imageUrl: investment.property.imageUrl || `/property-${investment.property.id}.jpg`,
-        status: investment.property.status,
+        status: investment.property.status.toString() as Property['status'], // 转换为字符串枚举
         ownerId: investment.property.owner,
         createdAt: investment.property.createdAt.toISOString(),
         updatedAt: investment.property.updatedAt.toISOString(),

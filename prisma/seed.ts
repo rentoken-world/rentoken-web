@@ -15,7 +15,6 @@ async function main() {
   const properties = await prisma.property.createMany({
     data: [
       {
-        id: 1,
         title: "Manhattan Luxury Apartment",
         location: "New York, NY, USA",
         description: "A premium luxury apartment in the heart of Manhattan with stunning city views.",
@@ -44,7 +43,6 @@ async function main() {
         renTokenAddress: "0x03624F93910f251e0861fabc262d3658b39247C7"
       },
       {
-        id: 2,
         title: "Luxury Villa in Beverly Hills",
         location: "Beverly Hills, CA, USA",
         description: "An exquisite luxury villa featuring private pool, garden, and panoramic city views.",
@@ -73,7 +71,6 @@ async function main() {
         renTokenAddress: "0xd62c31b76C346760f2524630268B44D01c31De58"
       },
       {
-        id: 3,
         title: "Cozy Studio in Downtown",
         location: "San Francisco, CA, USA",
         description: "A modern studio apartment perfect for young professionals in the vibrant downtown area.",
@@ -102,7 +99,6 @@ async function main() {
         renTokenAddress: "0xcC148AFB7183cb29B731eE1B769Fe42E5380092D"
       },
       {
-        id: 4,
         title: "Cozy Studio in Downtown",
         location: "San Francisco, CA, USA",
         description: "A modern studio apartment perfect for young professionals in the vibrant downtown area.",
@@ -131,7 +127,6 @@ async function main() {
         renTokenAddress: "0x594af88B22a402dc2F633e71028292D5Ee8A078a"
       },
       {
-        id: 5,
         title: "233",
         location: "SZ",
         description: "666",
@@ -160,7 +155,6 @@ async function main() {
         renTokenAddress: "0x0000000000000000000000000000000000000000"
       },
       {
-        id: 6,
         title: "bape",
         location: "1",
         description: "1",
@@ -189,7 +183,6 @@ async function main() {
         renTokenAddress: "0x0000000000000000000000000000000000000000"
       },
       {
-        id: 7,
         title: "testTitle",
         location: "SZ",
         description: "testDesc",
@@ -218,7 +211,6 @@ async function main() {
         renTokenAddress: "0x0000000000000000000000000000000000000000"
       },
       {
-        id: 8,
         title: "test",
         location: "SH",
         description: "test233",
@@ -247,7 +239,6 @@ async function main() {
         renTokenAddress: "0x0000000000000000000000000000000000000000"
       },
       {
-        id: 9,
         title: "fyhTest",
         location: "ShenZhen",
         description: "fyhTest",
