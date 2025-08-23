@@ -173,7 +173,7 @@ export function PropertyCard({
           <div className="glass p-3 rounded-lg border border-border/50">
             <div className="text-xs text-muted-foreground mb-1">Monthly Rent</div>
             <div className="font-bold text-lg neon-text">
-              {/* ${monthlyRent.toLocaleString()} */}
+              ${monthlyRent.toLocaleString()}
             </div>
           </div>
           <div className="glass p-3 rounded-lg border border-border/50">

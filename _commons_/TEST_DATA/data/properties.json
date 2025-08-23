@@ -14,6 +14,8 @@
     "ownerId": "owner_dc79C8",
     "createdAt": "2025-08-22T10:00:00.000Z",
     "updatedAt": "2025-08-21T16:58:21.946Z",
+    // 以下是合约信息
+
     "propertyId": 1,
     "payoutToken": "0xA0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
     "valuation": 40000000000,

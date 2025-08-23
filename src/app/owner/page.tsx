@@ -32,6 +32,7 @@ export default function OwnerDashboard() {
       const response = await fetch(`/api/properties?owner=${address}`);
       const result = await response.json();
       if (result.success) {
+        console.log('fetchMyProperties', result.data.data)
         setProperties(result.data.data || []);
       }
     } catch (error) {
@@ -362,9 +363,9 @@ export default function OwnerDashboard() {
                     </div>
                   </div>
                   <div className="flex gap-3 mt-6">
-                    <Button variant="glass" className="flex-1 border-primary/30 hover:border-primary">
+                    {/* <Button variant="glass" className="flex-1 border-primary/30 hover:border-primary">
                       ✏️ Edit
-                    </Button>
+                    </Button> */}
                     <Button 
                       onClick={() => handleDeleteProperty(property.id)}
                       variant="glass"
