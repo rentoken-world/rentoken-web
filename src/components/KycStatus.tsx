@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import "./KycStatus.css";
 
 export function KycStatus() {
   const { isConnected, address } = useAccount();

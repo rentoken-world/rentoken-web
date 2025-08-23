@@ -2,7 +2,7 @@
  * @Author: dreamworks.cnn@gmail.com
  * @Date: 2025-08-20 17:26:56
  * @LastEditors: dreamworks.cnn@gmail.com
- * @LastEditTime: 2025-08-21 22:53:13
+ * @LastEditTime: 2025-08-23 15:10:18
  * @FilePath: /rentoken-web/src/hooks/useProperties.ts
  * @Description: 
  * 
@@ -33,7 +33,12 @@ export function useProperties(params: PaginationParams = {}) {
       const result: ApiResponse<PaginatedResponse<Property>> = await response.json();
 
       if (result.success && result.data) {
-        setData(result.data);
+        console.log('result.data', result.data)
+        window.__resultData = result.data
+        setData({
+          ...result.data,
+          data: result.data?.data?.filter((item) => item.renTokenAddress  &&  item.renTokenAddress !== "0x0000000000000000000000000000000000000000")
+        });
         console.log('useProperties.data', result.data)
         
       } else {

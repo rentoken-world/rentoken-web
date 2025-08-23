@@ -1,3 +1,13 @@
+/*
+ * @Author: dreamworks.cnn@gmail.com
+ * @Date: 2025-08-23 14:39:44
+ * @LastEditors: dreamworks.cnn@gmail.com
+ * @LastEditTime: 2025-08-23 14:41:15
+ * @FilePath: /rentoken-web/src/app/layout.js
+ * @Description: 
+ * 
+ * Copyright (c) 2025 by ${git_name_email}, All Rights Reserved. 
+ */
 
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
@@ -41,7 +51,7 @@ export default function RootLayout({ children }) {
               {children}
             </main>
             <Footer />
-            <EnvironmentIndicator />
+            {/* <EnvironmentIndicator /> */}
           </Providers>
         </I18nProvider>
       </body>
