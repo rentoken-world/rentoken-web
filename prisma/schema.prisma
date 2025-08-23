@@ -42,7 +42,7 @@ model Property {
   
   // 基本信息字段
   category        String?      // 房产类别（可选，向后兼容）
-  status          String       // 状态
+  status          Int       // 状态
   imageUrl        String?      // 图片URL（可选）
   owner           String?      // 保留原有字段
   ownerId         String       @default("unknown") // 所有者ID，默认值
@@ -59,7 +59,7 @@ model Property {
 
 model Investment {
   id               String   @id @default(cuid())
-  propertyId       String   // 修复：改为 String 类型以匹配 Property.id
+  propertyId       Int   // 修复：改为 String 类型以匹配 Property.id
   investorAddress  String
   tokenAmount      Int
   investmentAmount Float
