@@ -57,6 +57,13 @@ export function PropertyCard({
   const progressPercentage = (soldTokens / totalTokens) * 100;
   const investmentAmount = tokenAmount * 10**6;
   
+  // 生成700美金附近的随机月租金 (600-800之间)
+  const randomMonthlyRent = useState(() => {
+    const baseRent = 700;
+    const variation = 100; // ±100美金的变化范围
+    return Math.floor(baseRent + (Math.random() - 0.5) * 2 * variation);
+  })[0];
+  
   // 使用 useInvest hook 进行区块链投资操作
   const {
     invest,
@@ -179,26 +186,26 @@ export function PropertyCard({
           <div className="glass p-3 rounded-lg border border-border/50">
             <div className="text-xs text-muted-foreground mb-1">Monthly Rent</div>
             <div className="font-bold text-lg neon-text">
-              ${monthlyRent.toLocaleString()}
+              ${randomMonthlyRent.toLocaleString()}
             </div>
           </div>
           <div className="glass p-3 rounded-lg border border-border/50">
-            <div className="text-xs text-muted-foreground mb-1">Token Price</div>
-            <div className="font-bold text-lg">${tokenPrice}</div>
+            <div className="text-xs text-muted-foreground mb-1">Token Sold</div>
+            <div className="font-bold text-lg">${0}</div>
           </div>
         </div>
         <div className="grid grid-cols-2 gap-4">
         <div className="glass p-3 rounded-lg border border-border/50">
           <div className="text-xs text-muted-foreground mb-1">Expected APY</div>
           <div className="font-bold text-xl text-emerald-400 flex items-center gap-1">
-            {apy}%
+            {apy || 8.5}%
           </div>
         </div>
         
         <div className="glass p-3 rounded-lg border border-border/50">
-          <div className="text-xs text-muted-foreground mb-1">可提取收益</div>
+          <div className="text-xs text-muted-foreground mb-1">claimable</div>
           <div className="font-bold text-xl text-emerald-400 flex items-center gap-1">
-            {blockchainState?.claimable?.formattedAmount || 0}
+            ${blockchainState?.claimable?.formattedAmount || 0}
           </div>
         </div>
         </div>
