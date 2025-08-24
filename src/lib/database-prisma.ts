@@ -33,6 +33,7 @@ export interface CreatePropertyParams {
   owner: string;
   status?: number;  // 添加可选的状态字段
   imageUrl?: string;
+  landlord: string;
 }
 
 // Prisma 数据库服务类
@@ -176,6 +177,7 @@ export class PrismaService {
           status: 0, // 硬编码为 0，避免类型问题
           imageUrl: "/property-1.jpg",
           ownerId: params.owner,
+          landlord: params.landlord,
           // 所有其他字段使用默认值
         },
         include: {

@@ -21,6 +21,8 @@ export default function OwnerDashboard() {
     tokenSupply: "",
     location: "",    
     category: "residential" as const,
+    owner: address,
+    landlord: address,
   });
 
   const fetchMyProperties = useCallback(async () => {
@@ -60,9 +62,10 @@ export default function OwnerDashboard() {
         },
         body: JSON.stringify({
           ...formData,
+          owner: address,
+          landlord: address,
           price: parseFloat(formData.price),
           tokenSupply: parseInt(formData.tokenSupply),          
-          owner: address,
         }),
       });
 
@@ -76,6 +79,8 @@ export default function OwnerDashboard() {
           tokenSupply: "",
           location: "",          
           category: "residential",
+          owner: address,
+          landlord: address,
         });
         fetchMyProperties(); // Refresh the list
       } else {

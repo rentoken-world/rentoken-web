@@ -80,6 +80,7 @@ export interface CreatePropertyParams {
   owner: string;
   imageUrl?: string;
   status: number;
+  landlord: string;
 }
 
 // 数据库服务类 - 现在使用内存数据，准备迁移到 Prisma
@@ -179,6 +180,8 @@ export class DatabaseService {
       imageUrl: params.imageUrl || `/property-placeholder.jpg`,
       status: 0,
       ownerId: params.owner,
+      owner: params.owner,
+      landlord: params.landlord,
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
     };

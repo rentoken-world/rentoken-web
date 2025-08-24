@@ -1,8 +1,8 @@
 /*
  * @Author: dreamworks.cnn@gmail.com
  * @Date: 2025-08-20 17:26:56
- * @LastEditors: dreamworks.cnn@gmail.com
- * @LastEditTime: 2025-08-24 00:09:29
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2025-08-24 10:39:10
  * @FilePath: /rentoken-web/src/app/api/properties/route.ts
  * @Description: 
  * 
@@ -58,11 +58,12 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    
+    console.log('POST:body:', body);
+
     // Validate required fields
-    const { title, description, price, tokenSupply, location, category, owner } = body;
-    
-    if (!title || !description || !price || !tokenSupply || !location  || !category || !owner) {
+    const { title, description, price, tokenSupply, location, category, owner, landlord } = body;
+
+    if (!title || !description || !price || !tokenSupply || !location || !category || !owner || !landlord) {
       return NextResponse.json(
         { success: false, error: 'Missing required fields' },
         { status: 400 }
@@ -82,6 +83,7 @@ export async function POST(request: NextRequest) {
       category,
       owner,
       status: 0,
+      landlord,
     });
 
     return NextResponse.json({

@@ -39,7 +39,6 @@ export interface PropertyBlockchainState {
 
 // 房产相关类型定义
 export interface Property {
-  id: string;
   title: string;
   location: string;
   description: string;
@@ -51,6 +50,8 @@ export interface Property {
   imageUrl: string;
   status: "0" | "1" | "2" | "3" | "4";
   ownerId: string;
+  owner:string;
+  landlord: string;
   createdAt: string;
   updatedAt: string;
   // 区块链相关字段
