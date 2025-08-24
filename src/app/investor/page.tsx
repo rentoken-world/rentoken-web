@@ -33,7 +33,7 @@ export default function InvestorPage() {
     refetch: refetchProperties
   } = useProperties({
     page: currentPage,
-    limit: 9,
+    limit: 50,
     search: searchTerm,
   });
 
