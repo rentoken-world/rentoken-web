@@ -11,7 +11,7 @@ async function main() {
   await prisma.user.deleteMany({});
   await prisma.transaction.deleteMany({});
 
-  // 创建示例房产（基于备份数据）
+  // 创建示例房产（让数据库自动分配 Int 类型的 ID）
   const properties = await prisma.property.createMany({
     data: [
       {
@@ -28,10 +28,7 @@ async function main() {
         imageUrl: "/property-1.jpg",
         status: 1,
         ownerId: "owner_dc79C8",
-        createdAt: new Date("2025-08-22T10:00:00.000Z"),
-        updatedAt: new Date("2025-08-23T14:17:12.622Z"),
-        propertyId: 1,
-        payoutToken: "0xA0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+        payoutToken: "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
         valuation: BigInt(40000000000),
         minRaising: BigInt(28800000000),
         maxRaising: BigInt(36000000000),
@@ -56,10 +53,7 @@ async function main() {
         imageUrl: "/property-2.jpg",
         status: 1,
         ownerId: "owner_dc79C8",
-        createdAt: new Date("2025-08-22T10:00:00.000Z"),
-        updatedAt: new Date("2025-08-23T14:16:55.342Z"),
-        propertyId: 2,
-        payoutToken: "0xA0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+        payoutToken: "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
         valuation: BigInt(180000000000),
         minRaising: BigInt(120000000000),
         maxRaising: BigInt(180000000000),
@@ -82,12 +76,9 @@ async function main() {
         soldTokens: 133,
         apy: 200,
         imageUrl: "/property-3.jpg",
-        status: 3,
+        status: 1,
         ownerId: "owner_dc79C8",
-        createdAt: new Date("2025-08-22T10:00:00.000Z"),
-        updatedAt: new Date("2025-08-23T14:17:22.306Z"),
-        propertyId: 3,
-        payoutToken: "0xA0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+        payoutToken: "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
         valuation: BigInt(19200000000),
         minRaising: BigInt(10000000000),
         maxRaising: BigInt(19200000000),
@@ -131,44 +122,49 @@ async function main() {
 
   console.log(`创建了 ${properties.count} 个房产`);
 
-  // 创建示例投资（使用固定的房产ID）
+  // 获取创建的房产ID（现在是 Int 类型）
+  const createdProperties = await prisma.property.findMany({
+    select: { id: true, title: true }
+  });
+
+  // 创建示例投资（propertyId 现在是 Int 类型）
   const investments = await prisma.investment.createMany({
     data: [
       {
-        propertyId: 1, // Manhattan Luxury Apartment
+        propertyId: createdProperties[0].id, // Int 类型
         investorAddress: "0x742d35Cc6634C0532925a3b8D6A0a4D3B6c8b1A2",
         tokenAmount: 50,
-        investmentAmount: 5000,
+        investmentAmount: 50000,
       },
       {
-        propertyId: 1, // Manhattan Luxury Apartment
+        propertyId: createdProperties[0].id, // Int 类型
         investorAddress: "0x742d35Cc6634C0532925a3b8D6A0a4D3B6c8b1A3",
         tokenAmount: 100,
-        investmentAmount: 10000,
+        investmentAmount: 100000,
       },
       {
-        propertyId: 2, // Luxury Villa in Beverly Hills
+        propertyId: createdProperties[1].id, // Int 类型
         investorAddress: "0x742d35Cc6634C0532925a3b8D6A0a4D3B6c8b1A2",
         tokenAmount: 200,
-        investmentAmount: 20000,
+        investmentAmount: 250000,
       },
       {
-        propertyId: 3, // Cozy Studio in Downtown
+        propertyId: createdProperties[2].id, // Int 类型
         investorAddress: "0x742d35Cc6634C0532925a3b8D6A0a4D3B6c8b1A2",
         tokenAmount: 50,
-        investmentAmount: 5000,
+        investmentAmount: 50000,
       },
       {
-        propertyId: 3, // Cozy Studio in Downtown
+        propertyId: createdProperties[2].id, // Int 类型
         investorAddress: "0x742d35Cc6634C0532925a3b8D6A0a4D3B6c8b1A3",
         tokenAmount: 30,
-        investmentAmount: 3000,
+        investmentAmount: 30000,
       },
       {
-        propertyId: 2, // Luxury Villa in Beverly Hills
+        propertyId: createdProperties[1].id, // Int 类型
         investorAddress: "0x742d35Cc6634C0532925a3b8D6A0a4D3B6c8b1A6",
         tokenAmount: 100,
-        investmentAmount: 10000,
+        investmentAmount: 100000,
       },
     ],
   });
@@ -201,28 +197,28 @@ async function main() {
 
   console.log(`创建了 ${users.count} 个用户`);
 
-  // 创建示例交易记录（使用固定的房产ID）
+  // 创建示例交易记录
   const transactions = await prisma.transaction.createMany({
     data: [
       {
-        hash: "0x1234567890abcdef1234567890abcdef12345678901234567890abcdef123456",
+        hash: "0x1234567890abcdef1234567890abcdef12345678",
         from: "0x742d35Cc6634C0532925a3b8D6A0a4D3B6c8b1A2",
         to: "0x742d35Cc6634C0532925a3b8D6A0a4D3B6c8b1A1",
-        amount: 5000,
+        amount: 50000,
         tokenAmount: 50,
-        propertyId: 1, // Manhattan Luxury Apartment
+        propertyId: createdProperties[0].id.toString(), // 转换为字符串
         type: "purchase",
         status: "confirmed",
         blockNumber: 18500000,
         gasUsed: "21000",
       },
       {
-        hash: "0xabcdef1234567890abcdef1234567890abcdef12345678901234567890abcdef",
+        hash: "0xabcdef1234567890abcdef1234567890abcdef12",
         from: "0x742d35Cc6634C0532925a3b8D6A0a4D3B6c8b1A3",
         to: "0x742d35Cc6634C0532925a3b8D6A0a4D3B6c8b1A1",
-        amount: 10000,
+        amount: 100000,
         tokenAmount: 100,
-        propertyId: 1, // Manhattan Luxury Apartment
+        propertyId: createdProperties[0].id.toString(), // 转换为字符串
         type: "purchase",
         status: "confirmed",
         blockNumber: 18500100,
@@ -232,7 +228,6 @@ async function main() {
   });
 
   console.log(`创建了 ${transactions.count} 个交易记录`);
-
   console.log('示例数据初始化完成！');
 }
 
