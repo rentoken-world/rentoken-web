@@ -99,12 +99,16 @@ export function PropertyCard({
 
   const getStatusText = () => {
     switch (status) {
-      case "0":
-        return "🚀 Funding";
-      case "1":
-        return "✅ Active";
-      case "2":
-        return "🏁 Completed";
+      case 0:
+        return "🚀 Fundraising";
+      case 1:
+        return "✅ AccrualStarted";
+      case 2:
+        return "🏁 RisingFailed";
+      case 3:
+        return "🏁 AccrualFinished";
+      case 4:
+        return "🏁 Terminated";
       default:
         return status;
     }
