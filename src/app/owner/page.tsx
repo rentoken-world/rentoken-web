@@ -30,7 +30,7 @@ export default function OwnerDashboard() {
     
     try {
       setLoading(true);
-      const response = await fetch(`/api/properties?owner=${address}`);
+      const response = await fetch(`/api/properties?ownerId=${address}`);
       const result = await response.json();
       if (result.success) {
         console.log('fetchMyProperties', result.data.data)
