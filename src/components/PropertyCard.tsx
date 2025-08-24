@@ -55,7 +55,7 @@ export function PropertyCard({
   const [tokenAmount, setTokenAmount] = useState(1);
   const remainingTokens = totalTokens - soldTokens;
   const progressPercentage = (soldTokens / totalTokens) * 100;
-  const investmentAmount = tokenAmount * tokenPrice;
+  const investmentAmount = tokenAmount * 10**6;
   
   // 使用 useInvest hook 进行区块链投资操作
   const {

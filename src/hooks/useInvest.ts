@@ -2,7 +2,7 @@
  * @Author: dreamworks.cnn@gmail.com
  * @Date: 2025-08-21 21:15:10
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2025-08-24 08:16:42
+ * @LastEditTime: 2025-08-24 11:15:41
  * @FilePath: /rentoken-web/src/hooks/useInvest.ts
  * @Description: 
  * 
@@ -142,7 +142,7 @@ export function useInvest(propertyId: string, contributeAmount: number, rentToke
       
       if (needsApproval) {
         console.log("需要授权USDC...");
-        console.log("amount", amount);
+        console.log("amount", contributeAmount);
         console.log("rentTokenAddress", rentTokenAddress);
         console.log("USDC_ADDRESS", USDC_ADDRESS);
         console.log("address", address);
@@ -152,7 +152,7 @@ export function useInvest(propertyId: string, contributeAmount: number, rentToke
           address: USDC_ADDRESS,
           abi: USDCABI as any,
           functionName: 'approve',
-          args: [address, amount],
+          args: [rentTokenAddress, contributeAmount],
           account: address!,
           chain: currentChain,
         });
@@ -180,7 +180,7 @@ export function useInvest(propertyId: string, contributeAmount: number, rentToke
         address: rentTokenAddress,
         abi: RentTokenABI as any,
         functionName: 'contribute',
-        args: [amount],
+        args: [contributeAmount],
         account: address!,
         chain: currentChain,
       });
