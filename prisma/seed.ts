@@ -88,6 +88,37 @@ async function main() {
         docHash: "0x567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234",
         offchainURL: "https://ipfs.io/ipfs/QmCozyStudio",
         renTokenAddress: "0xcC148AFB7183cb29B731eE1B769Fe42E5380092D"
+<<<<<<< HEAD
+=======
+      },
+      {
+        title: "Cozy Studio in Downtown",
+        location: "San Francisco, CA, USA",
+        description: "A modern studio apartment perfect for young professionals in the vibrant downtown area.",
+        price: 19200,
+        availableTokens: 59,
+        tokenPrice: 100,
+        monthlyRent: 3200,
+        totalTokens: 192,
+        soldTokens: 133,
+        apy: 200,
+        imageUrl: "/property-3.jpg",
+        status: 2,
+        ownerId: "owner_dc79C8",
+        createdAt: new Date("2025-08-23T10:00:00.000Z"),
+        updatedAt: new Date("2025-08-23T13:16:48.408Z"),
+        propertyId: 4,
+        payoutToken: "0xA0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+        valuation: BigInt(19200000000),
+        minRaising: BigInt(10000000000),
+        maxRaising: BigInt(19200000000),
+        accrualStart: BigInt(1755856800),
+        accrualEnd: BigInt(1841392800),
+        landlord: "0x70997970C51812dc3A010C7d01b50e0d17dc79C8",
+        docHash: "0x567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234",
+        offchainURL: "https://ipfs.io/ipfs/QmCozyStudio",
+        renTokenAddress: "0x594af88B22a402dc2F633e71028292D5Ee8A078a"
+>>>>>>> 583bfac5cc6e662066a088a427f460da9321154e
       }
     ],
   });

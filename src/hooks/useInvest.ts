@@ -1,8 +1,8 @@
 /*
  * @Author: dreamworks.cnn@gmail.com
  * @Date: 2025-08-21 21:15:10
- * @LastEditors: dreamworks.cnn@gmail.com
- * @LastEditTime: 2025-08-23 19:35:32
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2025-08-24 08:16:42
  * @FilePath: /rentoken-web/src/hooks/useInvest.ts
  * @Description: 
  * 
@@ -152,7 +152,7 @@ export function useInvest(propertyId: string, contributeAmount: number, rentToke
           address: USDC_ADDRESS,
           abi: USDCABI as any,
           functionName: 'approve',
-          args: ["0x6E0D1a311Db4525e0953A751EA32E810c6E464C8", amount],
+          args: [address, amount],
           account: address!,
           chain: currentChain,
         });
