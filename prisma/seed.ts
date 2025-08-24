@@ -88,8 +88,6 @@ async function main() {
         docHash: "0x567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234",
         offchainURL: "https://ipfs.io/ipfs/QmCozyStudio",
         renTokenAddress: "0xcC148AFB7183cb29B731eE1B769Fe42E5380092D"
-<<<<<<< HEAD
-=======
       },
       {
         title: "Cozy Studio in Downtown",
@@ -118,7 +116,6 @@ async function main() {
         docHash: "0x567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234",
         offchainURL: "https://ipfs.io/ipfs/QmCozyStudio",
         renTokenAddress: "0x594af88B22a402dc2F633e71028292D5Ee8A078a"
->>>>>>> 583bfac5cc6e662066a088a427f460da9321154e
       }
     ],
   });
